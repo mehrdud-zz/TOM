@@ -313,6 +313,7 @@
     <Content Include="Content\Styles\smart_wizard.css" />
     <Content Include="Content\Styles\easyChartStyle.css" />
     <Content Include="Content\Styles\texture\transtexture.png" />
+    <Content Include="db\ClaimsGenerateDB.sql" />
     <Content Include="Global.asax" />
     <Content Include="Unity.Mvc4.README.txt" />
     <Content Include="Web.config">
@@ -616,6 +617,8 @@
     <Content Include="Areas\Reports\Views\Dashboards\Delete.cshtml" />
     <Content Include="Areas\Reports\Views\Dashboards\SharePointDashboard.cshtml" />
     <Content Include="Areas\Reports\Views\Reports\Delete.cshtml" />
+    <Content Include="db\Claims_Professional.bak" />
+    <Content Include="db\Claims_Express.bak" />
     <None Include="MvcSiteMapSchema.xsd" />
     <Content Include="Views\Home\GoogleGeoChart.cshtml" />
     <Content Include="Views\Home\GoogleDonutChart.cshtml" />

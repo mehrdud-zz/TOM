@@ -17,13 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acturis", "Acturis\Acturis.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClaimsReport", "ClaimsReport\ClaimsReport.csproj", "{A8AE883E-DDEC-42DC-96C9-E5B426040C30}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{DEC2E7F6-6479-494F-98F0-3AC437AD04D3}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL11.SQLEXPRESS\MSSQL\Backup\Claims_Express.bak = ..\..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL11.SQLEXPRESS\MSSQL\Backup\Claims_Express.bak
-		..\..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL11.SQL\MSSQL\Backup\Claims_Professional.bak = ..\..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL11.SQL\MSSQL\Backup\Claims_Professional.bak
-		..\..\..\SQL Server Management Studio\ClaimsGenerateDB.sql = ..\..\..\SQL Server Management Studio\ClaimsGenerateDB.sql
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
