@@ -15,6 +15,8 @@ namespace ClaimsPoC
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
 
+
+
             return container;
         }
 
