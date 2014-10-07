@@ -1,0 +1,20 @@
+﻿@model IEnumerable<ModelsLayer.Claim>
+
+@{
+    ViewBag.Title = "GetListofUnassignedClaims";
+}
+
+<ul style="list-style-type: none; padding-left: 10px;">
+    @foreach (ClaimsPoC.Claim claim in Model)
+    { 
+        <li style="padding-bottom: 10px;">
+            <a style="font-weight:bold;" href="~/Claims/Claim/Details/@claim.ClaimID">"@claim.ClaimTemplate.Name" raised by "@claim.CreatedBy" raised on "@claim.DateCreated", current status: "@claim.ClaimStatu.Name"
+            </a>
+            <br />
+            <span>
+                @claim.Description
+            </span>
+        </li>
+    }
+</ul>
+

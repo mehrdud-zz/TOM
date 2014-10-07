@@ -1,0 +1,23 @@
+﻿@model IEnumerable<ModelsLayer.ClaimTemplate>
+@{
+    ViewBag.Title = "ClientClaimTypes";
+}
+
+
+<ul style="list-style-type: none; padding-left: 10px;">
+    @foreach (ModelsLayer.ClaimTemplate claimTemplate in Model)
+    { 
+        <li style="padding-bottom:10px;">                        
+            <a style="font-weight:bold;" href="~/ClientHome/ClientHome/ClaimForm?ClaimTemplateID=@claimTemplate.ClaimTemplateID">
+                @claimTemplate.Name
+            </a>
+            <br />
+            <span>
+                @claimTemplate.Description
+            </span>
+        </li>
+    }
+</ul>
+
+
+

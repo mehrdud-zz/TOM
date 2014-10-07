@@ -1,0 +1,59 @@
+﻿@model ModelsLayer.ReportTemplate
+@{
+    ViewBag.Title = "SharePointDashboard";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" href="/Content/Styles/ChartPainter.css" />
+
+    <script type="text/javascript" src="//www.google.com/jsapi"></script>
+
+    
+    <script type="text/javascript">
+      
+
+    </script>
+
+    <script type="text/javascript" src="/Content/Scripts/ChartPainter.js"></script> 
+
+</head>
+<body>
+    <div id="frameCotnainer"></div>
+    <script type="text/javascript">
+ 
+        function DrawDashboardII() {
+            var dashboardId =@(ViewBag.DashboardId);
+            console.log("DashboardId: " + dashboardId);
+            if (dashboardId != null && dashboardId != "") {
+                var requestUrl = "/Customise/GetPageElementListByDashboardId?dashboardId=" + dashboardId;
+
+                var dashboardElement = document.createElement("div");
+                var dashboardElementId = "dashboard" + dashboardId;
+
+                $(dashboardElement).attr("id", dashboardElementId);
+                $(dashboardElement).addClass("dashboard");
+
+
+                console.log("dashboardElement: " + dashboardElement);
+                $("#main").append(dashboardElement);
+
+                $.get(requestUrl, function (data) {
+                    for (var i = 0; i < data.Result.length; i++) {
+                        console.log("Function DrawDashboard: Calling drawMyChartInWrapper " + dashboardId);
+                        drawMyChartInWrapper(data.Result[i].ReportId, data.Result[i].Left, data.Result[i].Top, data.Result[i].Width, data.Result[i].Height, dashboardElementd, data.Result[i].Title, 0);
+                    }
+                });
+
+                var filters = document.createElement('div');
+                DrawClientDropDown(filters);
+            }
+        }
+
+        google.load('visualization', '1.1', { packages: ['controls'] }); 
+        google.setOnLoadCallback(DrawDashboardII);
+    </script>
+</body>
+</html> 

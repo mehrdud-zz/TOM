@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ModelsLayer.Claim>
+
+@{
+    ViewBag.Title = "ClaimsList";
+}
+ 
+<h2>Claims</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+@* Kendo Grid implementation*@
+@(Html.Kendo().Grid(Model) // Bind the grid to the Model property of the view
+    .Name("Grid")
+    .Columns(columns =>
+        {
+            columns.Bound(claim => claim.Name).Width(100).Template(@<text><a type="button" href="/Claims/Claim/Details/@item.ClaimID">@item.Name</a></text>);
+            columns.Bound(claim => claim.Description).Width(200);
+            columns.Bound(claim => claim.Country.Name).Width(200).Title("Country");
+          
+            columns.Bound(claim => claim.ClaimStatu.Name).Width(100).Title("Status");
+            columns.Template(@<text><a type="button" href="/Claims/Claim/Details/@item.ClaimID">View</a>&nbsp;&nbsp;&nbsp;<a type="button" href="/Claims/Claim/Edit/@item.ClaimID">Edit</a>&nbsp;&nbsp;&nbsp;<a type="button" href="/Claims/Claim/Delete/@item.ClaimID">Delete</a></text>).Width(100);
+        })
+  .Pageable(o => { o.PageSizes(new int[] { 10, 50, 100 }); })
+
+
+
+
+
+
+       .ToolBar(
+    toolbar =>
+    {
+        toolbar.Template(@<text>
+<div class="toolbar">
+    <input id="gridAllFilterReset" type="button" value="Clear filters" />
+</div>
+</text>);
+    })
+.Sortable(sortable => sortable.AllowUnsort(false))
+.Filterable(filterable => filterable
+        .Extra(false)
+         .Operators(operators => operators
+            .ForString(str => str.Clear()
+                .StartsWith("Starts with")
+                .IsEqualTo("Is equal to")
+                .IsNotEqualTo("Is not equal to")
+            ))
+        )
+
+)
+
+
+
+<script type="text/javascript">
+    $("#gridAllFilterReset").click(function (e) {
+        window.location = "/Claims/Claim";
+    });
+</script>

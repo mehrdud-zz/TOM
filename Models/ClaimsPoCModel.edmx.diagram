@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6f562e90d3b74b408fc008e6b38ff0d9" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="ClaimsModel.ClaimField" Width="1.5" PointX="7.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClaimsModel.ClaimFieldGroup" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClaimsModel.ClaimFieldGroupTemplate" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClaimsModel.ClaimFieldTemplate" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClaimsModel.ClaimStatu" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClaimsModel.ClaimTemplate" Width="1.5" PointX="0.5" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClaimsModel.Client" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClaimsModel.Country" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClaimsModel.Currency" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClaimsModel.FieldType" Width="1.5" PointX="0.625" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClaimsModel.WillisEmployee" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <AssociationConnector Association="ClaimsModel.FK_ClaimField_ClaimFieldGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="ClaimsModel.FK_ClaimField_ClaimFieldTemplate" ManuallyRouted="false" />
+        <AssociationConnector Association="ClaimsModel.FK_ClaimFieldGroupTemplate_ClaimTemplate" ManuallyRouted="false" />
+        <AssociationConnector Association="ClaimsModel.FK_ClaimFieldTemplate_ClaimFieldGroupTemplate" ManuallyRouted="false" />
+        <AssociationConnector Association="ClaimsModel.FK_ClaimFieldTemplate_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="ClaimsModel.FK_ClaimFieldTemplate_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="ClaimsModel.FK_ClaimFieldTemplate_FieldType" ManuallyRouted="false" />
+        <AssociationConnector Association="ClaimsModel.ClientClaimTemplates" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ClaimsModel.ReportTemplate" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ClaimsModel.aspnet_Applications" Width="1.5" PointX="8" PointY="16.625" />
+        <EntityTypeShape EntityType="ClaimsModel.aspnet_Membership" Width="1.5" PointX="17.625" PointY="13.875" />
+        <EntityTypeShape EntityType="ClaimsModel.aspnet_Paths" Width="1.5" PointX="13.125" PointY="23.25" />
+        <EntityTypeShape EntityType="ClaimsModel.aspnet_PersonalizationAllUsers" Width="1.5" PointX="15.375" PointY="26.375" />
+        <EntityTypeShape EntityType="ClaimsModel.aspnet_PersonalizationPerUser" Width="1.5" PointX="17.625" PointY="19.625" />
+        <EntityTypeShape EntityType="ClaimsModel.aspnet_Profile" Width="1.5" PointX="17.625" PointY="10.375" />
+        <EntityTypeShape EntityType="ClaimsModel.aspnet_Roles" Width="1.5" PointX="13.125" PointY="12" />
+        <EntityTypeShape EntityType="ClaimsModel.aspnet_SchemaVersions" Width="1.5" PointX="10.375" PointY="8.75" />
+        <EntityTypeShape EntityType="ClaimsModel.aspnet_Users" Width="1.5" PointX="15.375" PointY="13.875" />
+        <AssociationConnector Association="ClaimsModel.FK__aspnet_Me__Appli__6BAEFA67" />
+        <AssociationConnector Association="ClaimsModel.FK__aspnet_Pa__Appli__1D4655FB" />
+        <AssociationConnector Association="ClaimsModel.FK__aspnet_Ro__Appli__0A338187" />
+        <AssociationConnector Association="ClaimsModel.FK__aspnet_Us__Appli__5B78929E" />
+        <AssociationConnector Association="ClaimsModel.FK__aspnet_Me__UserI__6CA31EA0" />
+        <AssociationConnector Association="ClaimsModel.FK__aspnet_Pe__PathI__22FF2F51" />
+        <AssociationConnector Association="ClaimsModel.FK__aspnet_Pe__PathI__26CFC035" />
+        <AssociationConnector Association="ClaimsModel.FK__aspnet_Pe__UserI__27C3E46E" />
+        <AssociationConnector Association="ClaimsModel.FK__aspnet_Pr__UserI__00AA174D" />
+        <AssociationConnector Association="ClaimsModel.aspnet_UsersInRoles" />
+        <EntityTypeShape EntityType="ClaimsModel.aspnet_WebEvent_Events" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ClaimsModel.Claim" Width="1.5" PointX="15.375" PointY="9.125" />
+        <AssociationConnector Association="ClaimsModel.FK_Claim_ClaimStatus" />
+        <AssociationConnector Association="ClaimsModel.FK_Claim_ClaimTemplate" />
+        <AssociationConnector Association="ClaimsModel.FK_Claim_Country" />
+        <AssociationConnector Association="ClaimsModel.FK_Claim_WillisEmployee" />
+        <AssociationConnector Association="ClaimsModel.FK_ClaimFieldGroup_Claim" />
+        <EntityTypeShape EntityType="ClaimsModel.User" Width="1.5" PointX="18.25" PointY="3.625" />
+        <AssociationConnector Association="ClaimsModel.FK_Claim_User" />
+        <EntityTypeShape EntityType="ClaimsModel.ReportField" Width="1.5" PointX="12.625" PointY="3.25" />
+        <AssociationConnector Association="ClaimsModel.FK_ReportField_ReportTemplate" />
+        <EntityTypeShape EntityType="ClaimsModel.PageElement" Width="1.5" PointX="22.75" PointY="9.25" />
+        <EntityTypeShape EntityType="ClaimsModel.PageSetup" Width="1.5" PointX="20.5" PointY="9.5" />
+        <AssociationConnector Association="ClaimsModel.FK_PageSetup_Client" />
+        <AssociationConnector Association="ClaimsModel.FK_PageElement_PageSetup" />
+        <AssociationConnector Association="ClaimsModel.FK_PageSetup_User" />
+        <AssociationConnector Association="ClaimsModel.FK_PageElement_ReportTemplate" />
+        <AssociationConnector Association="ClaimsModel.FK_ReportField_ClaimFieldTemplate" />
+        <AssociationConnector Association="ClaimsModel.FK_ReportTemplate_ClaimTemplate" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

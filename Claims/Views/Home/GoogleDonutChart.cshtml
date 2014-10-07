@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "GoogleDonutChart";    
+}
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+<script type="text/javascript">
+    google.load("visualization", "1", { packages: ["corechart"] });
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Status', 'Count'],
+          ['New', 11],
+          ['Pending', 2],
+          ['Resolved', 2],
+          ['Disputed', 2]
+        ]);
+
+        var options = {
+            title: 'Current Claims Qeue',
+            pieHole: 0.4,
+            backgroundColor: 'transparent',
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+    }
+</script>
+
+
+
+<div id="donutchart" style="width: 450px; height: 250px;"></div>

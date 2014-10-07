@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "TopBar";
+}
+
+@if (!WebSecurity.Initialized)
+{
+    WebSecurity.InitializeDatabaseConnection("DefaultConnection", "User", "UserId", "UserName", autoCreateTables: false);
+}
+
+@if (User.IsInRole(ClaimsPoC.Properties.Settings.Default.SuperAdminRole) || User.IsInRole(ClaimsPoC.Properties.Settings.Default.WillisEmployeeRole))
+{
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @if (User.IsInRole(ClaimsPoC.Properties.Settings.Default.SuperAdminRole))
+            {
+                <a class="navbar-brand" title="Home" href="/Home/Home">
+                    <span class="glyphicon glyphicon-home"></span>&nbsp;Home
+                </a>
+            }
+            else if (User.IsInRole(ClaimsPoC.Properties.Settings.Default.WillisEmployeeRole))
+            {
+                <a class="navbar-brand" title="Home" href="/WillisAssociate/WillisAssociate">
+                    <span class="glyphicon glyphicon-home"></span>&nbsp;Home
+                </a>
+            }
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="~/Claims/Claim/"><span class="glyphicon glyphicon-euro"></span>&nbsp;Claims</a></li>
+                <li><a href="~/Claims/ClaimTemplate/"><span class="glyphicon glyphicon-tower"></span>&nbsp;Claim Templates</a></li>
+                <li><a href="~/Clients/Client/"><span class="glyphicon glyphicon-briefcase"></span>&nbsp;Clients</a></li>
+                <li><a href="~/Clients/User/"><span class="glyphicon glyphicon-user"></span>&nbsp;Users</a></li>
+                <li><a href="~/Reports/Reports/"><span class="glyphicon glyphicon-tasks"></span>&nbsp;Reports</a></li>
+                <li><a href="~/Reports/Dashboards/"><span class="glyphicon glyphicon-tasks"></span>&nbsp;Dashboards</a></li>
+                <li><a href="#" onclick="CustomiseThisPage();return false;"><span class="glyphicon glyphicon-tasks"></span>&nbsp;Customise this page</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>@Html.Partial("_LoginPartial")</li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </nav>
+}
+else if (User.IsInRole(ClaimsPoC.Properties.Settings.Default.UserRole))
+{
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" title="Home" href="~/ClientHome/ClientHome/">
+                <span class="glyphicon glyphicon-home"></span>&nbsp;Home
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="~/ClientHome/ClientHome/ListClientClaims/"><span class="glyphicon glyphicon-euro"></span>&nbsp;Claims</a>
+                </li>
+
+                <li>
+                    <a href="~/Clients/User/"><span class="glyphicon glyphicon-user"></span>&nbsp;Users</a>
+                </li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>@Html.Partial("_LoginPartial")</li>
+            </ul>
+        </div>
+    </nav>
+}

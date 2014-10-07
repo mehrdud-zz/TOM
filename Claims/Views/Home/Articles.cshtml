@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ModelsLayer.ClaimStatu>
+@{
+    ViewBag.Title = "articles";
+}
+
+
+
+@{
+    List<string> colours = new List<string>() { "articleBlue", "articleGreen", "articleYellow", "articleBrown", "articleRed" };
+    int counter = 0;
+    foreach (ModelsLayer.ClaimStatu claimstat in Model)
+    {
+
+    <text>
+
+    <article class="@colours[counter]" id="@claimstat.Name">
+        <header style="font-weight: bold;">@claimstat.Name</header>
+        <div class="articleText">
+            Lorem ipsum
+        </div>
+    </article>
+    </text>
+
+        counter++;
+        if (counter >= colours.Count)
+        {
+            counter = 0;
+        }
+
+    }
+
+}
+ 

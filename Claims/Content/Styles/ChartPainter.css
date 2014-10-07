@@ -1,0 +1,11 @@
+﻿.filters ul
+{
+    list-style-type: none;
+}
+
+.filters ul li
+{
+    display: inline-block;
+    vertical-align: top;
+    -webkit-margin-after: 1em;
+} 

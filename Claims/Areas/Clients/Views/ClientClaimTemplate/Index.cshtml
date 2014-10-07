@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ModelsLayer.ClaimTemplate>
+
+@{
+    ViewBag.Title = "DisplayClientTemplates";
+}
+
+
+@if (ViewBag.ViewMode == "Details")
+{
+    <div class="display-label">
+        Client Templates
+    </div>
+    <div class="display-field">
+
+        @(Html.Kendo().Grid(Model) // Bind the grid to the Model property of the view
+    .Name("Grid")
+
+    .Columns(columns =>
+        {
+
+            columns.Template(@<text><a  href="~/Claims/ClaimTemplate/Details/@item.ClaimTemplateID?ClaimTemplateID=@item.ClaimTemplateID&ClientID=@ViewBag.ClientID">@item.Name</a></text>).Width(200).Title("Name");
+        })
+
+            .Sortable()
+            .DataSource(dataSource => dataSource
+            .Server()
+            .Model(model => model.Id(p => p.ClaimTemplateID))
+            )
+)
+
+
+
+    </div>
+}
+
+@if (ViewBag.ViewMode == "Edit")
+{
+    
+    <div class="editor-label">
+        Client Templates
+    </div>
+    <div class="editor-field">
+
+        @(Html.Kendo().Grid(Model) // Bind the grid to the Model property of the view
+    .Name("Grid")
+
+    .Columns(columns =>
+        {
+
+            columns.Template(@<text><a  href="~/Claims/ClaimTemplate/Details/@item.ClaimTemplateID">@item.Name</a></text>).Width(200).Title("Name");
+            columns.Template(@<text><a href="~/Claims/ClaimTemplate/DeleteClientClaimTemplate?claimTemplateID=@item.ClaimTemplateID&clientID=@ViewBag.ClientID">Delete</a></text>).Width(200);
+        })
+
+            .Sortable()
+            .DataSource(dataSource => dataSource
+            .Server()
+            .Model(model => model.Id(p => p.ClaimTemplateID))
+            )
+)
+
+
+        <a href="~/Claims/ClaimTemplate/AddToClient?ClientID=@ViewBag.ClientID ">Add new template</a>
+
+    </div>   
+}

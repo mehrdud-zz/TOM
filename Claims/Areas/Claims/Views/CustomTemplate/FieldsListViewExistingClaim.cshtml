@@ -1,0 +1,80 @@
+﻿@model BrokingPlatformIntegrationBase.Interfaces.IClaim
+
+@{
+    ViewBag.Title = "CreateFromClaimTemplate";
+}
+
+
+@if (Model != null)
+{
+
+
+    foreach (BrokingPlatformIntegrationBase.Interfaces.IClaimFieldGroup claimFieldGroupTemplate in Model.ClaimFieldGroups)
+    {
+        <div style="display:inline-block;width: 100%;border:1px solid; -ms-border-radius:10px; border-radius:10px;z-index:200;overflow:hidden; margin:10px 0 10px 0;">
+            <div style="display: inline-block; width: 100%; background-color: #cecece; padding: 10px 1% 10px 1%;z-index:-1;">
+                <h3>
+                    @Html.Label(claimFieldGroupTemplate.Name)
+                </h3>
+           </div>
+                @foreach (BrokingPlatformIntegrationBase.Interfaces.IClaimField claimField in claimFieldGroupTemplate.ClaimFields)
+                {
+
+                    <div class="display-label">
+                        @Html.Label(claimField.Name)
+
+                        @if (claimField.Mandatory)
+                        {
+                            <label style="color: red; font-size: 14pt;">*</label>
+                        }
+                    </div>
+
+                    <div class="display-field">
+
+                        @switch (claimField.TemplateName)
+                        {
+                            case "ShortText":
+                                @Html.DisplayFor(m => claimField.ShortTextValue)
+                                break;
+                            case "LongText":
+                                @Html.DisplayFor(m => claimField.LongTextValue)
+
+                                break;
+                            case "Integer":
+                                @Html.DisplayFor(m => claimField.IntegerValue)
+                                break;
+                            case "Float":
+                                @Html.DisplayFor(m => claimField.FloatValue)
+                                break;
+                            case "Date":
+                                @Html.DisplayFor(m => claimField.DateValue)
+
+                                break;
+                            case "DateTime":
+                                @Html.DisplayFor(m => claimField.DateTimeValue)
+
+                                break;
+                            case "DropDown":
+                                @Html.DisplayFor(m => claimField.DropDownValue)
+                                break;
+                            case "MultiChoice":
+                                @Html.DisplayFor(m => claimField.MultiChoiceValue)
+                                break;
+                            case "File":
+                                break;
+                            case "Money":
+                                @Html.DisplayFor(m => claimField.CurrecncySign) 
+                                @Html.DisplayFor(m => claimField.CurrecncyValue) 
+                                break;
+                            case "Country":
+                                @Html.DisplayFor(m => claimField.CountryValue)
+                                break;
+                            case "Range": break; 
+                        }
+
+                    </div>
+
+                } 
+        </div>
+    }
+}

@@ -1,0 +1,38 @@
+﻿@model  ClaimsPoC.Controllers.FieldTemplate
+@{
+    ViewBag.Title = "GetFieldTemplate";
+    ViewBag.ClaimFieldTemplateName = "MultiChoice";
+} 
+
+@switch (Model.ClaimFieldTemplate.Name)
+{
+    case "ShortText":
+        break;
+    case "LongText":
+        break;
+    case "Integer":
+        break;
+    case "Float":
+        break;
+    case "Date":
+        break;
+    case "DateTime":
+        break;
+    case "DropDown":
+        break;
+    case "MultiChoice":
+        //return RedirectToAction("Edit", "ClaimTemplate", new { @id = claimTempalteID });                    
+        Html.Action("MultiChoiceListTemplate", new { claimField = ViewBag.ClaimFieldTemplate, FieldMode = ViewBag.FieldMode });
+        break;
+    case "File":
+        break;
+    case "Money":
+        break;
+    case "Country":
+        break;
+    case "Range":
+        break;
+    default:
+        break;
+}
+ 

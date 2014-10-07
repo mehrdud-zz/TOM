@@ -1,0 +1,45 @@
+﻿@model ModelsLayer.ReportTemplate
+    @{
+        ViewBag.Title = "Detail";
+        Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+    }
+
+    @*@Html.Action("RunTableReport", "Reports", new { area = "Reports", ReportID = ((!String.IsNullOrEmpty(Request.QueryString["ReportID"]) ? Convert.ToInt32(Request.QueryString["ReportID"]) : -1)) })*@
+
+
+<div class="editor-field">
+    <a target="_blank" href=" @( String.Format("{0}{1}:{2}/Reports/Dashboards/SharePointDashboard?DashboardId=0&ReportId={3}", (HttpContext.Current.Request.IsSecureConnection ? "https://" : "http://"), HttpContext.Current.Request.Url.Host, ((HttpContext.Current.Request.Url.Port == 80) ? String.Empty : HttpContext.Current.Request.Url.Port.ToString()), Model.ReportID)) ">
+        SharePoint URL
+    </a>
+</div>
+
+<div class="buttons">
+    <input type="button" value="Edit" onclick="changeWindowLocation('/Reports/Reports/Edit/@(Request.QueryString["ReportID"])');" />
+    <input type="button" value="Back to List" onclick="changeWindowLocation('/Reports/Reports');" />
+
+
+</div>
+
+<br />
+<br />
+
+<div id="dash" style="position:relative;"></div>
+<script type="text/javascript">
+
+
+
+    function DrawEveryThing() {
+        cftDashboard.LoadDashboard(cftDashboard);
+    }
+
+    var dashboardId = 0;
+    var reportId = GetQueryStringValueOOP("ReportID");
+    var cftDashboard = new CFTDashboard(dashboardId, "dash", reportId);
+
+    if (google != null) {
+        google.setOnLoadCallback(DrawEveryThing);
+    }
+
+     
+</script> 
+

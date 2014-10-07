@@ -1,0 +1,28 @@
+﻿ul.claimFieldGroupTemplate {
+    padding: 0 1% 0 1%;
+}
+
+ul.claimFieldGroupTemplate li {
+    list-style-type: none;
+}
+
+
+.editor-label {
+    padding: 10px 0 0 0!important;
+}
+
+
+fieldset {
+}
+
+
+.fieldGroupContainer {
+    display: inline-block;
+    width: 100%;
+    border: 1px solid;
+    border-radius: 10px;
+    z-index: 200;
+    overflow: hidden;
+    margin: 10px 0 10px 0;
+    padding: 0 0 5px 0;
+}

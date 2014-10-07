@@ -1,0 +1,10 @@
+﻿@model IEnumerable<ModelsLayer.Country>
+@{
+    ViewBag.Title = "CountryTemplate";
+}
+
+
+ 
+@Html.Kendo().DropDownList().Name(ViewBag.Code).BindTo(ViewBag.CountryList).HtmlAttributes(new { style = string.Format("width:{0}%", 100) })
+ 
+ 

@@ -1,0 +1,149 @@
+﻿@model ModelsLayer.Client
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+<h2>Details</h2>
+
+
+
+<fieldset>
+    <legend>Client</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    @Html.Action("Index", "ClientClaimTemplate", new { ClientID = Model.ClientID, ViewMode = "Details" })
+
+    <div id="panel" class="advencedProperties">
+        <div class="display-label">
+            @Html.LabelFor(model => model.BackgroundColour)
+        </div>
+        <div class="display-field">
+            @(Html.Kendo().ColorPickerFor(m => m.BackgroundColour))
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.TextColour)
+        </div>
+        <div class="display-field">
+            @(Html.Kendo().ColorPickerFor(m => m.TextColour))
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.Heading1)
+        </div>
+        <div class="display-field">
+            @(Html.Kendo().ColorPickerFor(m => m.Heading1))
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.Heading2)
+        </div>
+        <div class="display-field">
+            @(Html.Kendo().ColorPickerFor(m => m.Heading2))
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.Heading3)
+        </div>
+        <div class="display-field">
+            @(Html.Kendo().ColorPickerFor(m => m.Heading3))
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.Heading4)
+        </div>
+        <div class="display-field">
+            @(Html.Kendo().ColorPickerFor(m => m.Heading4))
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.Colour1)
+        </div>
+        <div class="display-field">
+            @(Html.Kendo().ColorPickerFor(m => m.Colour1))
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.Colour2)
+        </div>
+        <div class="display-field">
+            @(Html.Kendo().ColorPickerFor(m => m.Colour2))
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.Colour3)
+        </div>
+        <div class="display-field">
+            @(Html.Kendo().ColorPickerFor(m => m.Colour3))
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.Colour4)
+        </div>
+        <div class="display-field">
+            @(Html.Kendo().ColorPickerFor(m => m.Colour4))
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.Colour5)
+        </div>
+        <div class="display-field">
+            @(Html.Kendo().ColorPickerFor(m => m.Colour5))
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.Colour6)
+        </div>
+        <div class="display-field">
+            @(Html.Kendo().ColorPickerFor(m => m.Colour6))
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.Colour7)
+        </div>
+        <div class="display-field">
+            @(Html.Kendo().ColorPickerFor(m => m.Colour7))
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.Colour8)
+        </div>
+        <div class="display-field">
+            @(Html.Kendo().ColorPickerFor(m => m.Colour8))
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.Colour9)
+        </div>
+        <div class="display-field">
+            @(Html.Kendo().ColorPickerFor(m => m.Colour9))
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.Colour10)
+        </div>
+        <div class="display-field">
+            @(Html.Kendo().ColorPickerFor(m => m.Colour10))
+        </div>
+    </div>
+
+</fieldset>
+<p>
+    <input type="button" value="Edit" onclick="changeWindowLocation('/Clients/Client/Edit/@(Model.ClientID)');" />
+    <input type="button" value="Back to list" onclick="changeWindowLocation('/Clients/Client');" />
+</p>

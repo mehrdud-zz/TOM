@@ -1,0 +1,494 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+
+}
+
+<link type="text/css" rel="stylesheet" href="/Content/Styles/jquery-ui.css" />
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+<style>
+    .chartPlace .chart div div
+    {
+        overflow: hidden !important;
+    }
+
+
+    #dashContainer
+    {
+        height: 100%;
+        margin: 2px;
+        background-color: #F1F1F1;
+        vertical-align: top;
+        float: left;
+        width: 100%;
+    }
+
+    #dashboardWorkTable
+    {
+        border: 2px solid #F1F1F1;
+        border-radius: 4px;
+        height: 100%;
+       
+        width: 100%;
+    }
+
+    #dashboardWorkTable .chart
+    {
+        vertical-align: top;
+        overflow: hidden;
+        margin: 4px;
+    }
+
+
+    #dashboardWorkTableCell{
+        width: 100%;
+    } 
+    
+    #dashboardWorkTable .chartPlace
+    {
+        display: inline-block;
+        border: 4px solid #B1B1B1;
+        border-radius: 0;
+        vertical-align: top;
+        text-align: left;        
+        overflow: hidden;
+    }
+
+    #filters
+    {
+        display: inline-block;
+        width: 100%;
+        height: 10%;
+        z-index: 1;
+    }
+
+
+
+    #chartsList
+    {
+        padding: 0;
+        margin: 0;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        vertical-align: top;
+        float: left;
+    }
+
+    #chartsList .chartPlace
+    {
+        display: inline-block;
+        border: 2px solid #F1F1F1;
+        background-color: #FEFEFE;
+        vertical-align: top;        
+        width: 180px;
+        vertical-align: top;
+    }
+
+
+
+
+    .chart
+    {
+        z-index: 200;
+    }
+
+    .ui-state-highlight
+    {
+        background-color: #e8f1ff;
+    }
+
+    .chartPlace div.buttons
+    {
+        width: 100%;
+        text-align: right;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 300;
+    }
+
+    .ui-resizable-helper
+    {
+        border: 2px dotted #00F;
+    }
+
+    .chartTitle2
+    {
+        font-weight: 500;
+        width: 100%;
+        height: 10px;
+        vertical-align: middle;
+        text-align: center;
+    }
+</style>
+<div id="dashboardWorkTableCell" >
+    <div id="dashboardWorkTable" style="display: inline-block; height: 600px"></div>
+   
+</div>
+
+<div id="dashContainer">
+    <div id="chartsList"></div>
+</div>
+
+<div id="filters">
+    <label for="Name">Name of Dashboard:</label>
+    <input type="text" required="required" id="DashboardName" />
+    <input type="button" value="Save" onclick="SaveDashboard();" />
+</div>
+<script type="text/javascript">
+
+    function SaveDashboard() {
+        var reportDetails = [];
+
+        $("#dashboardWorkTable div.chartPlace").map(function () {
+
+            var chartElement = $(this).children(".chart")[0];
+            var frameId = $(chartElement).attr("id");
+            var reportId = $(chartElement).attr("reportid");
+            var width = $(this).width();
+            var height = $(this).height();
+            //console.log("Save Page Function: frameId: " + frameId + ", reportId" + reportId);
+
+            if (reportId != null) {
+                //console.log("Location: " + ($(this).position().left - width) + ", " + ($(this).position().top - height));
+                reportDetails.push("{\"ReportID\":" + reportId + ",\"Width\":" + width + ",\"Height\":" + height + ",\"Left\":" + ($(this).position().left - $("#dashboardWorkTable").position().left) + ",\"Top\":" + ($(this).position().top - $("#dashboardWorkTable").position().top)
+            + ",\"FrameID\":\"" + frameId + "\"}");
+
+            }
+        }).get();
+
+
+        var dashboardName = $("#DashboardName").val();
+        //console.log("Save Page Function: Dashboard Name: " + dashboardName);
+
+        var jsonString = "{\"PageElementDetails\":[" + reportDetails.join(',') + "],\"PageURL\":\"\",\"Name\":\"" + dashboardName + "\"}";
+
+        //console.log("Save Page Function: jsonString: " + jsonString);
+        var obj1 = jQuery.parseJSON(jsonString);
+
+        $.ajax({
+            type: 'POST',
+            url: "/Customise/SavePage",
+            data: { jsonOfLog: JSON.stringify(obj1) },
+            dataType: "json",
+            traditional: true,
+            success: function () {
+                window.location = "/Reports/Dashboards/";
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Status: " + textStatus); alert("Error: " + errorThrown);
+            }
+        });
+    }
+
+
+    function removeChart(element) {
+        $(element).parent().parent().remove();
+
+
+    }
+
+    function guid() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+                       .toString(16)
+                       .substring(1);
+        }
+
+        return s4() + s4();
+    }
+
+
+
+
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("Text", ev.target.id);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("Text");
+        var element = document.getElementById(data);
+        document.getElementById("dashboardWorkTable").appendChild(element);
+        $("#" + data).off("ondragstart");
+        $("#" + data).attr("draggable", "false");
+        $("#" + data).draggable();
+    }
+
+    google.load('visualization', '1.1', { packages: ['controls'] });
+    google.setOnLoadCallback(drawChart);
+
+
+    function drawSingleChart(chartName, chartType, chartContainerId, reportId, width, height) {
+        var data = null;
+        var view = null;
+
+        var options = {
+            width: width,
+            height: height
+        };
+
+
+        switch (chartType) {
+            case "CandlestickChart":
+                data = google.visualization.arrayToDataTable([
+                ['Mon', 20, 28, 38, 45],
+                ['Tue', 31, 38, 55, 66],
+                ['Wed', 50, 55, 77, 80],
+                ['Thu', 77, 77, 66, 50],
+                ['Fri', 68, 66, 22, 15]
+                // Treat first row as data as well.
+                ], true);
+
+                view = [3, 4, 5, 6, 7];
+                break;
+
+            case "BubbleChart":
+                data = google.visualization.arrayToDataTable([
+                  ['ID', 'Life Expectancy', 'Fertility Rate', 'Region', 'Population'],
+                  ['CAN', 80.66, 1.67, 'North America', 33739900],
+                  ['DEU', 79.84, 1.36, 'Europe', 81902307],
+                  ['DNK', 78.6, 1.84, 'Europe', 5523095],
+                  ['EGY', 72.73, 2.78, 'Middle East', 79716203],
+                  ['GBR', 80.05, 2, 'Europe', 61801570],
+                  ['IRN', 72.49, 1.7, 'Middle East', 73137148],
+                  ['IRQ', 68.09, 4.77, 'Middle East', 31090763],
+                  ['ISR', 81.55, 2.96, 'Middle East', 7485600],
+                  ['RUS', 68.6, 1.54, 'Europe', 141850000],
+                  ['USA', 78.09, 2.05, 'North America', 307007000]]);
+
+
+                options = {
+                    title: chartName,
+                    width: width,
+                    height: height,
+                    hAxis: { title: 'Life Expectancy' },
+                    vAxis: { title: 'Fertility Rate' },
+                    bubble: { textStyle: { fontSize: 11 } }
+                };
+                break;
+
+            case "GeoChart":
+                data = google.visualization.arrayToDataTable([
+                    ['Country', 'Popularity'],
+                    ['Germany', 200],
+                    ['United States', 300],
+                    ['Brazil', 400],
+                    ['Canada', 500],
+                    ['France', 600],
+                    ['RU', 700]
+                ]);
+
+                options = {
+                    width: width,
+                    height: height,
+                };
+                break;
+
+
+            case "Timeline":
+                data = google.visualization.arrayToDataTable([
+    ['Washington', new Date(1789, 3, 29), new Date(1797, 2, 3)],
+    ['Adams', new Date(1797, 2, 3), new Date(1801, 2, 3)],
+    ['Jefferson', new Date(1801, 2, 3), new Date(1809, 2, 3)]]
+    );
+
+                options = {
+                    width: width,
+                    height: height,
+                };
+                break;
+            default:
+
+                data = google.visualization.arrayToDataTable([
+                    ['Task', 'Hours per Day'],
+                    ['Work', 11],
+                    ['Eat', 2],
+                    ['Commute', 2],
+                    ['Watch TV', 2],
+                    ['Sleep', 7]
+                ]);
+                break;
+
+        }
+
+
+
+
+        var chart = new window.google.visualization.ChartWrapper({
+            'chartType': chartType,
+            'containerId': chartContainerId,
+            dataTable: data,
+            options: options
+        });
+
+        $("#" + chartContainerId).attr("ChartType", chartType);
+        $("#" + chartContainerId).attr("reportId", reportId);
+
+        //console.log("Draw Function: containerId: " + chartContainerId);
+
+        return chart;
+    }
+
+
+    function GetChartFilters(filtersList) {
+        var categoryPickers = [];
+
+        if (filtersList != null)
+            for (i = 0; i < filtersList.length; i++) {
+                var categoryPicker = new window.google.visualization.ControlWrapper({
+                    'controlType': 'CategoryFilter',
+                    'containerId': 'filter' + i,
+                    'options': {
+                        'filterColumnLabel': filtersList[i],
+                        'ui': {
+                            'allowTyping': false,
+                            'allowMultiple': true,
+                            'selectedValuesLayout': 'belowStacked'
+                        }
+                    },
+                    // Define an initial state, i.e. a set of metrics to be initially selected.
+                    'state': {}
+                });
+                categoryPickers.push(categoryPicker);
+            }
+        return categoryPickers;
+    }
+
+    function drawChart() {
+        var requestUrl = '/Reports/Reports/GetAllReports';
+
+        var xmlhttp;
+        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else {// code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        var chartArray = [];
+        var chartFiltersArray = [];
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+                var responseText = xmlhttp.responseText;
+                var charts = JSON.parse(responseText).Result;
+                for (i = 0; i < charts.length; i++) {
+                    var newChartId = 'sideChart' + charts[i].ReportId;
+                    var newChartContainer = '<div class="chartPlace"><div class="chartTitle2">' + charts[i].Name + '</div><div class="chart" id="' + newChartId + '" ></div></div>';
+                    document.getElementById("chartsList").innerHTML += newChartContainer;
+
+                    var chart = drawSingleChart(charts[i].Name, charts[i].ChartType, newChartId, charts[i].ReportId, 160, 120);
+                    chartArray.push(chart);
+                }
+
+
+                for (i = 0; i < chartArray.length; i++) {
+                    chartArray[i].draw();
+                }
+
+
+                $("#chartsList div.chartPlace").draggable({
+                    cursor: "crosshair", revert: "invalid", helper: "clone"
+                    , snap: "#dashboardWorkTable div.chartPlace", snapMode: "outer"
+                });
+
+
+
+                $("#dashboardWorkTable").droppable({
+                    accept: ".chartPlace",
+                    drop: function (event, ui) {
+                        $(this).removeClass("border").removeClass("over");
+
+                        var dropped = ui.draggable;
+                        var droppedOn = $(this);
+
+
+                        var _top = Math.floor(($(dropped).position().top));
+                        _top = _top - (_top % 10);
+                        var _left = Math.floor(($(dropped).position().left));
+                        _left = _left - (_left % 10);
+
+                        var d = document.createElement('div');
+                        $(d).addClass("chartPlace");
+                        if ($(dropped).parent().attr("id") == "chartsList") {
+                            var droppedElement = $($(dropped).children(".chart")[0]);
+                            var chartId = $(droppedElement).attr("reportid");
+                            //console.log("Drop function - reportid: " + chartId);
+                            var newChartId = "DashboardAreaChart" + chartId + guid();
+                            //console.log("Drop function - newChartContainerId: " + newChartId);
+
+
+                            var dHTML = '<input name="chartId" type="hidden" value="' + chartId + '" /><div class="buttons"><a href="#" onclick="removeChart(this);return false;">X</a></div>' + $(dropped).html();
+                            //console.log("Dropped from charts list");
+                            $(d).html(dHTML);
+                            $($(d).children(".chart")[0]).attr("id", newChartId);
+                            $(d).appendTo("#dashboardWorkTable");
+
+                            $("#dashboardWorkTable div.chartPlace").map(function () {
+                                var chartPlaceWidth = $(ui.element).outerWidth();
+                                var chartPlaceHeight = $(ui.element).outerHeight()
+                                var newWidth = Math.floor(chartPlaceWidth * 0.95);
+                                var newHeight =Math.floor(chartPlaceHeight * 0.95);
+                                var reportId = $($(this).children(".chart")[0]).attr("reportId");
+                                var chartType = $($(this).children(".chart")[0]).attr("ChartType");
+                                var chartContainerId = $($(this).children(".chart")[0]).attr("id");
+                                var newChart = drawSingleChart("Title", chartType, chartContainerId, reportId, newWidth, newHeight);
+                                newChart.draw();
+                            });
+                        }
+
+
+
+                        $("#dashboardWorkTable .chartPlace").resizable({
+                            containment: "#dashboardWorkTable",
+                            snap: "#dashboardWorkTable div.chartPlace",
+                            helper: "ui-resizable-helper"
+                        });
+
+                        $("#dashboardWorkTable .chartPlace").on("resizestop", function (event, ui) {
+                            var chartPlaceWidth = $(ui.element).outerWidth();
+                            var chartPlaceHeight = $(ui.element).outerHeight()
+                            var newWidth = Math.floor(chartPlaceWidth * 0.95);
+                            var newHeight = Math.floor(chartPlaceHeight * 0.95);
+                            var reportId = $($(this).children(".chart")[0]).attr("reportId");
+                            var chartType = $($(this).children(".chart")[0]).attr("ChartType");
+                            var chartContainerId = $($(this).children(".chart")[0]).attr("id");
+                            var newChart = drawSingleChart("Title", chartType, chartContainerId, reportId, newWidth, newHeight);
+                            newChart.draw();
+                        });
+
+
+                        $("#dashboardWorkTable div.chartPlace").draggable({
+                            cursor: "crosshair", revert: "invalid", containment: "#dashboardWorkTable"
+                            , snap: "#dashboardWorkTable div.chartPlace", snapMode: "outer"
+                        });
+
+                        $("#dashboardWorkTable").sortable();
+
+                    },
+
+
+                });
+            }
+        }
+
+        xmlhttp.open("GET", requestUrl, true);
+        xmlhttp.send();
+    }
+
+    $("#flip").click(function () {
+        $("#dashContainer").animate({ width: 'toggle' });;
+    });
+</script>

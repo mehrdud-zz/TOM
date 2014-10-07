@@ -1,0 +1,60 @@
+﻿@model ClaimsPoC.Clients.Models.Contract
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Contract</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InsurerID, "Insurer")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("InsurerID", String.Empty)
+            @Html.ValidationMessageFor(model => model.InsurerID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ClientID, "Client")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ClientID", String.Empty)
+            @Html.ValidationMessageFor(model => model.ClientID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartDate)
+        </div>
+        <div class="editor-field">
+            @Html.Kendo().DatePickerFor(model => model.StartDate)
+            @Html.ValidationMessageFor(model => model.StartDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EndDate)
+        </div>
+        <div class="editor-field">
+            @Html.Kendo().DatePickerFor(model => model.EndDate)
+            @Html.ValidationMessageFor(model => model.EndDate)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

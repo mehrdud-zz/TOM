@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Views/Home/_BaseLayout.cshtml";
+}
+
+
+@section CustomStyles {
+    @RenderSection("CustomStyles", required: false)
+}
+
+@section Scripts {
+    
+    @RenderSection("Scripts", required: false)
+}
+
+@section TopBar {
+    @Html.Partial("~/Views/Home/TopBar.cshtml")
+}
+
+@section Footer {
+    @Html.Partial("~/Views/Home/Footer.cshtml")
+ 
+}
+
+@RenderBody()

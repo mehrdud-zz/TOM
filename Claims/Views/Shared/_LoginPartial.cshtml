@@ -1,0 +1,32 @@
+﻿<style>
+    .logoff {
+        display: inline-block !important;
+    }
+
+    .username {
+        display: inline-block !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+</style>
+
+<div style="display:inline-block;padding:20px 20px 0 0;">
+    @if (Request.IsAuthenticated)
+    {
+        <text>Hello @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: new { area = "" }, htmlAttributes: new { @class = "username", title = "Manage" })!&nbsp;(</text>
+        using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", style = "display:inline-block;" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+        }
+        <text>)</text>
+    }
+    else
+    {
+        <ul>
+            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>
+    }
+</div>

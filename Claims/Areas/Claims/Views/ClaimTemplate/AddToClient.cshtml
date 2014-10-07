@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ModelsLayer.ClaimTemplate>
+@{
+    ViewBag.Title = "AddToClient";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+<h2>AddToClient</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Claim</legend>
+
+
+
+        <input type="hidden" value="@Request.QueryString["ClientID"]" id="ClientID"/>
+
+
+        <div class="editor-label">
+            Claim Template ID
+        </div>
+        <div class="editor-field"> 
+            @Html.DropDownList("ClaimTemplateID", String.Empty)        
+        </div>
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+
+
+

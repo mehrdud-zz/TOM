@@ -1,0 +1,150 @@
+﻿@model ModelsLayer.ClaimTemplate
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+<style>
+    .claimFieldGroupTemplate {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+        .claimFieldGroupTemplate li {
+            margin: 0 3px 3px 3px;
+            padding: 0.4em;
+            padding-left: 1.5em;
+        }
+</style>
+
+<h2>Edit: Claim Template</h2>
+
+@using (Html.BeginForm("Edit", "ClaimTemplate", FormMethod.Post, new { @Id = "Form2" }))
+{
+    @Html.ValidationSummary(false)
+
+    <fieldset>
+        @Html.HiddenFor(model => model.ClaimTemplateID)
+        @Html.HiddenFor(model => model.Source)
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div style="display: inline-block; width: 100%; border: 1px solid; -ms-border-radius: 10px; border-radius: 10px; z-index: 200; overflow: hidden; margin: 10px 0 10px 0;">
+            <div style="display: inline-block; width: 100%; background-color: #cecece; padding: 10px 1% 10px 1%; z-index: -1;">
+                <a href="~/Claims/ClaimFieldGroupTemplate/Create?ClaimTemplateID=@Model.ClaimTemplateID">Creat new group</a>
+            </div>
+        </div>
+
+        @foreach (ModelsLayer.ClaimFieldGroupTemplate claimFieldGroupTemplate in Model.ClaimFieldGroupTemplates)
+        {
+
+            <div style="display: inline-block; width: 100%; border: 1px solid; border-radius: 10px; z-index: 200; overflow: hidden; margin: 10px 0 10px 0;">
+
+                <div style="display: inline-block; width: 100%; background-color: #cecece; padding: 10px 1% 10px 1%; z-index: -1;">
+                    <h3>@Html.Label(claimFieldGroupTemplate.Name)</h3>
+                    <p>
+
+                        @Html.Label((claimFieldGroupTemplate.Description != null) ? claimFieldGroupTemplate.Description : "")
+                    </p>
+                    <a href="~/Claims/ClaimFieldTemplate/Create?mode=fromTemplate&claimTemplateId=@claimFieldGroupTemplate.ClaimTemplateID&ClaimFieldGroupTemplateID=@claimFieldGroupTemplate.ClaimFieldGroupTemplateID">Add</a>
+                    <a href="~/Claims/claimFieldGroupTemplate/Edit/@claimFieldGroupTemplate.ClaimFieldGroupTemplateID?mode=fromTemplate&ClaimTemplateID=@claimFieldGroupTemplate.ClaimTemplateID">Edit</a>
+                    <a href="~/Claims/claimFieldGroupTemplate/Delete/@claimFieldGroupTemplate.ClaimFieldGroupTemplateID?mode=fromTemplate&ClaimTemplateID=@claimFieldGroupTemplate.ClaimTemplateID">Delete</a>
+                </div>
+
+                <ul class="claimFieldGroupTemplate" id="claimFieldGroupTemplate_@claimFieldGroupTemplate.ClaimFieldGroupTemplateID">
+                    @foreach (ModelsLayer.ClaimFieldTemplate claimFieldTemplate in claimFieldGroupTemplate.ClaimFieldTemplates)
+                    {
+                        <li>
+                            <div class="display-label">
+                                @Html.Label(claimFieldTemplate.Name)
+
+                                @if (claimFieldTemplate.Mandatory)
+                                {
+                                    <label style="color: red; font-size: 14pt;">*</label>
+                                }
+                            </div>
+
+                            <div class="display-field">
+
+                                @switch (claimFieldTemplate.FieldType.TemplateName)
+                                {
+                                    case "ShortText":
+                                        @Html.DisplayFor(m => claimFieldTemplate.ShortTextDefaultValue)
+                                        break;
+                                    case "LongText":
+                                    @Html.DisplayFor(m => claimFieldTemplate.LongTextDefaultValue)
+
+                                        break;
+                                    case "Integer":
+                                    @Html.DisplayFor(m => claimFieldTemplate.IntegerDefaultValue)
+                                        break;
+                                    case "Float":
+                                    @Html.DisplayFor(m => claimFieldTemplate.FloatDefaultValue)
+                                        break;
+                                    case "Date":
+                                    @Html.DisplayFor(m => claimFieldTemplate.DateDefaultValue)
+
+                                        break;
+                                    case "DateTime":
+                                    @Html.DisplayFor(m => claimFieldTemplate.DateTimeDefaultValue)
+
+                                        break;
+                                    case "DropDown":
+                                    @Html.DisplayFor(m => claimFieldTemplate.DropDownDefaultValue)
+                                        break;
+                                    case "MultiChoice":
+                                    @Html.DisplayFor(m => claimFieldTemplate.MultiChoiceDefaultValue)
+                                        break;
+                                    case "File":
+                                        break;
+                                    case "Money":
+                                    @Html.Label(String.Format("{0}{1}", claimFieldTemplate.Currency.Sign, claimFieldTemplate.CurrecncyDefaultValue), new { })
+                                        break;
+                                    case "Country":
+                                    @Html.DisplayFor(m => claimFieldTemplate.CountryDefaultValue)
+                                        break;
+                                    case "Range": break;
+                                     
+                                }
+
+                                <a class="editLink" href="~/Claims/ClaimFieldTemplate/Edit/@claimFieldTemplate.ClaimFieldTemplateID?mode=fromTemplate&claimTemplateId=@claimFieldTemplate.ClaimFieldGroupTemplate.ClaimTemplateID">Edit</a>&nbsp;&nbsp;&nbsp;
+                                <a class="deleteLink" href="~/Claims/ClaimFieldTemplate/Delete/@claimFieldTemplate.ClaimFieldTemplateID?mode=fromTemplate&claimTemplateId=@claimFieldTemplate.ClaimFieldGroupTemplate.ClaimTemplateID">Delete</a>
+                            </div>
+                        </li>
+                    }
+                </ul>
+
+            </div>
+        } 
+
+        <div class="buttons">
+            <input type="submit" value="Save" />
+            <input type="button" value="Back to List" onclick="changeWindowLocation('/Claims/ClaimTemplate');" />
+        </div>
+
+    </fieldset>
+}
+ 
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+ 

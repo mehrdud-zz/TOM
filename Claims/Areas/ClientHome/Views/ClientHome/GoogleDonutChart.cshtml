@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Claims.Controllers.ClaimStatusAggregate>
+@{
+    ViewBag.Title = "Reports";
+    ViewBag.Colors =
+        new List<string>() { "articleBlue", "articleGreen", "articleYellow", "articleBrown", "articleRed" };
+}
+ 
+
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+ <div id ="piechart" style="cursor:pointer;"></div>
+
+<script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
+    
+
+    google.setOnLoadCallback(drawRegionsMap);
+
+    
+    function drawRegionsMap() {
+
+        var data = new google.visualization.DataTable(); 
+        data.addColumn('string', 'Status');
+        data.addColumn('number', 'Value');
+         
+        rows = [];
+
+        @foreach (var item in Model)
+        {
+                <text>
+          
+        
+
+        var status = '@(item.Status)';
+        
+        var counter = @item.Counter;
+        rows.push([status, counter]);
+        </text>
+        } 
+        
+        data.addRows(rows);
+
+       
+           
+        var options = {
+            title: 'Current Claims Qeue',
+            pieHole: 0.4,
+            backgroundColor: 'transparent',
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart')); 
+        chart.draw(data, options); 
+         
+        google.visualization.events.addListener(chart, 'select', function () {
+            var selection = chart.getSelection();
+            var selectedRow = chart.getSelection();
+            if (selectedRow) {
+                var selectedItem = selectedRow[0];
+
+                var topping = data.getValue(selectedItem.row, 0);
+                 
+            } 
+        });
+         
+    };
+</script> 
+
+
+
+
+      

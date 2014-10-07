@@ -1,0 +1,100 @@
+﻿@model ModelsLayer.User
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+<h2>Create: User</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset> 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ClientID, "Client")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ClientID", String.Empty)
+            @Html.ValidationMessageFor(model => model.ClientID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Firstname)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Firstname)
+            @Html.ValidationMessageFor(model => model.Firstname)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Lastname)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Lastname)
+            @Html.ValidationMessageFor(model => model.Lastname)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Activated)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Activated)
+            @Html.ValidationMessageFor(model => model.Activated)
+        </div>
+        @if (User.IsInRole(ClaimsPoC.Properties.Settings.Default.SuperAdminRole))
+        {
+            <div class="editor-label">
+                <label for="UserType">User Type</label>
+            </div>
+            <div class="editor-field">
+                <select name="UserRole">
+                    <option value="User">User</option>
+                    <option value="WillisEmployee">Willis Employee</option>
+                    <option value="SuperAdmin">Super Admin</option>
+                </select>
+            </div>
+        } 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+
+        </div>
+        <div class="editor-label">
+
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ComparePassword)
+            @Html.ValidationMessageFor(model => model.ComparePassword)
+        </div>
+
+        <div class="buttons">
+            <input type="submit" value="Create" />
+            
+            <input type="button" value="Back to List" onclick="changeWindowLocation('/Clients/User');" />
+        </div>
+    </fieldset>
+}
+ 
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

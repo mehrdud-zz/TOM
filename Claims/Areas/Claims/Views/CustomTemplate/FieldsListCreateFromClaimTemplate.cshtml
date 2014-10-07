@@ -1,0 +1,202 @@
+﻿@using ModelsLayer
+@model ModelsLayer.ClaimTemplate
+
+@{
+    ViewBag.Title = "CreateFromClaimTemplate";
+}
+
+
+@if (Model != null)
+{
+    if (String.IsNullOrEmpty(Model.DisplayMode))
+    {
+        foreach (ModelsLayer.ClaimFieldGroupTemplate claimFieldGroupTemplate in Model.ClaimFieldGroupTemplates)
+        {
+            <div class="fieldGroupContainer">
+                <div class="claimFieldGroupInner">
+                    <h3>@Html.Label(claimFieldGroupTemplate.Name)</h3>
+                    @*<p>@Html.Label(claimFieldGroupTemplate.Description)</p>*@
+                </div>
+
+
+                <div class="panel panel-default" id="claimFieldGroupTemplate_@claimFieldGroupTemplate.ClaimFieldGroupTemplateID">
+
+                    @foreach (ModelsLayer.ClaimFieldTemplate ClaimFieldTemplate in claimFieldGroupTemplate.ClaimFieldTemplates)
+                    {
+                    <div>
+                        <div class="editor-label">
+                            @Html.Label(ClaimFieldTemplate.Name)
+                            @if (ClaimFieldTemplate.Mandatory)
+                                {
+                                <label style="color: red; font-size: 14pt;">*</label>
+                                }
+                        </div>
+
+                        <div class="editor-field">
+                            @switch (ClaimFieldTemplate.FieldType.TemplateName)
+                                {
+                                    case "ShortText":
+                                @Html.TextBox(ClaimFieldTemplate.Code, ClaimFieldTemplate.ShortTextDefaultValue, (new { style = string.Format("width:{0}%", 100) }))
+                                        break;
+                                    case "LongText":
+                                @Html.TextBox(ClaimFieldTemplate.Code, ClaimFieldTemplate.LongTextDefaultValue, (new { style = string.Format("width:{0}%", 100) }))
+                                        break;
+                                    case "Integer":
+                                @Html.Kendo().IntegerTextBox().Value(ClaimFieldTemplate.IntegerDefaultValue).Name(ClaimFieldTemplate.Code).HtmlAttributes(new { style = string.Format("width:{0}%", 100) })
+                                        break;
+                                    case "Float":
+                                @Html.Kendo().NumericTextBox().Decimals(2).Value(ClaimFieldTemplate.FloatDefaultValue).Name(ClaimFieldTemplate.Code).HtmlAttributes(new { style = string.Format("width:{0}%", 100) })
+                                        break;
+                                    case "Date":
+                                @Html.Kendo().DatePicker().Value(ClaimFieldTemplate.DateDefaultValue).Name(ClaimFieldTemplate.Code).Name(ClaimFieldTemplate.Code).HtmlAttributes(new { style = string.Format("width:{0}%", 100) })
+                                        break;
+                                    case "DateTime":
+                                        ClaimFieldTemplate template = ClaimFieldTemplate;
+                                        @Html.Kendo().DateTimePickerFor(m => template.DateTimeDefaultValue).Value(ClaimFieldTemplate.DateTimeDefaultValue).Name(ClaimFieldTemplate.Code).HtmlAttributes(new { style = string.Format("width:{0}%", 100) })
+                                        break;
+                                    case "DropDown":
+                                @Html.Action("DropDownListTemplate", "CustomTemplate", new { claimFieldTemplate = ClaimFieldTemplate, area = "Claims" })
+                                        break;
+                                    case "MultiChoice":
+                                @Html.Action("MultiChoiceListTemplate", "CustomTemplate", new { claimFieldTemplate = ClaimFieldTemplate, area = "Claims" })
+                                        break;
+                                    case "File":
+                                @Html.EditorFor(m => ClaimFieldTemplate.FileDefaultValue)
+                                        break;
+                                    case "Money":
+                                @(Html.Kendo().CurrencyTextBoxFor(m => ClaimFieldTemplate.CurrecncyDefaultValue).Min(0).Format("{0:" + ClaimFieldTemplate.Currency.Sign + "#,##0;(" + ClaimFieldTemplate.Currency.Sign + "#,##0)}").Name(ClaimFieldTemplate.Code).HtmlAttributes(new { style = string.Format("width:{0}%", 100) }))
+                                        break;
+                                    case "Country":
+                                @Html.Action("CountryTemplate", "CustomTemplate", new { claimFieldTemplate = ClaimFieldTemplate, area = "Claims" })
+                                        break;
+                                    case "Range": break;
+
+                                    case "SubDropDown":
+                                @Html.Action("SubDropDown", "CustomTemplate", new { area = "Claims", claimFieldTemplate = ClaimFieldTemplate })
+                                        break;
+
+                                    default:
+                                        break;
+                                }
+
+                        </div>
+                    </div>
+                    }
+                </div>
+
+
+            </div>
+
+        }
+    }
+
+
+    if (Model.DisplayMode == "Tabs")
+    {
+        <div id="tabs">
+            <ul>
+                @foreach (ModelsLayer.ClaimFieldGroupTemplate claimFieldGroupTemplate in Model.ClaimFieldGroupTemplates)
+                {
+                    <li>
+                        <a href="#tabs-@claimFieldGroupTemplate.ClaimFieldGroupTemplateID">@claimFieldGroupTemplate.Name</a>
+                    </li>
+
+                }
+            </ul>
+
+            @foreach (ModelsLayer.ClaimFieldGroupTemplate claimFieldGroupTemplate in Model.ClaimFieldGroupTemplates)
+            {
+                <div id="tabs-@claimFieldGroupTemplate.ClaimFieldGroupTemplateID">
+                    <div class="panel panel-default" id="claimFieldGroupTemplate_@claimFieldGroupTemplate.ClaimFieldGroupTemplateID">
+
+                        @foreach (ModelsLayer.ClaimFieldTemplate ClaimFieldTemplate in claimFieldGroupTemplate.ClaimFieldTemplates)
+                        {
+                            <div>
+                                <div class="editor-label">
+                                    @Html.Label(ClaimFieldTemplate.Name)
+                                    @if (ClaimFieldTemplate.Mandatory)
+                                    {
+                                        <label style="color: red; font-size: 14pt;">*</label>
+                                    }
+                                </div>
+
+                                <div class="editor-field">
+                                    @switch (ClaimFieldTemplate.FieldType.TemplateName)
+                                    {
+                                        case "ShortText":
+                                            @Html.TextBox(ClaimFieldTemplate.Code, ClaimFieldTemplate.ShortTextDefaultValue, (new { style = string.Format("width:{0}%", 100) }))
+                                            break;
+                                        case "LongText":
+                                        @Html.TextBox(ClaimFieldTemplate.Code, ClaimFieldTemplate.LongTextDefaultValue, (new { style = string.Format("width:{0}%", 100) }))
+                                            break;
+                                        case "Integer":
+                                        @Html.Kendo().IntegerTextBox().Value(ClaimFieldTemplate.IntegerDefaultValue).Name(ClaimFieldTemplate.Code).HtmlAttributes(new { style = string.Format("width:{0}%", 100) })
+                                            break;
+                                        case "Float":
+                                        @Html.Kendo().NumericTextBox().Decimals(2).Value(ClaimFieldTemplate.FloatDefaultValue).Name(ClaimFieldTemplate.Code).HtmlAttributes(new { style = string.Format("width:{0}%", 100) })
+                                            break;
+                                        case "Date":
+                                        @Html.Kendo().DatePicker().Value(ClaimFieldTemplate.DateDefaultValue).Name(ClaimFieldTemplate.Code).Name(ClaimFieldTemplate.Code).HtmlAttributes(new { style = string.Format("width:{0}%", 100) })
+                                            break;
+                                        case "DateTime":
+                                        @Html.Kendo().DateTimePickerFor(m => ClaimFieldTemplate.DateTimeDefaultValue).Value(ClaimFieldTemplate.DateTimeDefaultValue).Name(ClaimFieldTemplate.Code).HtmlAttributes(new { style = string.Format("width:{0}%", 100) })
+                                            break;
+                                        case "DropDown":
+                                        @Html.Action("DropDownListTemplate", "CustomTemplate", new { claimFieldTemplate = ClaimFieldTemplate, area = "Claims" })
+                                            break;
+                                        case "MultiChoice":
+                                        @Html.Action("MultiChoiceListTemplate", "CustomTemplate", new { claimFieldTemplate = ClaimFieldTemplate, area = "Claims" })
+                                            break;
+                                        case "File":
+                                        @Html.EditorFor(m => ClaimFieldTemplate.FileDefaultValue)
+                                            break;
+                                        case "Money":
+                                        @(Html.Kendo().CurrencyTextBoxFor(m => ClaimFieldTemplate.CurrecncyDefaultValue).Min(0).Format("{0:" + ClaimFieldTemplate.Currency.Sign + "#,##0;(" + ClaimFieldTemplate.Currency.Sign + "#,##0)}").Name(ClaimFieldTemplate.Code).HtmlAttributes(new { style = string.Format("width:{0}%", 100) }))
+                                            break;
+                                        case "Country":
+                                        @Html.Action("CountryTemplate", "CustomTemplate", new { claimFieldTemplate = ClaimFieldTemplate, area = "Claims" })
+                                            break;
+                                        case "Range": break;
+
+                                        case "SubDropDown":
+                                        @Html.Action("SubDropDown", "CustomTemplate", new { area = "Claims", claimFieldTemplate = ClaimFieldTemplate })
+                                            break;
+
+                                        default:
+                                            break;
+                                    }
+
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    }
+}
+
+
+
+@if (Model.DisplayMode == "Tabs")
+{
+
+    <style>
+        .ui-widget-content, 
+        .ui-widget-header {
+            background: none !important;
+            border: none !important;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#tabs").tabs({
+                collapsible: false
+            });
+        });
+    </script>
+
+}

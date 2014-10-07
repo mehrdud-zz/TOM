@@ -1,0 +1,25 @@
+﻿@using Kendo.Mvc.UI
+
+@model IEnumerable<ClaimsPoC.ClaimField>
+
+@{
+    ViewBag.Title = "ListViewForClaimFields";
+}
+ 
+
+@(Html.Kendo().Grid(Model) // Bind the grid to the Model property of the view
+    .Name("Grid")
+    .Columns(columns =>
+        {
+            columns.Template(@<text><div style="float:left;font-weight: bold; padding-right:10px; width:250px;text-align:right;display:inline-block;">@item.Name </div>
+            <div style="display:inline-block;text-align:left;width:400px;float:left;">@(item.Value!=null? item.Value : "-")</div></text>);    
+        })
+
+            .Sortable()
+            .DataSource(dataSource => dataSource
+            .Server()
+            .Model(model => model.Id(p => p.ClaimFieldTemplateID))
+
+            )
+)
+ 

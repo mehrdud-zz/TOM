@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ClaimsPoC.Claims.Controllers.SubDropDownItem>
+@{
+    ViewBag.Title = "DropDownListTemplate";
+
+}
+
+<select id="dropDownList">
+    @foreach (ClaimsPoC.Claims.Controllers.SubDropDownItem item in Model)
+    {
+        <option>@item.Level1</option>
+    }
+</select>
+
+
+@foreach (ClaimsPoC.Claims.Controllers.SubDropDownItem item in Model)
+{
+    <select id="dropDownList">
+        @foreach (ClaimsPoC.Claims.Controllers.SubDropDownItem item2 in Model)
+        {
+            <select >
+                <option>@item2.Level2</option>
+            </select>
+            
+
+        }
+    </select>
+        
+}
+
+
+<script>
+    $(document).ready(function () {
+        $("#dropDownList").kendoDropDownList();
+    });
+</script>

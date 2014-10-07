@@ -1,0 +1,121 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Claims", "Claims\Claims.csproj", "{716F057F-143F-4FB6-B0C4-1C5C59B3CAAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Claims.Tests", "Claims.Tests\Claims.Tests.csproj", "{B7CADF30-4D6E-4F73-AD24-8F70A270E6FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelsLayer", "Models\ModelsLayer.csproj", "{9E1A80C1-771D-48DD-977B-74F38FC3284A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Factories", "Factories\Factories.csproj", "{910CED33-6928-4966-88AD-EB3D87A47E54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrokingPlatformIntegrationBase", "BrokingPlatformIntegrationBase\BrokingPlatformIntegrationBase.csproj", "{C7BC3266-7793-4047-8119-C65330FE3349}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acturis", "Acturis\Acturis.csproj", "{06A5F270-61A4-4E28-8E20-CB56970771B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClaimsReport", "ClaimsReport\ClaimsReport.csproj", "{A8AE883E-DDEC-42DC-96C9-E5B426040C30}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs04.willis.com:8080/tfs/willis
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Acturis\\Acturis.csproj
+		SccProjectName1 = Acturis
+		SccLocalPath1 = Acturis
+		SccProjectUniqueName2 = BrokingPlatformIntegrationBase\\BrokingPlatformIntegrationBase.csproj
+		SccProjectName2 = BrokingPlatformIntegrationBase
+		SccLocalPath2 = BrokingPlatformIntegrationBase
+		SccProjectUniqueName3 = Claims.Tests\\Claims.Tests.csproj
+		SccProjectName3 = Claims.Tests
+		SccLocalPath3 = Claims.Tests
+		SccProjectUniqueName4 = Claims\\Claims.csproj
+		SccProjectName4 = Claims
+		SccLocalPath4 = Claims
+		SccProjectUniqueName5 = Factories\\Factories.csproj
+		SccProjectName5 = Factories
+		SccLocalPath5 = Factories
+		SccProjectUniqueName6 = Models\\ModelsLayer.csproj
+		SccProjectName6 = Models
+		SccLocalPath6 = Models
+		SccProjectUniqueName7 = ClaimsReport\\ClaimsReport.csproj
+		SccProjectName7 = ClaimsReport
+		SccLocalPath7 = ClaimsReport
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Publish|Any CPU = Publish|Any CPU
+		Release|Any CPU = Release|Any CPU
+		TestTeamCity|Any CPU = TestTeamCity|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{716F057F-143F-4FB6-B0C4-1C5C59B3CAAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{716F057F-143F-4FB6-B0C4-1C5C59B3CAAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{716F057F-143F-4FB6-B0C4-1C5C59B3CAAA}.Publish|Any CPU.ActiveCfg = Publish|Any CPU
+		{716F057F-143F-4FB6-B0C4-1C5C59B3CAAA}.Publish|Any CPU.Build.0 = Publish|Any CPU
+		{716F057F-143F-4FB6-B0C4-1C5C59B3CAAA}.Publish|Any CPU.Deploy.0 = Publish|Any CPU
+		{716F057F-143F-4FB6-B0C4-1C5C59B3CAAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{716F057F-143F-4FB6-B0C4-1C5C59B3CAAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{716F057F-143F-4FB6-B0C4-1C5C59B3CAAA}.TestTeamCity|Any CPU.ActiveCfg = TestTeamCity|Any CPU
+		{716F057F-143F-4FB6-B0C4-1C5C59B3CAAA}.TestTeamCity|Any CPU.Build.0 = TestTeamCity|Any CPU
+		{B7CADF30-4D6E-4F73-AD24-8F70A270E6FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7CADF30-4D6E-4F73-AD24-8F70A270E6FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7CADF30-4D6E-4F73-AD24-8F70A270E6FB}.Publish|Any CPU.ActiveCfg = Publish|Any CPU
+		{B7CADF30-4D6E-4F73-AD24-8F70A270E6FB}.Publish|Any CPU.Build.0 = Publish|Any CPU
+		{B7CADF30-4D6E-4F73-AD24-8F70A270E6FB}.Publish|Any CPU.Deploy.0 = Publish|Any CPU
+		{B7CADF30-4D6E-4F73-AD24-8F70A270E6FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7CADF30-4D6E-4F73-AD24-8F70A270E6FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7CADF30-4D6E-4F73-AD24-8F70A270E6FB}.TestTeamCity|Any CPU.ActiveCfg = TestTeamCity|Any CPU
+		{B7CADF30-4D6E-4F73-AD24-8F70A270E6FB}.TestTeamCity|Any CPU.Build.0 = TestTeamCity|Any CPU
+		{9E1A80C1-771D-48DD-977B-74F38FC3284A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E1A80C1-771D-48DD-977B-74F38FC3284A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E1A80C1-771D-48DD-977B-74F38FC3284A}.Publish|Any CPU.ActiveCfg = Publish|Any CPU
+		{9E1A80C1-771D-48DD-977B-74F38FC3284A}.Publish|Any CPU.Build.0 = Publish|Any CPU
+		{9E1A80C1-771D-48DD-977B-74F38FC3284A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E1A80C1-771D-48DD-977B-74F38FC3284A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E1A80C1-771D-48DD-977B-74F38FC3284A}.TestTeamCity|Any CPU.ActiveCfg = TestTeamCity|Any CPU
+		{9E1A80C1-771D-48DD-977B-74F38FC3284A}.TestTeamCity|Any CPU.Build.0 = TestTeamCity|Any CPU
+		{910CED33-6928-4966-88AD-EB3D87A47E54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{910CED33-6928-4966-88AD-EB3D87A47E54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{910CED33-6928-4966-88AD-EB3D87A47E54}.Publish|Any CPU.ActiveCfg = Publish|Any CPU
+		{910CED33-6928-4966-88AD-EB3D87A47E54}.Publish|Any CPU.Build.0 = Publish|Any CPU
+		{910CED33-6928-4966-88AD-EB3D87A47E54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{910CED33-6928-4966-88AD-EB3D87A47E54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{910CED33-6928-4966-88AD-EB3D87A47E54}.TestTeamCity|Any CPU.ActiveCfg = TestTeamCity|Any CPU
+		{910CED33-6928-4966-88AD-EB3D87A47E54}.TestTeamCity|Any CPU.Build.0 = TestTeamCity|Any CPU
+		{C7BC3266-7793-4047-8119-C65330FE3349}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7BC3266-7793-4047-8119-C65330FE3349}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7BC3266-7793-4047-8119-C65330FE3349}.Publish|Any CPU.ActiveCfg = Publish|Any CPU
+		{C7BC3266-7793-4047-8119-C65330FE3349}.Publish|Any CPU.Build.0 = Publish|Any CPU
+		{C7BC3266-7793-4047-8119-C65330FE3349}.Publish|Any CPU.Deploy.0 = Publish|Any CPU
+		{C7BC3266-7793-4047-8119-C65330FE3349}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7BC3266-7793-4047-8119-C65330FE3349}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7BC3266-7793-4047-8119-C65330FE3349}.TestTeamCity|Any CPU.ActiveCfg = TestTeamCity|Any CPU
+		{C7BC3266-7793-4047-8119-C65330FE3349}.TestTeamCity|Any CPU.Build.0 = TestTeamCity|Any CPU
+		{06A5F270-61A4-4E28-8E20-CB56970771B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06A5F270-61A4-4E28-8E20-CB56970771B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06A5F270-61A4-4E28-8E20-CB56970771B8}.Publish|Any CPU.ActiveCfg = Publish|Any CPU
+		{06A5F270-61A4-4E28-8E20-CB56970771B8}.Publish|Any CPU.Build.0 = Publish|Any CPU
+		{06A5F270-61A4-4E28-8E20-CB56970771B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06A5F270-61A4-4E28-8E20-CB56970771B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06A5F270-61A4-4E28-8E20-CB56970771B8}.TestTeamCity|Any CPU.ActiveCfg = TestTeamCity|Any CPU
+		{06A5F270-61A4-4E28-8E20-CB56970771B8}.TestTeamCity|Any CPU.Build.0 = TestTeamCity|Any CPU
+		{A8AE883E-DDEC-42DC-96C9-E5B426040C30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8AE883E-DDEC-42DC-96C9-E5B426040C30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8AE883E-DDEC-42DC-96C9-E5B426040C30}.Publish|Any CPU.ActiveCfg = Release|Any CPU
+		{A8AE883E-DDEC-42DC-96C9-E5B426040C30}.Publish|Any CPU.Build.0 = Release|Any CPU
+		{A8AE883E-DDEC-42DC-96C9-E5B426040C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8AE883E-DDEC-42DC-96C9-E5B426040C30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8AE883E-DDEC-42DC-96C9-E5B426040C30}.TestTeamCity|Any CPU.ActiveCfg = Release|Any CPU
+		{A8AE883E-DDEC-42DC-96C9-E5B426040C30}.TestTeamCity|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c48a2613938840b6b675f9adf95391fe" Name="Diagram1">
+        <EntityTypeShape EntityType="ActurisDataModel.ClaimAmount" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActurisDataModel.ClaimCauseType" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActurisDataModel.ClaimCore" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActurisDataModel.ClaimReportField" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActurisDataModel.ClaimSection" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActurisDataModel.ClaimStatu" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActurisDataModel.ClaimType" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActurisDataModel.Client" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActurisDataModel.Policy" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActurisDataModel.LossInvolving" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ActurisDataModel.NatureOfInjury" Width="1.5" PointX="9.375" PointY="3.75" />
+        <EntityTypeShape EntityType="ActurisDataModel.NCBCompromised" Width="1.5" PointX="5.375" PointY="9.75" />
+        <EntityTypeShape EntityType="ActurisDataModel.ClaimAmountCategory" Width="1.5" PointX="9.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ActurisDataModel.ClaimHandler" Width="1.5" PointX="7.75" PointY="9.75" />
+        <EntityTypeShape EntityType="ActurisDataModel.ClaimOffice" Width="1.5" PointX="9.75" PointY="9.75" />
+        <EntityTypeShape EntityType="ActurisDataModel.ClaimPayment" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="ActurisDataModel.ClaimQueue" Width="1.5" PointX="2.75" PointY="10.75" />
+        <EntityTypeShape EntityType="ActurisDataModel.PolicySectionByType" Width="1.5" PointX="11.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ActurisDataModel.DataLoad" Width="1.5" PointX="12.375" PointY="3.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

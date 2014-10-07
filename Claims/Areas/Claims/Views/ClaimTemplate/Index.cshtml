@@ -1,0 +1,43 @@
+﻿@model IEnumerable<ModelsLayer.ClaimTemplate>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+<h2>Claim Templates</h2> 
+
+@* Kendo Grid implementation*@
+
+@(Html.Kendo().Grid(Model) // Bind the grid to the Model property of the view
+    .Name("Grid")
+    .Columns(columns =>
+        {
+            columns.Template(@<text><input type="checkbox" name="rowSelector" id="rowSelector@(item.ClaimTemplateID)" onclick="SelectRow('grid',  @item.ClaimTemplateID);" /></text>).Width("10px").HeaderTemplate(@<text><input id="allRowsSelector" type="checkbox" onclick="SelectAllRows(this);" /></text>);
+            columns.Bound(claimTemplate => claimTemplate.Name).Width(100).Template(@<text><a href="/Claims/ClaimTemplate/Details/@item.ClaimTemplateID">@item.Name</a></text>);
+            columns.Bound(claimTemplate => claimTemplate.Description).Width(200);
+            columns.Template(@<text><a type="button" href="/Claims/ClaimTemplate/Details/@item.ClaimTemplateID">View</a>&nbsp;&nbsp;&nbsp;<a type="button" href="/Claims/ClaimTemplate/Edit/@item.ClaimTemplateID">Edit</a>&nbsp;&nbsp;&nbsp;<a type="button" href="/Claims/ClaimTemplate/Delete/@item.ClaimTemplateID">Delete</a></text>).Width(100);
+        })
+    .Pageable(o =>{o.PageSizes(new int[]{10, 50, 100});})
+    .Sortable(sortable => sortable.AllowUnsort(false))
+    .Filterable(filterable => filterable
+        .Extra(false)
+         .Operators(operators => operators
+            .ForString(str => str.Clear()
+                .StartsWith("Starts with")
+                .IsEqualTo("Is equal to")
+                .IsNotEqualTo("Is not equal to")
+            ))
+        )
+        .ToolBar(
+    toolbar =>
+    {
+        toolbar.Template(@<text>
+            <div class="toolbar">
+                <input type="button" value="Create new claim template" onclick="changeWindowLocation('/Claims/ClaimTemplate/Create');" />
+                <input type="button" value="Clear filters" onclick="changeWindowLocation('/Claims/ClaimTemplate');" />
+            </div>
+        </text>);
+    })
+
+) 

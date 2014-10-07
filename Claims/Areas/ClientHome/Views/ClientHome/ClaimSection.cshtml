@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ModelsLayer.ClaimField>
+
+@{
+    ViewBag.Title = "ClaimSection";     
+}
+
+<hr />
+<h2>Test</h2>
+@using (Html.BeginForm("ClaimSection", "ClientHome", FormMethod.Post))
+{
+
+    foreach (ModelsLayer.ClaimField claimField in Model)
+    {
+    <div class="editor-label">
+        @Html.Label(claimField.Name)
+        @if (claimField.ClaimFieldTemplate.Mandatory)
+            { 
+            <label style="color: red; font-size: 14pt;">*</label>
+            }
+    </div>
+
+    <div class="editor-field">
+
+
+        @switch (claimField.FieldType.TemplateName)
+            {
+                case "ShortText":                                                
+            @Html.TextBoxFor(m => claimField.ShortTextValue, new { @Value = claimField.ClaimFieldTemplate.ShortTextDefaultValue })
+                    break;
+                case "LongText":                        
+            @Html.TextAreaFor(m => claimField.LongTextValue, new { @Value = claimField.ClaimFieldTemplate.LongTextDefaultValue })
+                    break;
+                case "Integer":
+            @Html.Kendo().IntegerTextBoxFor(m => claimField.IntegerValue).Value(claimField.ClaimFieldTemplate.IntegerDefaultValue).Name(claimField.Code)
+                    break;
+                case "Float":
+            @Html.Kendo().NumericTextBoxFor(m => claimField.FloatValue).Decimals(2).Value(claimField.ClaimFieldTemplate.FloatDefaultValue).Name(claimField.Code)
+                    break;
+                case "Date": 
+            @Html.Kendo().DatePickerFor(m => claimField.DateValue).Value(claimField.ClaimFieldTemplate.DateDefaultValue).Name(claimField.Code)
+                    break;
+                case "DateTime":
+            @Html.Kendo().DateTimePickerFor(m => claimField.DateTimeValue).Value(claimField.ClaimFieldTemplate.DateTimeDefaultValue).Name(claimField.Code)
+                    break;
+                case "DropDown":
+            @Html.Action("DropDownListTemplate", new { claimField = claimField })
+                    break;
+                case "MultiChoice":
+            @Html.Action("MultiChoiceListTemplate", new { claimField = claimField })                    
+                    break;
+                case "File":                                        
+            @Html.EditorFor(m => claimField.FileValue)
+                    break;
+                case "Money":
+            @(Html.Kendo().CurrencyTextBoxFor(m => claimField.CurrecncyValue).Min(0).Format("{0:" + claimField.ClaimFieldTemplate.Currency.Sign + "#,##0;(" + claimField.ClaimFieldTemplate.Currency.Sign + "#,##0)}")).Name(claimField.Code)
+                    break;
+                case "Country":
+            @Html.Action("CountryTemplate", new { claimField = claimField })
+                    break;
+                case "Range": break;
+
+                default:
+                    break;
+            }
+
+
+    </div> 
+    }
+    <p>
+        <input type="submit" value="Save" />
+    </p>
+}

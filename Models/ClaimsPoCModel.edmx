@@ -1,0 +1,2288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ClaimsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="aspnet_Applications">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="LoweredApplicationName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="aspnet_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PasswordFormat" Type="int" Nullable="false" />
+          <Property Name="PasswordSalt" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="MobilePIN" Type="nvarchar" MaxLength="16" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="LoweredEmail" Type="nvarchar" MaxLength="256" />
+          <Property Name="PasswordQuestion" Type="nvarchar" MaxLength="256" />
+          <Property Name="PasswordAnswer" Type="nvarchar" MaxLength="128" />
+          <Property Name="IsApproved" Type="bit" Nullable="false" />
+          <Property Name="IsLockedOut" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+          <Property Name="LastPasswordChangedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLockoutDate" Type="datetime" Nullable="false" />
+          <Property Name="FailedPasswordAttemptCount" Type="int" Nullable="false" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="int" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="datetime" Nullable="false" />
+          <Property Name="Comment" Type="ntext" />
+        </EntityType>
+        <EntityType Name="aspnet_Paths">
+          <Key>
+            <PropertyRef Name="PathId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PathId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Path" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="LoweredPath" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_PersonalizationAllUsers">
+          <Key>
+            <PropertyRef Name="PathId" />
+          </Key>
+          <Property Name="PathId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PageSettings" Type="image" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_PersonalizationPerUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PathId" Type="uniqueidentifier" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="PageSettings" Type="image" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_Profile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PropertyNames" Type="ntext" Nullable="false" />
+          <Property Name="PropertyValuesString" Type="ntext" Nullable="false" />
+          <Property Name="PropertyValuesBinary" Type="image" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="LoweredRoleName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="aspnet_SchemaVersions">
+          <Key>
+            <PropertyRef Name="Feature" />
+            <PropertyRef Name="CompatibleSchemaVersion" />
+          </Key>
+          <Property Name="Feature" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CompatibleSchemaVersion" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="IsCurrentVersion" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="LoweredUserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
+          <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+          <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_WebEvent_Events">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="EventTimeUtc" Type="datetime" Nullable="false" />
+          <Property Name="EventTime" Type="datetime" Nullable="false" />
+          <Property Name="EventType" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="EventSequence" Type="decimal" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="EventOccurrence" Type="decimal" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="EventCode" Type="int" Nullable="false" />
+          <Property Name="EventDetailCode" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="1024" />
+          <Property Name="ApplicationPath" Type="nvarchar" MaxLength="256" />
+          <Property Name="ApplicationVirtualPath" Type="nvarchar" MaxLength="256" />
+          <Property Name="MachineName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="RequestUrl" Type="nvarchar" MaxLength="1024" />
+          <Property Name="ExceptionType" Type="nvarchar" MaxLength="256" />
+          <Property Name="Details" Type="ntext" />
+        </EntityType>
+        <EntityType Name="Claim">
+          <Key>
+            <PropertyRef Name="ClaimID" />
+          </Key>
+          <Property Name="ClaimID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClaimTemplateID" Type="int" />
+          <Property Name="ClaimStatusID" Type="int" />
+          <Property Name="WillisEmployeeID" Type="int" />
+          <Property Name="CountryID" Type="int" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="UserID" Type="int" />
+        </EntityType>
+        <EntityType Name="ClaimField">
+          <Key>
+            <PropertyRef Name="ClaimFieldID" />
+          </Key>
+          <Property Name="ClaimFieldID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClaimFieldGroupID" Type="int" />
+          <Property Name="ClaimFieldTemplateID" Type="int" />
+          <Property Name="ShortTextValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="LongTextValue" Type="ntext" />
+          <Property Name="DateTimeValue" Type="datetime" />
+          <Property Name="CurrecncyValue" Type="money" />
+          <Property Name="FileValue" Type="image" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="DropDownValue" Type="nvarchar" MaxLength="500" />
+          <Property Name="MultiChoiceValue" Type="nvarchar" MaxLength="500" />
+          <Property Name="DateValue" Type="date" />
+          <Property Name="IntegerValue" Type="int" />
+          <Property Name="FloatValue" Type="float" />
+          <Property Name="RangeValue" Type="float" />
+          <Property Name="DropDownLevel2Value" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="ClaimFieldGroup">
+          <Key>
+            <PropertyRef Name="ClaimFieldGroupID" />
+          </Key>
+          <Property Name="ClaimFieldGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2000" />
+          <Property Name="ItemOrder" Type="int" />
+          <Property Name="ClaimID" Type="int" />
+        </EntityType>
+        <EntityType Name="ClaimFieldGroupTemplate">
+          <Key>
+            <PropertyRef Name="ClaimFieldGroupTemplateID" />
+          </Key>
+          <Property Name="ClaimFieldGroupTemplateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClaimTemplateID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2000" />
+          <Property Name="ItemOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="ClaimFieldTemplate">
+          <Key>
+            <PropertyRef Name="ClaimFieldTemplateID" />
+          </Key>
+          <Property Name="ClaimFieldTemplateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClaimFieldGroupTemplateID" Type="int" Nullable="false" />
+          <Property Name="FieldTypeID" Type="int" />
+          <Property Name="CurrencyID" Type="int" />
+          <Property Name="CountryID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="Saved" Type="bit" Nullable="false" />
+          <Property Name="Mandatory" Type="bit" Nullable="false" />
+          <Property Name="FieldOrder" Type="int" />
+          <Property Name="ShortTextDefaultValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="LongTextDefaultValue" Type="ntext" />
+          <Property Name="DateTimeDefaultValue" Type="datetime" />
+          <Property Name="CurrecncyDefaultValue" Type="money" />
+          <Property Name="FileDefaultValue" Type="image" />
+          <Property Name="CountryDefaultValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="DropDownDefaultValue" Type="nvarchar" MaxLength="500" />
+          <Property Name="MultiChoiceDefaultValue" Type="nvarchar" MaxLength="500" />
+          <Property Name="DateDefaultValue" Type="date" />
+          <Property Name="IntegerDefaultValue" Type="int" />
+          <Property Name="FloatDefaultValue" Type="float" />
+          <Property Name="RangeDefaultValue" Type="float" />
+          <Property Name="DropDownLevel2Default" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="ClaimStatus">
+          <Key>
+            <PropertyRef Name="ClaimStatusID" />
+          </Key>
+          <Property Name="ClaimStatusID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ClaimTemplate">
+          <Key>
+            <PropertyRef Name="ClaimTemplateID" />
+          </Key>
+          <Property Name="ClaimTemplateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="Source" Type="nvarchar" MaxLength="50" />
+          <Property Name="DisplayMode" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="BackgroundColour" Type="nvarchar" MaxLength="500" />
+          <Property Name="TextColour" Type="nvarchar" MaxLength="500" />
+          <Property Name="Heading1" Type="nvarchar" MaxLength="500" />
+          <Property Name="Heading2" Type="nvarchar" MaxLength="500" />
+          <Property Name="Heading3" Type="nvarchar" MaxLength="500" />
+          <Property Name="Heading4" Type="nvarchar" MaxLength="500" />
+          <Property Name="Colour1" Type="nvarchar" MaxLength="500" />
+          <Property Name="Colour2" Type="nvarchar" MaxLength="500" />
+          <Property Name="Colour3" Type="nvarchar" MaxLength="500" />
+          <Property Name="Colour4" Type="nvarchar" MaxLength="500" />
+          <Property Name="Colour5" Type="nvarchar" MaxLength="500" />
+          <Property Name="Colour6" Type="nvarchar" MaxLength="500" />
+          <Property Name="Colour7" Type="nvarchar" MaxLength="500" />
+          <Property Name="Colour8" Type="nvarchar" MaxLength="500" />
+          <Property Name="Colour9" Type="nvarchar" MaxLength="500" />
+          <Property Name="Colour10" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="ClientClaimTemplates">
+          <Key>
+            <PropertyRef Name="ClientID" />
+            <PropertyRef Name="ClaimTemplateID" />
+          </Key>
+          <Property Name="ClientID" Type="int" Nullable="false" />
+          <Property Name="ClaimTemplateID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="CurrencyID" />
+          </Key>
+          <Property Name="CurrencyID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sign" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FieldType">
+          <Key>
+            <PropertyRef Name="FieldTypeID" />
+          </Key>
+          <Property Name="FieldTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="TemplateName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FieldOrder" Type="int" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="GoogleColumnType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PageElement">
+          <Key>
+            <PropertyRef Name="PageElementID" />
+          </Key>
+          <Property Name="PageElementID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PageSetupID" Type="int" />
+          <Property Name="Width" Type="float" />
+          <Property Name="Height" Type="float" />
+          <Property Name="ElementTop" Type="float" />
+          <Property Name="ElementLeft" Type="float" />
+          <Property Name="ReportID" Type="int" />
+          <Property Name="FrameID" Type="nvarchar" MaxLength="500" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PageSetup">
+          <Key>
+            <PropertyRef Name="PageSetupID" />
+          </Key>
+          <Property Name="PageSetupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="PageURL" Type="nvarchar" MaxLength="500" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="ReportField">
+          <Key>
+            <PropertyRef Name="ReportFieldID" />
+          </Key>
+          <Property Name="ReportFieldID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReportID" Type="int" />
+          <Property Name="FieldId" Type="int" />
+          <Property Name="Func" Type="nvarchar" MaxLength="50" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Filter" Type="bit" />
+          <Property Name="Direction" Type="nvarchar" MaxLength="50" />
+          <Property Name="FieldNumber" Type="int" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ReportTemplate">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClaimTemplateId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReportType" Type="nvarchar" MaxLength="50" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="OrderDirection" Type="nvarchar" MaxLength="50" />
+          <Property Name="NumberofRecords" Type="int" />
+          <Property Name="Options" Type="nvarchar" MaxLength="500" />
+          <Property Name="HAxis" Type="nvarchar" MaxLength="200" />
+          <Property Name="HAxisColour" Type="nvarchar" MaxLength="200" />
+          <Property Name="VAxis" Type="nvarchar" MaxLength="200" />
+          <Property Name="VAxisColour" Type="nvarchar" MaxLength="200" />
+          <Property Name="ZAxis" Type="nvarchar" MaxLength="200" />
+          <Property Name="ZAxisColour" Type="nvarchar" MaxLength="200" />
+          <Property Name="Colour1" Type="nvarchar" MaxLength="200" />
+          <Property Name="Colour2" Type="nvarchar" MaxLength="200" />
+          <Property Name="Colour3" Type="nvarchar" MaxLength="200" />
+          <Property Name="Colour4" Type="nvarchar" MaxLength="200" />
+          <Property Name="Colour5" Type="nvarchar" MaxLength="200" />
+          <Property Name="FontFamily" Type="nvarchar" MaxLength="200" />
+          <Property Name="FontSize" Type="float" />
+          <Property Name="NameColour" Type="nvarchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="56" Nullable="false" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="250" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="250" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" />
+          <Property Name="RegistrationClientName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Activated" Type="bit" Nullable="false" />
+          <Property Name="ClientID" Type="int" />
+        </EntityType>
+        <EntityType Name="WillisEmployee">
+          <Key>
+            <PropertyRef Name="WillisEmployeeID" />
+          </Key>
+          <Property Name="WillisEmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeUserID" Type="nvarchar" MaxLength="200" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__aspnet_Me__Appli__6BAEFA67">
+          <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Membership" Type="Self.aspnet_Membership" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Membership">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pa__Appli__1D4655FB">
+          <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Paths" Type="Self.aspnet_Paths" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Paths">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pe__PathI__22FF2F51">
+          <End Role="aspnet_Paths" Type="Self.aspnet_Paths" Multiplicity="1" />
+          <End Role="aspnet_PersonalizationAllUsers" Type="Self.aspnet_PersonalizationAllUsers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Paths">
+              <PropertyRef Name="PathId" />
+            </Principal>
+            <Dependent Role="aspnet_PersonalizationAllUsers">
+              <PropertyRef Name="PathId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pe__PathI__26CFC035">
+          <End Role="aspnet_Paths" Type="Self.aspnet_Paths" Multiplicity="0..1" />
+          <End Role="aspnet_PersonalizationPerUser" Type="Self.aspnet_PersonalizationPerUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Paths">
+              <PropertyRef Name="PathId" />
+            </Principal>
+            <Dependent Role="aspnet_PersonalizationPerUser">
+              <PropertyRef Name="PathId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Ro__Appli__0A338187">
+          <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Roles" Type="Self.aspnet_Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Roles">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Us__Appli__253C7D7E">
+          <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Users">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Us__RoleI__0EF836A4">
+          <End Role="aspnet_Roles" Type="Self.aspnet_Roles" Multiplicity="1" />
+          <End Role="aspnet_UsersInRoles" Type="Self.aspnet_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="aspnet_UsersInRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Claim_ClaimStatus">
+          <End Role="ClaimStatus" Type="Self.ClaimStatus" Multiplicity="0..1" />
+          <End Role="Claim" Type="Self.Claim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClaimStatus">
+              <PropertyRef Name="ClaimStatusID" />
+            </Principal>
+            <Dependent Role="Claim">
+              <PropertyRef Name="ClaimStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Claim_ClaimTemplate">
+          <End Role="ClaimTemplate" Type="Self.ClaimTemplate" Multiplicity="0..1" />
+          <End Role="Claim" Type="Self.Claim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClaimTemplate">
+              <PropertyRef Name="ClaimTemplateID" />
+            </Principal>
+            <Dependent Role="Claim">
+              <PropertyRef Name="ClaimTemplateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Claim_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="Claim" Type="Self.Claim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Claim">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Claim_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Claim" Type="Self.Claim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Claim">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Claim_WillisEmployee">
+          <End Role="WillisEmployee" Type="Self.WillisEmployee" Multiplicity="0..1" />
+          <End Role="Claim" Type="Self.Claim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WillisEmployee">
+              <PropertyRef Name="WillisEmployeeID" />
+            </Principal>
+            <Dependent Role="Claim">
+              <PropertyRef Name="WillisEmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClaimField_ClaimFieldGroup">
+          <End Role="ClaimFieldGroup" Type="Self.ClaimFieldGroup" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ClaimField" Type="Self.ClaimField" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClaimFieldGroup">
+              <PropertyRef Name="ClaimFieldGroupID" />
+            </Principal>
+            <Dependent Role="ClaimField">
+              <PropertyRef Name="ClaimFieldGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClaimField_ClaimFieldTemplate">
+          <End Role="ClaimFieldTemplate" Type="Self.ClaimFieldTemplate" Multiplicity="0..1" />
+          <End Role="ClaimField" Type="Self.ClaimField" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClaimFieldTemplate">
+              <PropertyRef Name="ClaimFieldTemplateID" />
+            </Principal>
+            <Dependent Role="ClaimField">
+              <PropertyRef Name="ClaimFieldTemplateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClaimFieldGroup_Claim">
+          <End Role="Claim" Type="Self.Claim" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ClaimFieldGroup" Type="Self.ClaimFieldGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Claim">
+              <PropertyRef Name="ClaimID" />
+            </Principal>
+            <Dependent Role="ClaimFieldGroup">
+              <PropertyRef Name="ClaimID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClaimFieldGroupTemplate_ClaimTemplate">
+          <End Role="ClaimTemplate" Type="Self.ClaimTemplate" Multiplicity="0..1" />
+          <End Role="ClaimFieldGroupTemplate" Type="Self.ClaimFieldGroupTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClaimTemplate">
+              <PropertyRef Name="ClaimTemplateID" />
+            </Principal>
+            <Dependent Role="ClaimFieldGroupTemplate">
+              <PropertyRef Name="ClaimTemplateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClaimFieldTemplate_ClaimFieldGroupTemplate">
+          <End Role="ClaimFieldGroupTemplate" Type="Self.ClaimFieldGroupTemplate" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ClaimFieldTemplate" Type="Self.ClaimFieldTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClaimFieldGroupTemplate">
+              <PropertyRef Name="ClaimFieldGroupTemplateID" />
+            </Principal>
+            <Dependent Role="ClaimFieldTemplate">
+              <PropertyRef Name="ClaimFieldGroupTemplateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClaimFieldTemplate_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="ClaimFieldTemplate" Type="Self.ClaimFieldTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="ClaimFieldTemplate">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClaimFieldTemplate_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+          <End Role="ClaimFieldTemplate" Type="Self.ClaimFieldTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="CurrencyID" />
+            </Principal>
+            <Dependent Role="ClaimFieldTemplate">
+              <PropertyRef Name="CurrencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClaimFieldTemplate_FieldType">
+          <End Role="FieldType" Type="Self.FieldType" Multiplicity="0..1" />
+          <End Role="ClaimFieldTemplate" Type="Self.ClaimFieldTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FieldType">
+              <PropertyRef Name="FieldTypeID" />
+            </Principal>
+            <Dependent Role="ClaimFieldTemplate">
+              <PropertyRef Name="FieldTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientClaimTemplates_ClaimTemplate">
+          <End Role="ClaimTemplate" Type="Self.ClaimTemplate" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ClientClaimTemplates" Type="Self.ClientClaimTemplates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClaimTemplate">
+              <PropertyRef Name="ClaimTemplateID" />
+            </Principal>
+            <Dependent Role="ClientClaimTemplates">
+              <PropertyRef Name="ClaimTemplateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientClaimTemplates_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ClientClaimTemplates" Type="Self.ClientClaimTemplates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="ClientClaimTemplates">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PageElement_PageSetup">
+          <End Role="PageSetup" Type="Self.PageSetup" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PageElement" Type="Self.PageElement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PageSetup">
+              <PropertyRef Name="PageSetupID" />
+            </Principal>
+            <Dependent Role="PageElement">
+              <PropertyRef Name="PageSetupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PageElement_ReportTemplate">
+          <End Role="ReportTemplate" Type="Self.ReportTemplate" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PageElement" Type="Self.PageElement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReportTemplate">
+              <PropertyRef Name="ReportID" />
+            </Principal>
+            <Dependent Role="PageElement">
+              <PropertyRef Name="ReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PageSetup_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PageSetup" Type="Self.PageSetup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="PageSetup">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PageSetup_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PageSetup" Type="Self.PageSetup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="PageSetup">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportField_ReportTemplate">
+          <End Role="ReportTemplate" Type="Self.ReportTemplate" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ReportField" Type="Self.ReportField" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReportTemplate">
+              <PropertyRef Name="ReportID" />
+            </Principal>
+            <Dependent Role="ReportField">
+              <PropertyRef Name="ReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportTemplate_ClaimTemplate">
+          <End Role="ClaimTemplate" Type="Self.ClaimTemplate" Multiplicity="0..1" />
+          <End Role="ReportTemplate" Type="Self.ReportTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClaimTemplate">
+              <PropertyRef Name="ClaimTemplateID" />
+            </Principal>
+            <Dependent Role="ReportTemplate">
+              <PropertyRef Name="ClaimTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ClaimsModelStoreContainer">
+          <EntitySet Name="aspnet_Applications" EntityType="Self.aspnet_Applications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aspnet_Membership" EntityType="Self.aspnet_Membership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aspnet_Paths" EntityType="Self.aspnet_Paths" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aspnet_PersonalizationAllUsers" EntityType="Self.aspnet_PersonalizationAllUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aspnet_PersonalizationPerUser" EntityType="Self.aspnet_PersonalizationPerUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aspnet_Profile" EntityType="Self.aspnet_Profile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aspnet_Roles" EntityType="Self.aspnet_Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aspnet_SchemaVersions" EntityType="Self.aspnet_SchemaVersions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aspnet_Users" EntityType="Self.aspnet_Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aspnet_UsersInRoles" EntityType="Self.aspnet_UsersInRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aspnet_WebEvent_Events" EntityType="Self.aspnet_WebEvent_Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Claim" EntityType="Self.Claim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClaimField" EntityType="Self.ClaimField" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClaimFieldGroup" EntityType="Self.ClaimFieldGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClaimFieldGroupTemplate" EntityType="Self.ClaimFieldGroupTemplate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClaimFieldTemplate" EntityType="Self.ClaimFieldTemplate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClaimStatus" EntityType="Self.ClaimStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClaimTemplate" EntityType="Self.ClaimTemplate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientClaimTemplates" EntityType="Self.ClientClaimTemplates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FieldType" EntityType="Self.FieldType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PageElement" EntityType="Self.PageElement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PageSetup" EntityType="Self.PageSetup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReportField" EntityType="Self.ReportField" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReportTemplate" EntityType="Self.ReportTemplate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WillisEmployee" EntityType="Self.WillisEmployee" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__aspnet_Me__Appli__6BAEFA67" Association="Self.FK__aspnet_Me__Appli__6BAEFA67">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pa__Appli__1D4655FB" Association="Self.FK__aspnet_Pa__Appli__1D4655FB">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pe__PathI__22FF2F51" Association="Self.FK__aspnet_Pe__PathI__22FF2F51">
+            <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+            <End Role="aspnet_PersonalizationAllUsers" EntitySet="aspnet_PersonalizationAllUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pe__PathI__26CFC035" Association="Self.FK__aspnet_Pe__PathI__26CFC035">
+            <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+            <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Ro__Appli__0A338187" Association="Self.FK__aspnet_Ro__Appli__0A338187">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Us__Appli__253C7D7E" Association="Self.FK__aspnet_Us__Appli__253C7D7E">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Us__RoleI__0EF836A4" Association="Self.FK__aspnet_Us__RoleI__0EF836A4">
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+            <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Claim_ClaimStatus" Association="Self.FK_Claim_ClaimStatus">
+            <End Role="ClaimStatus" EntitySet="ClaimStatus" />
+            <End Role="Claim" EntitySet="Claim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Claim_ClaimTemplate" Association="Self.FK_Claim_ClaimTemplate">
+            <End Role="ClaimTemplate" EntitySet="ClaimTemplate" />
+            <End Role="Claim" EntitySet="Claim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Claim_Country" Association="Self.FK_Claim_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Claim" EntitySet="Claim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Claim_User" Association="Self.FK_Claim_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Claim" EntitySet="Claim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Claim_WillisEmployee" Association="Self.FK_Claim_WillisEmployee">
+            <End Role="WillisEmployee" EntitySet="WillisEmployee" />
+            <End Role="Claim" EntitySet="Claim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClaimField_ClaimFieldGroup" Association="Self.FK_ClaimField_ClaimFieldGroup">
+            <End Role="ClaimFieldGroup" EntitySet="ClaimFieldGroup" />
+            <End Role="ClaimField" EntitySet="ClaimField" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClaimField_ClaimFieldTemplate" Association="Self.FK_ClaimField_ClaimFieldTemplate">
+            <End Role="ClaimFieldTemplate" EntitySet="ClaimFieldTemplate" />
+            <End Role="ClaimField" EntitySet="ClaimField" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClaimFieldGroup_Claim" Association="Self.FK_ClaimFieldGroup_Claim">
+            <End Role="Claim" EntitySet="Claim" />
+            <End Role="ClaimFieldGroup" EntitySet="ClaimFieldGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClaimFieldGroupTemplate_ClaimTemplate" Association="Self.FK_ClaimFieldGroupTemplate_ClaimTemplate">
+            <End Role="ClaimTemplate" EntitySet="ClaimTemplate" />
+            <End Role="ClaimFieldGroupTemplate" EntitySet="ClaimFieldGroupTemplate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClaimFieldTemplate_ClaimFieldGroupTemplate" Association="Self.FK_ClaimFieldTemplate_ClaimFieldGroupTemplate">
+            <End Role="ClaimFieldGroupTemplate" EntitySet="ClaimFieldGroupTemplate" />
+            <End Role="ClaimFieldTemplate" EntitySet="ClaimFieldTemplate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClaimFieldTemplate_Country" Association="Self.FK_ClaimFieldTemplate_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="ClaimFieldTemplate" EntitySet="ClaimFieldTemplate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClaimFieldTemplate_Currency" Association="Self.FK_ClaimFieldTemplate_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="ClaimFieldTemplate" EntitySet="ClaimFieldTemplate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClaimFieldTemplate_FieldType" Association="Self.FK_ClaimFieldTemplate_FieldType">
+            <End Role="FieldType" EntitySet="FieldType" />
+            <End Role="ClaimFieldTemplate" EntitySet="ClaimFieldTemplate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientClaimTemplates_ClaimTemplate" Association="Self.FK_ClientClaimTemplates_ClaimTemplate">
+            <End Role="ClaimTemplate" EntitySet="ClaimTemplate" />
+            <End Role="ClientClaimTemplates" EntitySet="ClientClaimTemplates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientClaimTemplates_Client" Association="Self.FK_ClientClaimTemplates_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="ClientClaimTemplates" EntitySet="ClientClaimTemplates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PageElement_PageSetup" Association="Self.FK_PageElement_PageSetup">
+            <End Role="PageSetup" EntitySet="PageSetup" />
+            <End Role="PageElement" EntitySet="PageElement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PageElement_ReportTemplate" Association="Self.FK_PageElement_ReportTemplate">
+            <End Role="ReportTemplate" EntitySet="ReportTemplate" />
+            <End Role="PageElement" EntitySet="PageElement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PageSetup_Client" Association="Self.FK_PageSetup_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="PageSetup" EntitySet="PageSetup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PageSetup_User" Association="Self.FK_PageSetup_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="PageSetup" EntitySet="PageSetup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportField_ReportTemplate" Association="Self.FK_ReportField_ReportTemplate">
+            <End Role="ReportTemplate" EntitySet="ReportTemplate" />
+            <End Role="ReportField" EntitySet="ReportField" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportTemplate_ClaimTemplate" Association="Self.FK_ReportTemplate_ClaimTemplate">
+            <End Role="ClaimTemplate" EntitySet="ClaimTemplate" />
+            <End Role="ReportTemplate" EntitySet="ReportTemplate" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ClaimsModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ClaimsEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="ClaimFields" EntityType="ClaimsModel.ClaimField" />
+          <EntitySet Name="ClaimFieldGroups" EntityType="ClaimsModel.ClaimFieldGroup" />
+          <EntitySet Name="ClaimFieldGroupTemplates" EntityType="ClaimsModel.ClaimFieldGroupTemplate" />
+          <EntitySet Name="ClaimFieldTemplates" EntityType="ClaimsModel.ClaimFieldTemplate" />
+          <EntitySet Name="ClaimStatus" EntityType="ClaimsModel.ClaimStatu" />
+          <EntitySet Name="ClaimTemplates" EntityType="ClaimsModel.ClaimTemplate" />
+          <EntitySet Name="Clients" EntityType="ClaimsModel.Client" />
+          <EntitySet Name="Countries" EntityType="ClaimsModel.Country" />
+          <EntitySet Name="Currencies" EntityType="ClaimsModel.Currency" />
+          <EntitySet Name="FieldTypes" EntityType="ClaimsModel.FieldType" />
+          <EntitySet Name="WillisEmployees" EntityType="ClaimsModel.WillisEmployee" />
+          <AssociationSet Name="FK_ClaimField_ClaimFieldGroup" Association="ClaimsModel.FK_ClaimField_ClaimFieldGroup">
+            <End Role="ClaimFieldGroup" EntitySet="ClaimFieldGroups" />
+            <End Role="ClaimField" EntitySet="ClaimFields" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClaimField_ClaimFieldTemplate" Association="ClaimsModel.FK_ClaimField_ClaimFieldTemplate">
+            <End Role="ClaimFieldTemplate" EntitySet="ClaimFieldTemplates" />
+            <End Role="ClaimField" EntitySet="ClaimFields" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClaimFieldGroupTemplate_ClaimTemplate" Association="ClaimsModel.FK_ClaimFieldGroupTemplate_ClaimTemplate">
+            <End Role="ClaimTemplate" EntitySet="ClaimTemplates" />
+            <End Role="ClaimFieldGroupTemplate" EntitySet="ClaimFieldGroupTemplates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClaimFieldTemplate_ClaimFieldGroupTemplate" Association="ClaimsModel.FK_ClaimFieldTemplate_ClaimFieldGroupTemplate">
+            <End Role="ClaimFieldGroupTemplate" EntitySet="ClaimFieldGroupTemplates" />
+            <End Role="ClaimFieldTemplate" EntitySet="ClaimFieldTemplates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClaimFieldTemplate_Country" Association="ClaimsModel.FK_ClaimFieldTemplate_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="ClaimFieldTemplate" EntitySet="ClaimFieldTemplates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClaimFieldTemplate_Currency" Association="ClaimsModel.FK_ClaimFieldTemplate_Currency">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="ClaimFieldTemplate" EntitySet="ClaimFieldTemplates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClaimFieldTemplate_FieldType" Association="ClaimsModel.FK_ClaimFieldTemplate_FieldType">
+            <End Role="FieldType" EntitySet="FieldTypes" />
+            <End Role="ClaimFieldTemplate" EntitySet="ClaimFieldTemplates" />
+          </AssociationSet>
+          <AssociationSet Name="ClientClaimTemplates" Association="ClaimsModel.ClientClaimTemplates">
+            <End Role="ClaimTemplate" EntitySet="ClaimTemplates" />
+            <End Role="Client" EntitySet="Clients" />
+          </AssociationSet>
+          <EntitySet Name="ReportTemplates" EntityType="ClaimsModel.ReportTemplate" />
+          <EntitySet Name="aspnet_Applications" EntityType="ClaimsModel.aspnet_Applications" />
+          <EntitySet Name="aspnet_Membership" EntityType="ClaimsModel.aspnet_Membership" />
+          <EntitySet Name="aspnet_Paths" EntityType="ClaimsModel.aspnet_Paths" />
+          <EntitySet Name="aspnet_PersonalizationAllUsers" EntityType="ClaimsModel.aspnet_PersonalizationAllUsers" />
+          <EntitySet Name="aspnet_PersonalizationPerUser" EntityType="ClaimsModel.aspnet_PersonalizationPerUser" />
+          <EntitySet Name="aspnet_Profile" EntityType="ClaimsModel.aspnet_Profile" />
+          <EntitySet Name="aspnet_Roles" EntityType="ClaimsModel.aspnet_Roles" />
+          <EntitySet Name="aspnet_SchemaVersions" EntityType="ClaimsModel.aspnet_SchemaVersions" />
+          <EntitySet Name="aspnet_Users" EntityType="ClaimsModel.aspnet_Users" />
+          <AssociationSet Name="FK__aspnet_Me__Appli__6BAEFA67" Association="ClaimsModel.FK__aspnet_Me__Appli__6BAEFA67">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pa__Appli__1D4655FB" Association="ClaimsModel.FK__aspnet_Pa__Appli__1D4655FB">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Ro__Appli__0A338187" Association="ClaimsModel.FK__aspnet_Ro__Appli__0A338187">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Us__Appli__5B78929E" Association="ClaimsModel.FK__aspnet_Us__Appli__5B78929E">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Me__UserI__6CA31EA0" Association="ClaimsModel.FK__aspnet_Me__UserI__6CA31EA0">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pe__PathI__22FF2F51" Association="ClaimsModel.FK__aspnet_Pe__PathI__22FF2F51">
+            <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+            <End Role="aspnet_PersonalizationAllUsers" EntitySet="aspnet_PersonalizationAllUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pe__PathI__26CFC035" Association="ClaimsModel.FK__aspnet_Pe__PathI__26CFC035">
+            <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+            <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pe__UserI__27C3E46E" Association="ClaimsModel.FK__aspnet_Pe__UserI__27C3E46E">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pr__UserI__00AA174D" Association="ClaimsModel.FK__aspnet_Pr__UserI__00AA174D">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_Profile" EntitySet="aspnet_Profile" />
+          </AssociationSet>
+          <AssociationSet Name="aspnet_UsersInRoles" Association="ClaimsModel.aspnet_UsersInRoles">
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+          </AssociationSet>
+          <EntitySet Name="aspnet_WebEvent_Events" EntityType="ClaimsModel.aspnet_WebEvent_Events" />
+          <EntitySet Name="Claims" EntityType="ClaimsModel.Claim" />
+          <AssociationSet Name="FK_Claim_ClaimStatus" Association="ClaimsModel.FK_Claim_ClaimStatus">
+            <End Role="ClaimStatu" EntitySet="ClaimStatus" />
+            <End Role="Claim" EntitySet="Claims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Claim_ClaimTemplate" Association="ClaimsModel.FK_Claim_ClaimTemplate">
+            <End Role="ClaimTemplate" EntitySet="ClaimTemplates" />
+            <End Role="Claim" EntitySet="Claims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Claim_Country" Association="ClaimsModel.FK_Claim_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Claim" EntitySet="Claims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Claim_WillisEmployee" Association="ClaimsModel.FK_Claim_WillisEmployee">
+            <End Role="WillisEmployee" EntitySet="WillisEmployees" />
+            <End Role="Claim" EntitySet="Claims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClaimFieldGroup_Claim" Association="ClaimsModel.FK_ClaimFieldGroup_Claim">
+            <End Role="Claim" EntitySet="Claims" />
+            <End Role="ClaimFieldGroup" EntitySet="ClaimFieldGroups" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="ClaimsModel.User" />
+          <AssociationSet Name="FK_Claim_User" Association="ClaimsModel.FK_Claim_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Claim" EntitySet="Claims" />
+          </AssociationSet>
+          <EntitySet Name="ReportFields" EntityType="ClaimsModel.ReportField" />
+          <AssociationSet Name="FK_ReportField_ReportTemplate" Association="ClaimsModel.FK_ReportField_ReportTemplate">
+            <End Role="ReportTemplate" EntitySet="ReportTemplates" />
+            <End Role="ReportField" EntitySet="ReportFields" />
+          </AssociationSet>
+          <EntitySet Name="PageElements" EntityType="ClaimsModel.PageElement" />
+          <EntitySet Name="PageSetups" EntityType="ClaimsModel.PageSetup" />
+          <AssociationSet Name="FK_PageSetup_Client" Association="ClaimsModel.FK_PageSetup_Client">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="PageSetup" EntitySet="PageSetups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PageElement_PageSetup" Association="ClaimsModel.FK_PageElement_PageSetup">
+            <End Role="PageSetup" EntitySet="PageSetups" />
+            <End Role="PageElement" EntitySet="PageElements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PageSetup_User" Association="ClaimsModel.FK_PageSetup_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="PageSetup" EntitySet="PageSetups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PageElement_ReportTemplate" Association="ClaimsModel.FK_PageElement_ReportTemplate">
+            <End Role="ReportTemplate" EntitySet="ReportTemplates" />
+            <End Role="PageElement" EntitySet="PageElements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportField_ClaimFieldTemplate" Association="ClaimsModel.FK_ReportField_ClaimFieldTemplate">
+            <End Role="ClaimFieldTemplate" EntitySet="ClaimFieldTemplates" />
+            <End Role="ReportField" EntitySet="ReportFields" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportTemplate_ClaimTemplate" Association="ClaimsModel.FK_ReportTemplate_ClaimTemplate">
+            <End Role="ClaimTemplate" EntitySet="ClaimTemplates" />
+            <End Role="ReportTemplate" EntitySet="ReportTemplates" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="ClaimField">
+          <Key>
+            <PropertyRef Name="ClaimFieldID" />
+          </Key>
+          <Property Name="ClaimFieldID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ClaimFieldGroupID" Type="Int32" />
+          <Property Name="ClaimFieldTemplateID" Type="Int32" />
+          <Property Name="ShortTextValue" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LongTextValue" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DateTimeValue" Type="DateTime" Precision="3" />
+          <Property Name="CurrecncyValue" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="FileValue" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CountryValue" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="DropDownValue" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="MultiChoiceValue" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="DateValue" Type="DateTime" Precision="0" />
+          <Property Name="IntegerValue" Type="Int32" />
+          <Property Name="FloatValue" Type="Double" />
+          <Property Name="RangeValue" Type="Double" />
+          <NavigationProperty Name="ClaimFieldGroup" Relationship="ClaimsModel.FK_ClaimField_ClaimFieldGroup" FromRole="ClaimField" ToRole="ClaimFieldGroup" />
+          <NavigationProperty Name="ClaimFieldTemplate" Relationship="ClaimsModel.FK_ClaimField_ClaimFieldTemplate" FromRole="ClaimField" ToRole="ClaimFieldTemplate" />
+          <Property Type="String" Name="DropDownLevel2Value" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ClaimFieldGroup">
+          <Key>
+            <PropertyRef Name="ClaimFieldGroupID" />
+          </Key>
+          <Property Name="ClaimFieldGroupID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ClaimID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
+          <Property Name="ItemOrder" Type="Int32" />
+          <NavigationProperty Name="ClaimFields" Relationship="ClaimsModel.FK_ClaimField_ClaimFieldGroup" FromRole="ClaimFieldGroup" ToRole="ClaimField" />
+          <NavigationProperty Name="Claim" Relationship="ClaimsModel.FK_ClaimFieldGroup_Claim" FromRole="ClaimFieldGroup" ToRole="Claim" />
+        </EntityType>
+        <EntityType Name="ClaimFieldGroupTemplate">
+          <Key>
+            <PropertyRef Name="ClaimFieldGroupTemplateID" />
+          </Key>
+          <Property Name="ClaimFieldGroupTemplateID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ClaimTemplateID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
+          <Property Name="ItemOrder" Type="Int32" />
+          <NavigationProperty Name="ClaimTemplate" Relationship="ClaimsModel.FK_ClaimFieldGroupTemplate_ClaimTemplate" FromRole="ClaimFieldGroupTemplate" ToRole="ClaimTemplate" />
+          <NavigationProperty Name="ClaimFieldTemplates" Relationship="ClaimsModel.FK_ClaimFieldTemplate_ClaimFieldGroupTemplate" FromRole="ClaimFieldGroupTemplate" ToRole="ClaimFieldTemplate" />
+        </EntityType>
+        <EntityType Name="ClaimFieldTemplate">
+          <Key>
+            <PropertyRef Name="ClaimFieldTemplateID" />
+          </Key>
+          <Property Name="ClaimFieldTemplateID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ClaimFieldGroupTemplateID" Type="Int32" Nullable="false" />
+          <Property Name="FieldTypeID" Type="Int32" />
+          <Property Name="CurrencyID" Type="Int32" />
+          <Property Name="CountryID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Saved" Type="Boolean" Nullable="false" />
+          <Property Name="Mandatory" Type="Boolean" Nullable="false" />
+          <Property Name="FieldOrder" Type="Int32" />
+          <Property Name="ShortTextDefaultValue" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LongTextDefaultValue" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DateTimeDefaultValue" Type="DateTime" Precision="3" />
+          <Property Name="CurrecncyDefaultValue" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="FileDefaultValue" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CountryDefaultValue" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="DropDownDefaultValue" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="MultiChoiceDefaultValue" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="DateDefaultValue" Type="DateTime" Precision="0" />
+          <Property Name="IntegerDefaultValue" Type="Int32" />
+          <Property Name="FloatDefaultValue" Type="Double" />
+          <Property Name="RangeDefaultValue" Type="Double" />
+          <NavigationProperty Name="ClaimFields" Relationship="ClaimsModel.FK_ClaimField_ClaimFieldTemplate" FromRole="ClaimFieldTemplate" ToRole="ClaimField" />
+          <NavigationProperty Name="ClaimFieldGroupTemplate" Relationship="ClaimsModel.FK_ClaimFieldTemplate_ClaimFieldGroupTemplate" FromRole="ClaimFieldTemplate" ToRole="ClaimFieldGroupTemplate" />
+          <NavigationProperty Name="Country" Relationship="ClaimsModel.FK_ClaimFieldTemplate_Country" FromRole="ClaimFieldTemplate" ToRole="Country" />
+          <NavigationProperty Name="Currency" Relationship="ClaimsModel.FK_ClaimFieldTemplate_Currency" FromRole="ClaimFieldTemplate" ToRole="Currency" />
+          <NavigationProperty Name="FieldType" Relationship="ClaimsModel.FK_ClaimFieldTemplate_FieldType" FromRole="ClaimFieldTemplate" ToRole="FieldType" />
+          <Property Type="String" Name="DropDownLevel2Default" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ReportFields" Relationship="ClaimsModel.FK_ReportField_ClaimFieldTemplate" FromRole="ClaimFieldTemplate" ToRole="ReportField" />
+        </EntityType>
+        <EntityType Name="ClaimStatu">
+          <Key>
+            <PropertyRef Name="ClaimStatusID" />
+          </Key>
+          <Property Name="ClaimStatusID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Claims" Relationship="ClaimsModel.FK_Claim_ClaimStatus" FromRole="ClaimStatu" ToRole="Claim" />
+        </EntityType>
+        <EntityType Name="ClaimTemplate">
+          <Key>
+            <PropertyRef Name="ClaimTemplateID" />
+          </Key>
+          <Property Name="ClaimTemplateID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ClaimFieldGroupTemplates" Relationship="ClaimsModel.FK_ClaimFieldGroupTemplate_ClaimTemplate" FromRole="ClaimTemplate" ToRole="ClaimFieldGroupTemplate" />
+          <NavigationProperty Name="Clients" Relationship="ClaimsModel.ClientClaimTemplates" FromRole="ClaimTemplate" ToRole="Client" />
+          <NavigationProperty Name="Claims" Relationship="ClaimsModel.FK_Claim_ClaimTemplate" FromRole="ClaimTemplate" ToRole="Claim" />
+          <Property Name="Source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayMode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ReportTemplates" Relationship="ClaimsModel.FK_ReportTemplate_ClaimTemplate" FromRole="ClaimTemplate" ToRole="ReportTemplate" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="BackgroundColour" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="TextColour" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Heading1" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Heading2" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Heading3" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Heading4" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Colour1" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Colour2" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Colour3" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Colour4" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Colour5" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Colour6" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Colour7" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Colour8" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Colour9" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Colour10" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ClaimTemplates" Relationship="ClaimsModel.ClientClaimTemplates" FromRole="Client" ToRole="ClaimTemplate" />
+          <NavigationProperty Name="PageSetups" Relationship="ClaimsModel.FK_PageSetup_Client" FromRole="Client" ToRole="PageSetup" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ClaimFieldTemplates" Relationship="ClaimsModel.FK_ClaimFieldTemplate_Country" FromRole="Country" ToRole="ClaimFieldTemplate" />
+          <NavigationProperty Name="Claims" Relationship="ClaimsModel.FK_Claim_Country" FromRole="Country" ToRole="Claim" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="CurrencyID" />
+          </Key>
+          <Property Name="CurrencyID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Sign" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ClaimFieldTemplates" Relationship="ClaimsModel.FK_ClaimFieldTemplate_Currency" FromRole="Currency" ToRole="ClaimFieldTemplate" />
+        </EntityType>
+        <EntityType Name="FieldType">
+          <Key>
+            <PropertyRef Name="FieldTypeID" />
+          </Key>
+          <Property Name="FieldTypeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="TemplateName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FieldOrder" Type="Int32" />
+          <Property Name="Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ClaimFieldTemplates" Relationship="ClaimsModel.FK_ClaimFieldTemplate_FieldType" FromRole="FieldType" ToRole="ClaimFieldTemplate" />
+          <Property Name="GoogleColumnType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="WillisEmployee">
+          <Key>
+            <PropertyRef Name="WillisEmployeeID" />
+          </Key>
+          <Property Name="WillisEmployeeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeUserID" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Claims" Relationship="ClaimsModel.FK_Claim_WillisEmployee" FromRole="WillisEmployee" ToRole="Claim" />
+        </EntityType>
+        <Association Name="FK_ClaimField_ClaimFieldGroup">
+          <End Role="ClaimFieldGroup" Type="ClaimsModel.ClaimFieldGroup" Multiplicity="0..1" />
+          <End Role="ClaimField" Type="ClaimsModel.ClaimField" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClaimFieldGroup">
+              <PropertyRef Name="ClaimFieldGroupID" />
+            </Principal>
+            <Dependent Role="ClaimField">
+              <PropertyRef Name="ClaimFieldGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClaimField_ClaimFieldTemplate">
+          <End Role="ClaimFieldTemplate" Type="ClaimsModel.ClaimFieldTemplate" Multiplicity="0..1" />
+          <End Role="ClaimField" Type="ClaimsModel.ClaimField" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClaimFieldTemplate">
+              <PropertyRef Name="ClaimFieldTemplateID" />
+            </Principal>
+            <Dependent Role="ClaimField">
+              <PropertyRef Name="ClaimFieldTemplateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClaimFieldGroupTemplate_ClaimTemplate">
+          <End Role="ClaimTemplate" Type="ClaimsModel.ClaimTemplate" Multiplicity="0..1" />
+          <End Role="ClaimFieldGroupTemplate" Type="ClaimsModel.ClaimFieldGroupTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClaimTemplate">
+              <PropertyRef Name="ClaimTemplateID" />
+            </Principal>
+            <Dependent Role="ClaimFieldGroupTemplate">
+              <PropertyRef Name="ClaimTemplateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClaimFieldTemplate_ClaimFieldGroupTemplate">
+          <End Role="ClaimFieldGroupTemplate" Type="ClaimsModel.ClaimFieldGroupTemplate" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ClaimFieldTemplate" Type="ClaimsModel.ClaimFieldTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClaimFieldGroupTemplate">
+              <PropertyRef Name="ClaimFieldGroupTemplateID" />
+            </Principal>
+            <Dependent Role="ClaimFieldTemplate">
+              <PropertyRef Name="ClaimFieldGroupTemplateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClaimFieldTemplate_Country">
+          <End Role="Country" Type="ClaimsModel.Country" Multiplicity="0..1" />
+          <End Role="ClaimFieldTemplate" Type="ClaimsModel.ClaimFieldTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="ClaimFieldTemplate">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClaimFieldTemplate_Currency">
+          <End Role="Currency" Type="ClaimsModel.Currency" Multiplicity="0..1" />
+          <End Role="ClaimFieldTemplate" Type="ClaimsModel.ClaimFieldTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="CurrencyID" />
+            </Principal>
+            <Dependent Role="ClaimFieldTemplate">
+              <PropertyRef Name="CurrencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClaimFieldTemplate_FieldType">
+          <End Role="FieldType" Type="ClaimsModel.FieldType" Multiplicity="0..1" />
+          <End Role="ClaimFieldTemplate" Type="ClaimsModel.ClaimFieldTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FieldType">
+              <PropertyRef Name="FieldTypeID" />
+            </Principal>
+            <Dependent Role="ClaimFieldTemplate">
+              <PropertyRef Name="FieldTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClientClaimTemplates">
+          <End Role="ClaimTemplate" Type="ClaimsModel.ClaimTemplate" Multiplicity="*" />
+          <End Role="Client" Type="ClaimsModel.Client" Multiplicity="*" />
+        </Association>
+        <EntityType Name="ReportTemplate">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReportType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ReportFields" Relationship="ClaimsModel.FK_ReportField_ReportTemplate" FromRole="ReportTemplate" ToRole="ReportField" />
+          <Property Name="OrderDirection" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NumberofRecords" Type="Int32" />
+          <NavigationProperty Name="PageElements" Relationship="ClaimsModel.FK_PageElement_ReportTemplate" FromRole="ReportTemplate" ToRole="PageElement" />
+          <Property Name="Options" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimTemplateId" Type="Int32" />
+          <NavigationProperty Name="ClaimTemplate" Relationship="ClaimsModel.FK_ReportTemplate_ClaimTemplate" FromRole="ReportTemplate" ToRole="ClaimTemplate" />
+          <Property Name="Colour1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Colour2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Colour3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Colour4" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Colour5" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="HAxis" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="HAxisColour" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VAxis" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VAxisColour" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ZAxis" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ZAxisColour" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FontFamily" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FontSize" Type="Double" />
+          <Property Name="NameColour" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="aspnet_Applications">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="LoweredApplicationName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="aspnet_Membership" Relationship="ClaimsModel.FK__aspnet_Me__Appli__6BAEFA67" FromRole="aspnet_Applications" ToRole="aspnet_Membership" />
+          <NavigationProperty Name="aspnet_Paths" Relationship="ClaimsModel.FK__aspnet_Pa__Appli__1D4655FB" FromRole="aspnet_Applications" ToRole="aspnet_Paths" />
+          <NavigationProperty Name="aspnet_Roles" Relationship="ClaimsModel.FK__aspnet_Ro__Appli__0A338187" FromRole="aspnet_Applications" ToRole="aspnet_Roles" />
+          <NavigationProperty Name="aspnet_Users" Relationship="ClaimsModel.FK__aspnet_Us__Appli__5B78929E" FromRole="aspnet_Applications" ToRole="aspnet_Users" />
+        </EntityType>
+        <EntityType Name="aspnet_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordFormat" Type="Int32" Nullable="false" />
+          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="MobilePIN" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="LoweredEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordQuestion" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordAnswer" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IsApproved" Type="Boolean" Nullable="false" />
+          <Property Name="IsLockedOut" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastPasswordChangedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastLockoutDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FailedPasswordAttemptCount" Type="Int32" Nullable="false" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="Int32" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="aspnet_Applications" Relationship="ClaimsModel.FK__aspnet_Me__Appli__6BAEFA67" FromRole="aspnet_Membership" ToRole="aspnet_Applications" />
+          <NavigationProperty Name="aspnet_Users" Relationship="ClaimsModel.FK__aspnet_Me__UserI__6CA31EA0" FromRole="aspnet_Membership" ToRole="aspnet_Users" />
+        </EntityType>
+        <EntityType Name="aspnet_Paths">
+          <Key>
+            <PropertyRef Name="PathId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="PathId" Type="Guid" Nullable="false" />
+          <Property Name="Path" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="LoweredPath" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="aspnet_Applications" Relationship="ClaimsModel.FK__aspnet_Pa__Appli__1D4655FB" FromRole="aspnet_Paths" ToRole="aspnet_Applications" />
+          <NavigationProperty Name="aspnet_PersonalizationAllUsers" Relationship="ClaimsModel.FK__aspnet_Pe__PathI__22FF2F51" FromRole="aspnet_Paths" ToRole="aspnet_PersonalizationAllUsers" />
+          <NavigationProperty Name="aspnet_PersonalizationPerUser" Relationship="ClaimsModel.FK__aspnet_Pe__PathI__26CFC035" FromRole="aspnet_Paths" ToRole="aspnet_PersonalizationPerUser" />
+        </EntityType>
+        <EntityType Name="aspnet_PersonalizationAllUsers">
+          <Key>
+            <PropertyRef Name="PathId" />
+          </Key>
+          <Property Name="PathId" Type="Guid" Nullable="false" />
+          <Property Name="PageSettings" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="aspnet_Paths" Relationship="ClaimsModel.FK__aspnet_Pe__PathI__22FF2F51" FromRole="aspnet_PersonalizationAllUsers" ToRole="aspnet_Paths" />
+        </EntityType>
+        <EntityType Name="aspnet_PersonalizationPerUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PathId" Type="Guid" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="PageSettings" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="aspnet_Paths" Relationship="ClaimsModel.FK__aspnet_Pe__PathI__26CFC035" FromRole="aspnet_PersonalizationPerUser" ToRole="aspnet_Paths" />
+          <NavigationProperty Name="aspnet_Users" Relationship="ClaimsModel.FK__aspnet_Pe__UserI__27C3E46E" FromRole="aspnet_PersonalizationPerUser" ToRole="aspnet_Users" />
+        </EntityType>
+        <EntityType Name="aspnet_Profile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="PropertyNames" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PropertyValuesString" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PropertyValuesBinary" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="aspnet_Users" Relationship="ClaimsModel.FK__aspnet_Pr__UserI__00AA174D" FromRole="aspnet_Profile" ToRole="aspnet_Users" />
+        </EntityType>
+        <EntityType Name="aspnet_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="RoleId" Type="Guid" Nullable="false" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="LoweredRoleName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="aspnet_Applications" Relationship="ClaimsModel.FK__aspnet_Ro__Appli__0A338187" FromRole="aspnet_Roles" ToRole="aspnet_Applications" />
+          <NavigationProperty Name="aspnet_Users" Relationship="ClaimsModel.aspnet_UsersInRoles" FromRole="aspnet_Roles" ToRole="aspnet_Users" />
+        </EntityType>
+        <EntityType Name="aspnet_SchemaVersions">
+          <Key>
+            <PropertyRef Name="Feature" />
+            <PropertyRef Name="CompatibleSchemaVersion" />
+          </Key>
+          <Property Name="Feature" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CompatibleSchemaVersion" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IsCurrentVersion" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="LoweredUserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="MobileAlias" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
+          <Property Name="LastActivityDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="aspnet_Applications" Relationship="ClaimsModel.FK__aspnet_Us__Appli__5B78929E" FromRole="aspnet_Users" ToRole="aspnet_Applications" />
+          <NavigationProperty Name="aspnet_Membership" Relationship="ClaimsModel.FK__aspnet_Me__UserI__6CA31EA0" FromRole="aspnet_Users" ToRole="aspnet_Membership" />
+          <NavigationProperty Name="aspnet_PersonalizationPerUser" Relationship="ClaimsModel.FK__aspnet_Pe__UserI__27C3E46E" FromRole="aspnet_Users" ToRole="aspnet_PersonalizationPerUser" />
+          <NavigationProperty Name="aspnet_Profile" Relationship="ClaimsModel.FK__aspnet_Pr__UserI__00AA174D" FromRole="aspnet_Users" ToRole="aspnet_Profile" />
+          <NavigationProperty Name="aspnet_Roles" Relationship="ClaimsModel.aspnet_UsersInRoles" FromRole="aspnet_Users" ToRole="aspnet_Roles" />
+        </EntityType>
+        <Association Name="FK__aspnet_Me__Appli__6BAEFA67">
+          <End Type="ClaimsModel.aspnet_Applications" Role="aspnet_Applications" Multiplicity="1" />
+          <End Type="ClaimsModel.aspnet_Membership" Role="aspnet_Membership" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Membership">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pa__Appli__1D4655FB">
+          <End Type="ClaimsModel.aspnet_Applications" Role="aspnet_Applications" Multiplicity="1" />
+          <End Type="ClaimsModel.aspnet_Paths" Role="aspnet_Paths" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Paths">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Ro__Appli__0A338187">
+          <End Type="ClaimsModel.aspnet_Applications" Role="aspnet_Applications" Multiplicity="1" />
+          <End Type="ClaimsModel.aspnet_Roles" Role="aspnet_Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Roles">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Us__Appli__5B78929E">
+          <End Type="ClaimsModel.aspnet_Applications" Role="aspnet_Applications" Multiplicity="1" />
+          <End Type="ClaimsModel.aspnet_Users" Role="aspnet_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Users">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Me__UserI__6CA31EA0">
+          <End Type="ClaimsModel.aspnet_Users" Role="aspnet_Users" Multiplicity="1" />
+          <End Type="ClaimsModel.aspnet_Membership" Role="aspnet_Membership" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_Membership">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pe__PathI__22FF2F51">
+          <End Type="ClaimsModel.aspnet_Paths" Role="aspnet_Paths" Multiplicity="1" />
+          <End Type="ClaimsModel.aspnet_PersonalizationAllUsers" Role="aspnet_PersonalizationAllUsers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Paths">
+              <PropertyRef Name="PathId" />
+            </Principal>
+            <Dependent Role="aspnet_PersonalizationAllUsers">
+              <PropertyRef Name="PathId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pe__PathI__26CFC035">
+          <End Type="ClaimsModel.aspnet_Paths" Role="aspnet_Paths" Multiplicity="0..1" />
+          <End Type="ClaimsModel.aspnet_PersonalizationPerUser" Role="aspnet_PersonalizationPerUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Paths">
+              <PropertyRef Name="PathId" />
+            </Principal>
+            <Dependent Role="aspnet_PersonalizationPerUser">
+              <PropertyRef Name="PathId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pe__UserI__27C3E46E">
+          <End Type="ClaimsModel.aspnet_Users" Role="aspnet_Users" Multiplicity="0..1" />
+          <End Type="ClaimsModel.aspnet_PersonalizationPerUser" Role="aspnet_PersonalizationPerUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_PersonalizationPerUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pr__UserI__00AA174D">
+          <End Type="ClaimsModel.aspnet_Users" Role="aspnet_Users" Multiplicity="1" />
+          <End Type="ClaimsModel.aspnet_Profile" Role="aspnet_Profile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_Profile">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="aspnet_UsersInRoles">
+          <End Type="ClaimsModel.aspnet_Roles" Role="aspnet_Roles" Multiplicity="*" />
+          <End Type="ClaimsModel.aspnet_Users" Role="aspnet_Users" Multiplicity="*" />
+        </Association>
+        <EntityType Name="aspnet_WebEvent_Events">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="String" Nullable="false" MaxLength="32" FixedLength="true" Unicode="false" />
+          <Property Name="EventTimeUtc" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EventTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EventType" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EventSequence" Type="Decimal" Nullable="false" Precision="19" Scale="0" />
+          <Property Name="EventOccurrence" Type="Decimal" Nullable="false" Precision="19" Scale="0" />
+          <Property Name="EventCode" Type="Int32" Nullable="false" />
+          <Property Name="EventDetailCode" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicationPath" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicationVirtualPath" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="MachineName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="RequestUrl" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="ExceptionType" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Claim">
+          <Key>
+            <PropertyRef Name="ClaimID" />
+          </Key>
+          <Property Name="ClaimID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="ClaimTemplateID" Type="Int32" />
+          <Property Name="ClaimStatusID" Type="Int32" />
+          <Property Name="WillisEmployeeID" Type="Int32" />
+          <Property Name="CountryID" Type="Int32" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ClaimStatu" Relationship="ClaimsModel.FK_Claim_ClaimStatus" FromRole="Claim" ToRole="ClaimStatu" />
+          <NavigationProperty Name="ClaimTemplate" Relationship="ClaimsModel.FK_Claim_ClaimTemplate" FromRole="Claim" ToRole="ClaimTemplate" />
+          <NavigationProperty Name="Country" Relationship="ClaimsModel.FK_Claim_Country" FromRole="Claim" ToRole="Country" />
+          <NavigationProperty Name="WillisEmployee" Relationship="ClaimsModel.FK_Claim_WillisEmployee" FromRole="Claim" ToRole="WillisEmployee" />
+          <NavigationProperty Name="ClaimFieldGroups" Relationship="ClaimsModel.FK_ClaimFieldGroup_Claim" FromRole="Claim" ToRole="ClaimFieldGroup" />
+          <NavigationProperty Name="User" Relationship="ClaimsModel.FK_Claim_User" FromRole="Claim" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Claim_ClaimStatus">
+          <End Type="ClaimsModel.ClaimStatu" Role="ClaimStatu" Multiplicity="0..1" />
+          <End Type="ClaimsModel.Claim" Role="Claim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClaimStatu">
+              <PropertyRef Name="ClaimStatusID" />
+            </Principal>
+            <Dependent Role="Claim">
+              <PropertyRef Name="ClaimStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Claim_ClaimTemplate">
+          <End Type="ClaimsModel.ClaimTemplate" Role="ClaimTemplate" Multiplicity="0..1" />
+          <End Type="ClaimsModel.Claim" Role="Claim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClaimTemplate">
+              <PropertyRef Name="ClaimTemplateID" />
+            </Principal>
+            <Dependent Role="Claim">
+              <PropertyRef Name="ClaimTemplateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Claim_Country">
+          <End Type="ClaimsModel.Country" Role="Country" Multiplicity="0..1" />
+          <End Type="ClaimsModel.Claim" Role="Claim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Claim">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Claim_WillisEmployee">
+          <End Type="ClaimsModel.WillisEmployee" Role="WillisEmployee" Multiplicity="0..1" />
+          <End Type="ClaimsModel.Claim" Role="Claim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WillisEmployee">
+              <PropertyRef Name="WillisEmployeeID" />
+            </Principal>
+            <Dependent Role="Claim">
+              <PropertyRef Name="WillisEmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClaimFieldGroup_Claim">
+          <End Type="ClaimsModel.Claim" Role="Claim" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ClaimsModel.ClaimFieldGroup" Role="ClaimFieldGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Claim">
+              <PropertyRef Name="ClaimID" />
+            </Principal>
+            <Dependent Role="ClaimFieldGroup">
+              <PropertyRef Name="ClaimID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="56" FixedLength="false" Unicode="true" />
+          <Property Name="Firstname" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrationClientName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Activated" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Claims" Relationship="ClaimsModel.FK_Claim_User" FromRole="User" ToRole="Claim" />
+          <Property Name="ClientID" Type="Int32" />
+          <NavigationProperty Name="PageSetups" Relationship="ClaimsModel.FK_PageSetup_User" FromRole="User" ToRole="PageSetup" />
+        </EntityType>
+        <Association Name="FK_Claim_User">
+          <End Type="ClaimsModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="ClaimsModel.Claim" Role="Claim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Claim">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ReportField">
+          <Key>
+            <PropertyRef Name="ReportFieldID" />
+          </Key>
+          <Property Name="ReportFieldID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportID" Type="Int32" />
+          <Property Name="FieldId" Type="Int32" />
+          <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Func" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ReportTemplate" Relationship="ClaimsModel.FK_ReportField_ReportTemplate" FromRole="ReportField" ToRole="ReportTemplate" />
+          <NavigationProperty Name="ClaimFieldTemplate" Relationship="ClaimsModel.FK_ReportField_ClaimFieldTemplate" FromRole="ReportField" ToRole="ClaimFieldTemplate" />
+          <Property Name="Filter" Type="Boolean" />
+          <Property Name="Direction" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FieldNumber" Type="Int32" />
+          <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_ReportField_ReportTemplate">
+          <End Type="ClaimsModel.ReportTemplate" Role="ReportTemplate" Multiplicity="0..1" />
+          <End Type="ClaimsModel.ReportField" Role="ReportField" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReportTemplate">
+              <PropertyRef Name="ReportID" />
+            </Principal>
+            <Dependent Role="ReportField">
+              <PropertyRef Name="ReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PageElement">
+          <Key>
+            <PropertyRef Name="PageElementID" />
+          </Key>
+          <Property Name="PageElementID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageSetupID" Type="Int32" />
+          <Property Name="Width" Type="Double" />
+          <Property Name="Height" Type="Double" />
+          <Property Name="ElementTop" Type="Double" />
+          <Property Name="ElementLeft" Type="Double" />
+          <Property Name="ReportID" Type="Int32" />
+          <Property Name="FrameID" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PageSetup" Relationship="ClaimsModel.FK_PageElement_PageSetup" FromRole="PageElement" ToRole="PageSetup" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ReportTemplate" Relationship="ClaimsModel.FK_PageElement_ReportTemplate" FromRole="PageElement" ToRole="ReportTemplate" />
+        </EntityType>
+        <EntityType Name="PageSetup">
+          <Key>
+            <PropertyRef Name="PageSetupID" />
+          </Key>
+          <Property Name="PageSetupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="PageURL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="ClaimsModel.FK_PageSetup_Client" FromRole="PageSetup" ToRole="Client" />
+          <NavigationProperty Name="PageElements" Relationship="ClaimsModel.FK_PageElement_PageSetup" FromRole="PageSetup" ToRole="PageElement" />
+          <NavigationProperty Name="User" Relationship="ClaimsModel.FK_PageSetup_User" FromRole="PageSetup" ToRole="User" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_PageSetup_Client">
+          <End Type="ClaimsModel.Client" Role="Client" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ClaimsModel.PageSetup" Role="PageSetup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="PageSetup">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PageElement_PageSetup">
+          <End Type="ClaimsModel.PageSetup" Role="PageSetup" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ClaimsModel.PageElement" Role="PageElement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PageSetup">
+              <PropertyRef Name="PageSetupID" />
+            </Principal>
+            <Dependent Role="PageElement">
+              <PropertyRef Name="PageSetupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PageSetup_User">
+          <End Type="ClaimsModel.User" Role="User" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ClaimsModel.PageSetup" Role="PageSetup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="PageSetup">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PageElement_ReportTemplate">
+          <End Type="ClaimsModel.ReportTemplate" Role="ReportTemplate" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ClaimsModel.PageElement" Role="PageElement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReportTemplate">
+              <PropertyRef Name="ReportID" />
+            </Principal>
+            <Dependent Role="PageElement">
+              <PropertyRef Name="ReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportField_ClaimFieldTemplate">
+          <End Type="ClaimsModel.ClaimFieldTemplate" Role="ClaimFieldTemplate" Multiplicity="0..1" />
+          <End Type="ClaimsModel.ReportField" Role="ReportField" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClaimFieldTemplate">
+              <PropertyRef Name="ClaimFieldTemplateID" />
+            </Principal>
+            <Dependent Role="ReportField">
+              <PropertyRef Name="FieldId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportTemplate_ClaimTemplate">
+          <End Type="ClaimsModel.ClaimTemplate" Role="ClaimTemplate" Multiplicity="0..1" />
+          <End Type="ClaimsModel.ReportTemplate" Role="ReportTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClaimTemplate">
+              <PropertyRef Name="ClaimTemplateID" />
+            </Principal>
+            <Dependent Role="ReportTemplate">
+              <PropertyRef Name="ClaimTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ClaimsModelStoreContainer" CdmEntityContainer="ClaimsEntities">
+          <EntitySetMapping Name="ClaimFields">
+            <EntityTypeMapping TypeName="ClaimsModel.ClaimField">
+              <MappingFragment StoreEntitySet="ClaimField">
+                <ScalarProperty Name="DropDownLevel2Value" ColumnName="DropDownLevel2Value" />
+                <ScalarProperty Name="ClaimFieldID" ColumnName="ClaimFieldID" />
+                <ScalarProperty Name="ClaimFieldGroupID" ColumnName="ClaimFieldGroupID" />
+                <ScalarProperty Name="ClaimFieldTemplateID" ColumnName="ClaimFieldTemplateID" />
+                <ScalarProperty Name="ShortTextValue" ColumnName="ShortTextValue" />
+                <ScalarProperty Name="LongTextValue" ColumnName="LongTextValue" />
+                <ScalarProperty Name="DateTimeValue" ColumnName="DateTimeValue" />
+                <ScalarProperty Name="CurrecncyValue" ColumnName="CurrecncyValue" />
+                <ScalarProperty Name="FileValue" ColumnName="FileValue" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CountryValue" ColumnName="CountryValue" />
+                <ScalarProperty Name="DropDownValue" ColumnName="DropDownValue" />
+                <ScalarProperty Name="MultiChoiceValue" ColumnName="MultiChoiceValue" />
+                <ScalarProperty Name="DateValue" ColumnName="DateValue" />
+                <ScalarProperty Name="IntegerValue" ColumnName="IntegerValue" />
+                <ScalarProperty Name="FloatValue" ColumnName="FloatValue" />
+                <ScalarProperty Name="RangeValue" ColumnName="RangeValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClaimFieldGroups">
+            <EntityTypeMapping TypeName="ClaimsModel.ClaimFieldGroup">
+              <MappingFragment StoreEntitySet="ClaimFieldGroup">
+                <ScalarProperty Name="ClaimFieldGroupID" ColumnName="ClaimFieldGroupID" />
+                <ScalarProperty Name="ClaimID" ColumnName="ClaimID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ItemOrder" ColumnName="ItemOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClaimFieldGroupTemplates">
+            <EntityTypeMapping TypeName="ClaimsModel.ClaimFieldGroupTemplate">
+              <MappingFragment StoreEntitySet="ClaimFieldGroupTemplate">
+                <ScalarProperty Name="ClaimFieldGroupTemplateID" ColumnName="ClaimFieldGroupTemplateID" />
+                <ScalarProperty Name="ClaimTemplateID" ColumnName="ClaimTemplateID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ItemOrder" ColumnName="ItemOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClaimFieldTemplates">
+            <EntityTypeMapping TypeName="ClaimsModel.ClaimFieldTemplate">
+              <MappingFragment StoreEntitySet="ClaimFieldTemplate">
+                <ScalarProperty Name="DropDownLevel2Default" ColumnName="DropDownLevel2Default" />
+                <ScalarProperty Name="ClaimFieldTemplateID" ColumnName="ClaimFieldTemplateID" />
+                <ScalarProperty Name="ClaimFieldGroupTemplateID" ColumnName="ClaimFieldGroupTemplateID" />
+                <ScalarProperty Name="FieldTypeID" ColumnName="FieldTypeID" />
+                <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Saved" ColumnName="Saved" />
+                <ScalarProperty Name="Mandatory" ColumnName="Mandatory" />
+                <ScalarProperty Name="FieldOrder" ColumnName="FieldOrder" />
+                <ScalarProperty Name="ShortTextDefaultValue" ColumnName="ShortTextDefaultValue" />
+                <ScalarProperty Name="LongTextDefaultValue" ColumnName="LongTextDefaultValue" />
+                <ScalarProperty Name="DateTimeDefaultValue" ColumnName="DateTimeDefaultValue" />
+                <ScalarProperty Name="CurrecncyDefaultValue" ColumnName="CurrecncyDefaultValue" />
+                <ScalarProperty Name="FileDefaultValue" ColumnName="FileDefaultValue" />
+                <ScalarProperty Name="CountryDefaultValue" ColumnName="CountryDefaultValue" />
+                <ScalarProperty Name="DropDownDefaultValue" ColumnName="DropDownDefaultValue" />
+                <ScalarProperty Name="MultiChoiceDefaultValue" ColumnName="MultiChoiceDefaultValue" />
+                <ScalarProperty Name="DateDefaultValue" ColumnName="DateDefaultValue" />
+                <ScalarProperty Name="IntegerDefaultValue" ColumnName="IntegerDefaultValue" />
+                <ScalarProperty Name="FloatDefaultValue" ColumnName="FloatDefaultValue" />
+                <ScalarProperty Name="RangeDefaultValue" ColumnName="RangeDefaultValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClaimStatus">
+            <EntityTypeMapping TypeName="ClaimsModel.ClaimStatu">
+              <MappingFragment StoreEntitySet="ClaimStatus">
+                <ScalarProperty Name="ClaimStatusID" ColumnName="ClaimStatusID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClaimTemplates">
+            <EntityTypeMapping TypeName="ClaimsModel.ClaimTemplate">
+              <MappingFragment StoreEntitySet="ClaimTemplate">
+                <ScalarProperty Name="DisplayMode" ColumnName="DisplayMode" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="ClaimTemplateID" ColumnName="ClaimTemplateID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="ClaimsModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="BackgroundColour" ColumnName="BackgroundColour" />
+                <ScalarProperty Name="TextColour" ColumnName="TextColour" />
+                <ScalarProperty Name="Heading1" ColumnName="Heading1" />
+                <ScalarProperty Name="Heading2" ColumnName="Heading2" />
+                <ScalarProperty Name="Heading3" ColumnName="Heading3" />
+                <ScalarProperty Name="Heading4" ColumnName="Heading4" />
+                <ScalarProperty Name="Colour1" ColumnName="Colour1" />
+                <ScalarProperty Name="Colour2" ColumnName="Colour2" />
+                <ScalarProperty Name="Colour3" ColumnName="Colour3" />
+                <ScalarProperty Name="Colour4" ColumnName="Colour4" />
+                <ScalarProperty Name="Colour5" ColumnName="Colour5" />
+                <ScalarProperty Name="Colour6" ColumnName="Colour6" />
+                <ScalarProperty Name="Colour7" ColumnName="Colour7" />
+                <ScalarProperty Name="Colour8" ColumnName="Colour8" />
+                <ScalarProperty Name="Colour9" ColumnName="Colour9" />
+                <ScalarProperty Name="Colour10" ColumnName="Colour10" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="ClaimsModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Currencies">
+            <EntityTypeMapping TypeName="ClaimsModel.Currency">
+              <MappingFragment StoreEntitySet="Currency">
+                <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Sign" ColumnName="Sign" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FieldTypes">
+            <EntityTypeMapping TypeName="ClaimsModel.FieldType">
+              <MappingFragment StoreEntitySet="FieldType">
+                <ScalarProperty Name="GoogleColumnType" ColumnName="GoogleColumnType" />
+                <ScalarProperty Name="FieldTypeID" ColumnName="FieldTypeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+                <ScalarProperty Name="FieldOrder" ColumnName="FieldOrder" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WillisEmployees">
+            <EntityTypeMapping TypeName="ClaimsModel.WillisEmployee">
+              <MappingFragment StoreEntitySet="WillisEmployee">
+                <ScalarProperty Name="WillisEmployeeID" ColumnName="WillisEmployeeID" />
+                <ScalarProperty Name="EmployeeUserID" ColumnName="EmployeeUserID" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ClientClaimTemplates" TypeName="ClaimsModel.ClientClaimTemplates" StoreEntitySet="ClientClaimTemplates">
+            <EndProperty Name="ClaimTemplate">
+              <ScalarProperty Name="ClaimTemplateID" ColumnName="ClaimTemplateID" />
+            </EndProperty>
+            <EndProperty Name="Client">
+              <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="ReportTemplates">
+            <EntityTypeMapping TypeName="ClaimsModel.ReportTemplate">
+              <MappingFragment StoreEntitySet="ReportTemplate">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="NameColour" ColumnName="NameColour" />
+                <ScalarProperty Name="FontSize" ColumnName="FontSize" />
+                <ScalarProperty Name="FontFamily" ColumnName="FontFamily" />
+                <ScalarProperty Name="ZAxisColour" ColumnName="ZAxisColour" />
+                <ScalarProperty Name="ZAxis" ColumnName="ZAxis" />
+                <ScalarProperty Name="VAxisColour" ColumnName="VAxisColour" />
+                <ScalarProperty Name="VAxis" ColumnName="VAxis" />
+                <ScalarProperty Name="HAxisColour" ColumnName="HAxisColour" />
+                <ScalarProperty Name="HAxis" ColumnName="HAxis" />
+                <ScalarProperty Name="Colour5" ColumnName="Colour5" />
+                <ScalarProperty Name="Colour4" ColumnName="Colour4" />
+                <ScalarProperty Name="Colour3" ColumnName="Colour3" />
+                <ScalarProperty Name="Colour2" ColumnName="Colour2" />
+                <ScalarProperty Name="Colour1" ColumnName="Colour1" />
+                <ScalarProperty Name="ClaimTemplateId" ColumnName="ClaimTemplateId" />
+                <ScalarProperty Name="Options" ColumnName="Options" />
+                <ScalarProperty Name="NumberofRecords" ColumnName="NumberofRecords" />
+                <ScalarProperty Name="OrderDirection" ColumnName="OrderDirection" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ReportType" ColumnName="ReportType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Applications">
+            <EntityTypeMapping TypeName="ClaimsModel.aspnet_Applications">
+              <MappingFragment StoreEntitySet="aspnet_Applications">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="LoweredApplicationName" ColumnName="LoweredApplicationName" />
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Membership">
+            <EntityTypeMapping TypeName="ClaimsModel.aspnet_Membership">
+              <MappingFragment StoreEntitySet="aspnet_Membership">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="FailedPasswordAnswerAttemptWindowStart" ColumnName="FailedPasswordAnswerAttemptWindowStart" />
+                <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
+                <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
+                <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
+                <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
+                <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
+                <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
+                <ScalarProperty Name="LoweredEmail" ColumnName="LoweredEmail" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MobilePIN" ColumnName="MobilePIN" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="PasswordFormat" ColumnName="PasswordFormat" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Paths">
+            <EntityTypeMapping TypeName="ClaimsModel.aspnet_Paths">
+              <MappingFragment StoreEntitySet="aspnet_Paths">
+                <ScalarProperty Name="LoweredPath" ColumnName="LoweredPath" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="PathId" ColumnName="PathId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_PersonalizationAllUsers">
+            <EntityTypeMapping TypeName="ClaimsModel.aspnet_PersonalizationAllUsers">
+              <MappingFragment StoreEntitySet="aspnet_PersonalizationAllUsers">
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="PageSettings" ColumnName="PageSettings" />
+                <ScalarProperty Name="PathId" ColumnName="PathId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_PersonalizationPerUser">
+            <EntityTypeMapping TypeName="ClaimsModel.aspnet_PersonalizationPerUser">
+              <MappingFragment StoreEntitySet="aspnet_PersonalizationPerUser">
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="PageSettings" ColumnName="PageSettings" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PathId" ColumnName="PathId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Profile">
+            <EntityTypeMapping TypeName="ClaimsModel.aspnet_Profile">
+              <MappingFragment StoreEntitySet="aspnet_Profile">
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="PropertyValuesBinary" ColumnName="PropertyValuesBinary" />
+                <ScalarProperty Name="PropertyValuesString" ColumnName="PropertyValuesString" />
+                <ScalarProperty Name="PropertyNames" ColumnName="PropertyNames" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Roles">
+            <EntityTypeMapping TypeName="ClaimsModel.aspnet_Roles">
+              <MappingFragment StoreEntitySet="aspnet_Roles">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LoweredRoleName" ColumnName="LoweredRoleName" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_SchemaVersions">
+            <EntityTypeMapping TypeName="ClaimsModel.aspnet_SchemaVersions">
+              <MappingFragment StoreEntitySet="aspnet_SchemaVersions">
+                <ScalarProperty Name="IsCurrentVersion" ColumnName="IsCurrentVersion" />
+                <ScalarProperty Name="CompatibleSchemaVersion" ColumnName="CompatibleSchemaVersion" />
+                <ScalarProperty Name="Feature" ColumnName="Feature" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Users">
+            <EntityTypeMapping TypeName="ClaimsModel.aspnet_Users">
+              <MappingFragment StoreEntitySet="aspnet_Users">
+                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+                <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
+                <ScalarProperty Name="MobileAlias" ColumnName="MobileAlias" />
+                <ScalarProperty Name="LoweredUserName" ColumnName="LoweredUserName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="aspnet_UsersInRoles" TypeName="ClaimsModel.aspnet_UsersInRoles" StoreEntitySet="aspnet_UsersInRoles">
+            <EndProperty Name="aspnet_Users">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="aspnet_Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="aspnet_WebEvent_Events">
+            <EntityTypeMapping TypeName="ClaimsModel.aspnet_WebEvent_Events">
+              <MappingFragment StoreEntitySet="aspnet_WebEvent_Events">
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="ExceptionType" ColumnName="ExceptionType" />
+                <ScalarProperty Name="RequestUrl" ColumnName="RequestUrl" />
+                <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+                <ScalarProperty Name="ApplicationVirtualPath" ColumnName="ApplicationVirtualPath" />
+                <ScalarProperty Name="ApplicationPath" ColumnName="ApplicationPath" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="EventDetailCode" ColumnName="EventDetailCode" />
+                <ScalarProperty Name="EventCode" ColumnName="EventCode" />
+                <ScalarProperty Name="EventOccurrence" ColumnName="EventOccurrence" />
+                <ScalarProperty Name="EventSequence" ColumnName="EventSequence" />
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+                <ScalarProperty Name="EventTime" ColumnName="EventTime" />
+                <ScalarProperty Name="EventTimeUtc" ColumnName="EventTimeUtc" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Claims">
+            <EntityTypeMapping TypeName="ClaimsModel.Claim">
+              <MappingFragment StoreEntitySet="Claim">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="WillisEmployeeID" ColumnName="WillisEmployeeID" />
+                <ScalarProperty Name="ClaimStatusID" ColumnName="ClaimStatusID" />
+                <ScalarProperty Name="ClaimTemplateID" ColumnName="ClaimTemplateID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ClaimID" ColumnName="ClaimID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ClaimsModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="Activated" ColumnName="Activated" />
+                <ScalarProperty Name="RegistrationClientName" ColumnName="RegistrationClientName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReportFields">
+            <EntityTypeMapping TypeName="ClaimsModel.ReportField">
+              <MappingFragment StoreEntitySet="ReportField">
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="FieldNumber" ColumnName="FieldNumber" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+                <ScalarProperty Name="Filter" ColumnName="Filter" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="FieldId" ColumnName="FieldId" />
+                <ScalarProperty Name="Func" ColumnName="Func" />
+                <ScalarProperty Name="ReportFieldID" ColumnName="ReportFieldID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PageElements">
+            <EntityTypeMapping TypeName="ClaimsModel.PageElement">
+              <MappingFragment StoreEntitySet="PageElement">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FrameID" ColumnName="FrameID" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="ElementLeft" ColumnName="ElementLeft" />
+                <ScalarProperty Name="ElementTop" ColumnName="ElementTop" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="PageSetupID" ColumnName="PageSetupID" />
+                <ScalarProperty Name="PageElementID" ColumnName="PageElementID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PageSetups">
+            <EntityTypeMapping TypeName="ClaimsModel.PageSetup">
+              <MappingFragment StoreEntitySet="PageSetup">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PageURL" ColumnName="PageURL" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="PageSetupID" ColumnName="PageSetupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,502 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EclipseODSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblClaim">
+          <Key>
+            <PropertyRef Name="ClaimId" />
+          </Key>
+          <Property Name="ClaimId" Type="int" Nullable="false" />
+          <Property Name="PolicySectionId" Type="int" />
+          <Property Name="ClaimStatus" Type="nvarchar" MaxLength="80" />
+          <Property Name="ClaimReference" Type="nvarchar" MaxLength="20" />
+          <Property Name="LossRegisterId" Type="int" />
+          <Property Name="SumInsured" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="SumInsuredCurrencyISO" Type="nvarchar" MaxLength="3" />
+          <Property Name="LossName" Type="nvarchar" MaxLength="255" />
+          <Property Name="LossDateFrom" Type="datetime" />
+          <Property Name="LossDateTo" Type="datetime" />
+          <Property Name="LossLocation" Type="nvarchar" MaxLength="50" />
+          <Property Name="ClaimDescription" Type="nvarchar" MaxLength="350" />
+          <Property Name="VesselAircraftConvey" Type="nvarchar" MaxLength="50" />
+          <Property Name="Claimant" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContentiousLossIndicator" Type="nchar" MaxLength="1" />
+          <Property Name="Backloaded" Type="bit" />
+          <Property Name="BackloadedDescription" Type="nvarchar" MaxLength="20" />
+          <Property Name="UniqueClaimReference" Type="nvarchar" MaxLength="17" />
+          <Property Name="Interest" Type="nvarchar" MaxLength="70" />
+          <Property Name="InsuredId" Type="int" />
+          <Property Name="InsuredName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ClientId" Type="int" />
+          <Property Name="ClientName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ReinsuredId" Type="int" />
+          <Property Name="ReinsuredName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="PrimaryClaimHandlerId" Type="int" />
+          <Property Name="PrimaryClaimHandlerName" Type="nvarchar" MaxLength="255" />
+          <Property Name="PrimaryClaimHandlerTeamId" Type="int" />
+          <Property Name="PrimaryClaimHandlerTeamName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblClaimMovement">
+          <Key>
+            <PropertyRef Name="ClaimMovementId" />
+          </Key>
+          <Property Name="ClaimMovementId" Type="int" Nullable="false" />
+          <Property Name="ClaimId" Type="int" />
+          <Property Name="AdviceSentDate" Type="datetime" />
+          <Property Name="AdviceReceivedDate" Type="datetime" />
+          <Property Name="MovementDate" Type="datetime" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ProcessCompleteDate" Type="datetime" />
+          <Property Name="ClaimMovementStatus" Type="nvarchar" MaxLength="30" />
+          <Property Name="SequenceNumber" Type="int" />
+          <Property Name="CancelledReason" Type="nvarchar" MaxLength="30" />
+          <Property Name="CancelledNarrative" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="LastUpdateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblClaimMovementBreakdown">
+          <Key>
+            <PropertyRef Name="ClaimMovementBreakdownId" />
+          </Key>
+          <Property Name="ClaimMovementBreakdownId" Type="int" Nullable="false" />
+          <Property Name="ClaimMovementId" Type="int" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="SubCategory" Type="nvarchar" MaxLength="50" />
+          <Property Name="ClaimType" Type="nvarchar" MaxLength="200" />
+          <Property Name="AccountHolderReference" Type="nvarchar" MaxLength="20" />
+          <Property Name="DebitCreditIndicator" Type="nchar" MaxLength="1" />
+          <Property Name="OriginalCurrencyISO" Type="nvarchar" MaxLength="3" />
+          <Property Name="SettlementCurrencyISO" Type="nvarchar" MaxLength="3" />
+          <Property Name="HundredPercentOriginalAmount" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="HundredPercentSettlementAmount" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="OrderOriginalAmount" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="OrderSettlementAmount" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="LastUpdateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblPolicy">
+          <Key>
+            <PropertyRef Name="PolicyId" />
+          </Key>
+          <Property Name="PolicyId" Type="int" Nullable="false" />
+          <Property Name="PolicyReference" Type="nvarchar" MaxLength="20" />
+          <Property Name="ProgrammeReference" Type="nvarchar" MaxLength="15" />
+          <Property Name="ProductClassId" Type="int" />
+          <Property Name="ProductClass" Type="nvarchar" MaxLength="80" />
+          <Property Name="Product" Type="nvarchar" MaxLength="80" />
+          <Property Name="OwnershipTeamId" Type="int" />
+          <Property Name="OwnerId" Type="int" />
+          <Property Name="BusinessType" Type="nvarchar" MaxLength="30" />
+          <Property Name="PolicyStatus" Type="nvarchar" MaxLength="80" />
+          <Property Name="PolicyStatusCode" Type="int" />
+          <Property Name="AuthorizedDate" Type="datetime" />
+          <Property Name="CancelledDate" Type="datetime" />
+          <Property Name="InceptionDate" Type="datetime" />
+          <Property Name="ExpiryDate" Type="datetime" />
+          <Property Name="Backloaded" Type="nvarchar" MaxLength="3" />
+          <Property Name="BackloadDescription" Type="nvarchar" MaxLength="80" />
+          <Property Name="RenewedFromId" Type="int" />
+          <Property Name="RenewedToId" Type="int" />
+          <Property Name="PolicyExpired" Type="nvarchar" MaxLength="3" />
+          <Property Name="PolicyType" Type="nvarchar" MaxLength="20" />
+          <Property Name="MasterBinder" Type="nvarchar" MaxLength="3" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="PrimaryHandlerId" Type="int" />
+          <Property Name="PrimaryHandlerName" Type="nvarchar" MaxLength="255" />
+          <Property Name="PrimaryHandlerTeamId" Type="int" />
+          <Property Name="PrimaryHandlerTeam" Type="nvarchar" MaxLength="1000" />
+          <Property Name="PrimaryProducerId" Type="int" />
+          <Property Name="PrimaryProducerName" Type="nvarchar" MaxLength="255" />
+          <Property Name="PrimaryProducerTeamId" Type="int" />
+          <Property Name="PrimaryProducerTeam" Type="nvarchar" MaxLength="1000" />
+          <Property Name="FirstClientId" Type="int" />
+          <Property Name="FirstClientName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="FirstClientCountry" Type="nvarchar" MaxLength="200" />
+          <Property Name="FirstInsuredId" Type="int" />
+          <Property Name="FirstInsuredName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="FirstInsuredCountry" Type="nvarchar" MaxLength="200" />
+          <Property Name="FirstReinsuredId" Type="int" />
+          <Property Name="FirstReinsuredName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="FirstReinsuredCountry" Type="nvarchar" MaxLength="200" />
+          <Property Name="FirstBusinessClassId" Type="int" />
+          <Property Name="FirstBusinessClass" Type="nvarchar" MaxLength="20" />
+          <Property Name="BusinessClassList" Type="nvarchar" MaxLength="2000" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="LastUpdateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblPolicySection">
+          <Key>
+            <PropertyRef Name="PolicySectionId" />
+          </Key>
+          <Property Name="PolicySectionId" Type="int" Nullable="false" />
+          <Property Name="PolicyId" Type="int" />
+          <Property Name="PolicySectionCode" Type="nvarchar" MaxLength="15" />
+          <Property Name="PolicySectionDescription" Type="nvarchar" MaxLength="1000" />
+          <Property Name="MasterBinder" Type="bit" />
+          <Property Name="Facility" Type="bit" />
+          <Property Name="FacilityParent" Type="int" />
+          <Property Name="PolicySectionStatus" Type="nvarchar" MaxLength="80" />
+          <Property Name="Product" Type="nvarchar" MaxLength="20" />
+          <Property Name="ProductClassId" Type="int" />
+          <Property Name="ProductClass" Type="nvarchar" MaxLength="20" />
+          <Property Name="OrderPercent" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="OfWhole" Type="int" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="LastUpdateDate" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="EclipseODSModelStoreContainer">
+          <EntitySet Name="tblClaim" EntityType="Self.tblClaim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblClaimMovement" EntityType="Self.tblClaimMovement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblClaimMovementBreakdown" EntityType="Self.tblClaimMovementBreakdown" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPolicy" EntityType="Self.tblPolicy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPolicySection" EntityType="Self.tblPolicySection" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EclipseODSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblClaim">
+          <Key>
+            <PropertyRef Name="ClaimId" />
+          </Key>
+          <Property Name="ClaimId" Type="Int32" Nullable="false" />
+          <Property Name="PolicySectionId" Type="Int32" />
+          <Property Name="ClaimStatus" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimReference" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LossRegisterId" Type="Int32" />
+          <Property Name="SumInsured" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="SumInsuredCurrencyISO" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="LossName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LossDateFrom" Type="DateTime" Precision="3" />
+          <Property Name="LossDateTo" Type="DateTime" Precision="3" />
+          <Property Name="LossLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimDescription" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="VesselAircraftConvey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Claimant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContentiousLossIndicator" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="Backloaded" Type="Boolean" />
+          <Property Name="BackloadedDescription" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="UniqueClaimReference" Type="String" MaxLength="17" FixedLength="false" Unicode="true" />
+          <Property Name="Interest" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="InsuredId" Type="Int32" />
+          <Property Name="InsuredName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="ClientId" Type="Int32" />
+          <Property Name="ClientName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="ReinsuredId" Type="Int32" />
+          <Property Name="ReinsuredName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="PrimaryClaimHandlerId" Type="Int32" />
+          <Property Name="PrimaryClaimHandlerName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PrimaryClaimHandlerTeamId" Type="Int32" />
+          <Property Name="PrimaryClaimHandlerTeamName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdateDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblClaimMovement">
+          <Key>
+            <PropertyRef Name="ClaimMovementId" />
+          </Key>
+          <Property Name="ClaimMovementId" Type="Int32" Nullable="false" />
+          <Property Name="ClaimId" Type="Int32" />
+          <Property Name="AdviceSentDate" Type="DateTime" Precision="3" />
+          <Property Name="AdviceReceivedDate" Type="DateTime" Precision="3" />
+          <Property Name="MovementDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ProcessCompleteDate" Type="DateTime" Precision="3" />
+          <Property Name="ClaimMovementStatus" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SequenceNumber" Type="Int32" />
+          <Property Name="CancelledReason" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CancelledNarrative" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblClaimMovementBreakdown">
+          <Key>
+            <PropertyRef Name="ClaimMovementBreakdownId" />
+          </Key>
+          <Property Name="ClaimMovementBreakdownId" Type="Int32" Nullable="false" />
+          <Property Name="ClaimMovementId" Type="Int32" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AccountHolderReference" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DebitCreditIndicator" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="OriginalCurrencyISO" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="SettlementCurrencyISO" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="HundredPercentOriginalAmount" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="HundredPercentSettlementAmount" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="OrderOriginalAmount" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="OrderSettlementAmount" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblPolicy">
+          <Key>
+            <PropertyRef Name="PolicyId" />
+          </Key>
+          <Property Name="PolicyId" Type="Int32" Nullable="false" />
+          <Property Name="PolicyReference" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ProgrammeReference" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ProductClassId" Type="Int32" />
+          <Property Name="ProductClass" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Product" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="OwnershipTeamId" Type="Int32" />
+          <Property Name="OwnerId" Type="Int32" />
+          <Property Name="BusinessType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PolicyStatus" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="PolicyStatusCode" Type="Int32" />
+          <Property Name="AuthorizedDate" Type="DateTime" Precision="3" />
+          <Property Name="CancelledDate" Type="DateTime" Precision="3" />
+          <Property Name="InceptionDate" Type="DateTime" Precision="3" />
+          <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="Backloaded" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="BackloadDescription" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="RenewedFromId" Type="Int32" />
+          <Property Name="RenewedToId" Type="Int32" />
+          <Property Name="PolicyExpired" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="PolicyType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MasterBinder" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="PrimaryHandlerId" Type="Int32" />
+          <Property Name="PrimaryHandlerName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PrimaryHandlerTeamId" Type="Int32" />
+          <Property Name="PrimaryHandlerTeam" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="PrimaryProducerId" Type="Int32" />
+          <Property Name="PrimaryProducerName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PrimaryProducerTeamId" Type="Int32" />
+          <Property Name="PrimaryProducerTeam" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="FirstClientId" Type="Int32" />
+          <Property Name="FirstClientName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="FirstClientCountry" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FirstInsuredId" Type="Int32" />
+          <Property Name="FirstInsuredName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="FirstInsuredCountry" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FirstReinsuredId" Type="Int32" />
+          <Property Name="FirstReinsuredName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="FirstReinsuredCountry" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FirstBusinessClassId" Type="Int32" />
+          <Property Name="FirstBusinessClass" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="BusinessClassList" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblPolicySection">
+          <Key>
+            <PropertyRef Name="PolicySectionId" />
+          </Key>
+          <Property Name="PolicySectionId" Type="Int32" Nullable="false" />
+          <Property Name="PolicyId" Type="Int32" />
+          <Property Name="PolicySectionCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PolicySectionDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="MasterBinder" Type="Boolean" />
+          <Property Name="Facility" Type="Boolean" />
+          <Property Name="FacilityParent" Type="Int32" />
+          <Property Name="PolicySectionStatus" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Product" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ProductClassId" Type="Int32" />
+          <Property Name="ProductClass" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="OrderPercent" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="OfWhole" Type="Int32" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="EclipseODSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblClaims" EntityType="Self.tblClaim" />
+          <EntitySet Name="tblClaimMovements" EntityType="Self.tblClaimMovement" />
+          <EntitySet Name="tblClaimMovementBreakdowns" EntityType="Self.tblClaimMovementBreakdown" />
+          <EntitySet Name="tblPolicies" EntityType="Self.tblPolicy" />
+          <EntitySet Name="tblPolicySections" EntityType="Self.tblPolicySection" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EclipseODSModelStoreContainer" CdmEntityContainer="EclipseODSEntities">
+          <EntitySetMapping Name="tblClaims">
+            <EntityTypeMapping TypeName="EclipseODSModel.tblClaim">
+              <MappingFragment StoreEntitySet="tblClaim">
+                <ScalarProperty Name="ClaimId" ColumnName="ClaimId" />
+                <ScalarProperty Name="PolicySectionId" ColumnName="PolicySectionId" />
+                <ScalarProperty Name="ClaimStatus" ColumnName="ClaimStatus" />
+                <ScalarProperty Name="ClaimReference" ColumnName="ClaimReference" />
+                <ScalarProperty Name="LossRegisterId" ColumnName="LossRegisterId" />
+                <ScalarProperty Name="SumInsured" ColumnName="SumInsured" />
+                <ScalarProperty Name="SumInsuredCurrencyISO" ColumnName="SumInsuredCurrencyISO" />
+                <ScalarProperty Name="LossName" ColumnName="LossName" />
+                <ScalarProperty Name="LossDateFrom" ColumnName="LossDateFrom" />
+                <ScalarProperty Name="LossDateTo" ColumnName="LossDateTo" />
+                <ScalarProperty Name="LossLocation" ColumnName="LossLocation" />
+                <ScalarProperty Name="ClaimDescription" ColumnName="ClaimDescription" />
+                <ScalarProperty Name="VesselAircraftConvey" ColumnName="VesselAircraftConvey" />
+                <ScalarProperty Name="Claimant" ColumnName="Claimant" />
+                <ScalarProperty Name="ContentiousLossIndicator" ColumnName="ContentiousLossIndicator" />
+                <ScalarProperty Name="Backloaded" ColumnName="Backloaded" />
+                <ScalarProperty Name="BackloadedDescription" ColumnName="BackloadedDescription" />
+                <ScalarProperty Name="UniqueClaimReference" ColumnName="UniqueClaimReference" />
+                <ScalarProperty Name="Interest" ColumnName="Interest" />
+                <ScalarProperty Name="InsuredId" ColumnName="InsuredId" />
+                <ScalarProperty Name="InsuredName" ColumnName="InsuredName" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ReinsuredId" ColumnName="ReinsuredId" />
+                <ScalarProperty Name="ReinsuredName" ColumnName="ReinsuredName" />
+                <ScalarProperty Name="PrimaryClaimHandlerId" ColumnName="PrimaryClaimHandlerId" />
+                <ScalarProperty Name="PrimaryClaimHandlerName" ColumnName="PrimaryClaimHandlerName" />
+                <ScalarProperty Name="PrimaryClaimHandlerTeamId" ColumnName="PrimaryClaimHandlerTeamId" />
+                <ScalarProperty Name="PrimaryClaimHandlerTeamName" ColumnName="PrimaryClaimHandlerTeamName" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblClaimMovements">
+            <EntityTypeMapping TypeName="EclipseODSModel.tblClaimMovement">
+              <MappingFragment StoreEntitySet="tblClaimMovement">
+                <ScalarProperty Name="ClaimMovementId" ColumnName="ClaimMovementId" />
+                <ScalarProperty Name="ClaimId" ColumnName="ClaimId" />
+                <ScalarProperty Name="AdviceSentDate" ColumnName="AdviceSentDate" />
+                <ScalarProperty Name="AdviceReceivedDate" ColumnName="AdviceReceivedDate" />
+                <ScalarProperty Name="MovementDate" ColumnName="MovementDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ProcessCompleteDate" ColumnName="ProcessCompleteDate" />
+                <ScalarProperty Name="ClaimMovementStatus" ColumnName="ClaimMovementStatus" />
+                <ScalarProperty Name="SequenceNumber" ColumnName="SequenceNumber" />
+                <ScalarProperty Name="CancelledReason" ColumnName="CancelledReason" />
+                <ScalarProperty Name="CancelledNarrative" ColumnName="CancelledNarrative" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblClaimMovementBreakdowns">
+            <EntityTypeMapping TypeName="EclipseODSModel.tblClaimMovementBreakdown">
+              <MappingFragment StoreEntitySet="tblClaimMovementBreakdown">
+                <ScalarProperty Name="ClaimMovementBreakdownId" ColumnName="ClaimMovementBreakdownId" />
+                <ScalarProperty Name="ClaimMovementId" ColumnName="ClaimMovementId" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="AccountHolderReference" ColumnName="AccountHolderReference" />
+                <ScalarProperty Name="DebitCreditIndicator" ColumnName="DebitCreditIndicator" />
+                <ScalarProperty Name="OriginalCurrencyISO" ColumnName="OriginalCurrencyISO" />
+                <ScalarProperty Name="SettlementCurrencyISO" ColumnName="SettlementCurrencyISO" />
+                <ScalarProperty Name="HundredPercentOriginalAmount" ColumnName="HundredPercentOriginalAmount" />
+                <ScalarProperty Name="HundredPercentSettlementAmount" ColumnName="HundredPercentSettlementAmount" />
+                <ScalarProperty Name="OrderOriginalAmount" ColumnName="OrderOriginalAmount" />
+                <ScalarProperty Name="OrderSettlementAmount" ColumnName="OrderSettlementAmount" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPolicies">
+            <EntityTypeMapping TypeName="EclipseODSModel.tblPolicy">
+              <MappingFragment StoreEntitySet="tblPolicy">
+                <ScalarProperty Name="PolicyId" ColumnName="PolicyId" />
+                <ScalarProperty Name="PolicyReference" ColumnName="PolicyReference" />
+                <ScalarProperty Name="ProgrammeReference" ColumnName="ProgrammeReference" />
+                <ScalarProperty Name="ProductClassId" ColumnName="ProductClassId" />
+                <ScalarProperty Name="ProductClass" ColumnName="ProductClass" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="OwnershipTeamId" ColumnName="OwnershipTeamId" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="BusinessType" ColumnName="BusinessType" />
+                <ScalarProperty Name="PolicyStatus" ColumnName="PolicyStatus" />
+                <ScalarProperty Name="PolicyStatusCode" ColumnName="PolicyStatusCode" />
+                <ScalarProperty Name="AuthorizedDate" ColumnName="AuthorizedDate" />
+                <ScalarProperty Name="CancelledDate" ColumnName="CancelledDate" />
+                <ScalarProperty Name="InceptionDate" ColumnName="InceptionDate" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="Backloaded" ColumnName="Backloaded" />
+                <ScalarProperty Name="BackloadDescription" ColumnName="BackloadDescription" />
+                <ScalarProperty Name="RenewedFromId" ColumnName="RenewedFromId" />
+                <ScalarProperty Name="RenewedToId" ColumnName="RenewedToId" />
+                <ScalarProperty Name="PolicyExpired" ColumnName="PolicyExpired" />
+                <ScalarProperty Name="PolicyType" ColumnName="PolicyType" />
+                <ScalarProperty Name="MasterBinder" ColumnName="MasterBinder" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="PrimaryHandlerId" ColumnName="PrimaryHandlerId" />
+                <ScalarProperty Name="PrimaryHandlerName" ColumnName="PrimaryHandlerName" />
+                <ScalarProperty Name="PrimaryHandlerTeamId" ColumnName="PrimaryHandlerTeamId" />
+                <ScalarProperty Name="PrimaryHandlerTeam" ColumnName="PrimaryHandlerTeam" />
+                <ScalarProperty Name="PrimaryProducerId" ColumnName="PrimaryProducerId" />
+                <ScalarProperty Name="PrimaryProducerName" ColumnName="PrimaryProducerName" />
+                <ScalarProperty Name="PrimaryProducerTeamId" ColumnName="PrimaryProducerTeamId" />
+                <ScalarProperty Name="PrimaryProducerTeam" ColumnName="PrimaryProducerTeam" />
+                <ScalarProperty Name="FirstClientId" ColumnName="FirstClientId" />
+                <ScalarProperty Name="FirstClientName" ColumnName="FirstClientName" />
+                <ScalarProperty Name="FirstClientCountry" ColumnName="FirstClientCountry" />
+                <ScalarProperty Name="FirstInsuredId" ColumnName="FirstInsuredId" />
+                <ScalarProperty Name="FirstInsuredName" ColumnName="FirstInsuredName" />
+                <ScalarProperty Name="FirstInsuredCountry" ColumnName="FirstInsuredCountry" />
+                <ScalarProperty Name="FirstReinsuredId" ColumnName="FirstReinsuredId" />
+                <ScalarProperty Name="FirstReinsuredName" ColumnName="FirstReinsuredName" />
+                <ScalarProperty Name="FirstReinsuredCountry" ColumnName="FirstReinsuredCountry" />
+                <ScalarProperty Name="FirstBusinessClassId" ColumnName="FirstBusinessClassId" />
+                <ScalarProperty Name="FirstBusinessClass" ColumnName="FirstBusinessClass" />
+                <ScalarProperty Name="BusinessClassList" ColumnName="BusinessClassList" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPolicySections">
+            <EntityTypeMapping TypeName="EclipseODSModel.tblPolicySection">
+              <MappingFragment StoreEntitySet="tblPolicySection">
+                <ScalarProperty Name="PolicySectionId" ColumnName="PolicySectionId" />
+                <ScalarProperty Name="PolicyId" ColumnName="PolicyId" />
+                <ScalarProperty Name="PolicySectionCode" ColumnName="PolicySectionCode" />
+                <ScalarProperty Name="PolicySectionDescription" ColumnName="PolicySectionDescription" />
+                <ScalarProperty Name="MasterBinder" ColumnName="MasterBinder" />
+                <ScalarProperty Name="Facility" ColumnName="Facility" />
+                <ScalarProperty Name="FacilityParent" ColumnName="FacilityParent" />
+                <ScalarProperty Name="PolicySectionStatus" ColumnName="PolicySectionStatus" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="ProductClassId" ColumnName="ProductClassId" />
+                <ScalarProperty Name="ProductClass" ColumnName="ProductClass" />
+                <ScalarProperty Name="OrderPercent" ColumnName="OrderPercent" />
+                <ScalarProperty Name="OfWhole" ColumnName="OfWhole" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

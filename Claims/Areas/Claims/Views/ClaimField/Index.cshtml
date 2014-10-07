@@ -1,0 +1,29 @@
+﻿@model List<ModelsLayer.ClaimField>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+
+@* Kendo Grid implementation*@
+@(Html.Kendo().Grid(Model) // Bind the grid to the Model property of the view
+    .Name("Grid")
+    .Columns(columns =>
+        {
+            columns.Bound(claimField => claimField.Name).Width(100);
+            columns.Bound(claimField => claimField.FieldType.Name).Width(200);
+            columns.Template(@<text><a type="button" href="/Claims/ClaimField/Edit/@item.ClaimFieldID">Edit</a>&nbsp;&nbsp;&nbsp;<a type="button" href="/Claims/ClaimField/Delete/@item.ClaimFieldID">Delete</a></text>).Width(100);
+        })
+    .Pageable(o =>{o.PageSizes(new int[]{10, 50, 100});}) 
+    .HtmlAttributes(new { style = "height:800px" })
+)
+
+

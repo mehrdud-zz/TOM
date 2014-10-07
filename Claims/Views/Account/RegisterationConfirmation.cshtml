@@ -1,0 +1,19 @@
+﻿@model ClaimsPoC.Models.RegisterModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Home/_BaseLayout.cshtml";
+} 
+
+ 
+
+@section TopBar {
+    @Html.Partial("~/Views/Home/TopBar.cshtml")
+}
+
+
+<h1>Thanks for registering with Willis Claims PoC</h1>
+<p>We will get in touch shortly...<a href="~/">Click here to continue</a></p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

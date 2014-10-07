@@ -1,0 +1,33 @@
+﻿@model ModelsLayer.ClaimTemplate
+
+@{
+    ViewBag.Title = "ClaimForm";
+    Layout = "~/Views/Home/ClientMaster_CRUD.cshtml";
+      
+}
+
+<h2>Claim</h2>
+
+
+@using (Html.BeginForm())
+{   
+
+    <div>
+        @Html.ValidationSummary(true, "<div class=\"alert alert-success\">Oh snap! Change a few things up and try submitting again.</div>", new { })
+    </div>
+    <fieldset>
+        <legend>Claim</legend>
+
+        @if (Request.QueryString["ClaimTemplateID"] != null)
+        { 
+            @Html.Action("FieldsListCreateFromClaimTemplate", "CustomTemplate", new { area="Claims", ClaimTemplateID = Convert.ToInt32(Request.QueryString["ClaimTemplateID"]) })
+        }
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+
+
+    </fieldset>  
+}
+
+

@@ -1,0 +1,63 @@
+﻿@model int?
+
+@{
+    ViewBag.Title = "FieldEditor";
+}
+
+@(Html.Kendo().DropDownList()
+                .Name("claimTemplates")
+                .HtmlAttributes(new { style = "width:200px" })
+              .OptionLabel("Select claim template...")
+              .DataTextField("CategoryName")
+              .DataValueField("CategoryId")
+              .DataSource(source =>
+              {
+                  source.Read(read =>
+                  {
+                      read.Action("GetCascadeClaimTemplates", "Reports");
+                  })
+                  .ServerFiltering(true);
+              })
+                .Enable(true)
+                .AutoBind(false)
+                .CascadeFrom("ReportFieldTypes")
+)
+
+
+@(Html.Kendo().DropDownList()
+              .Name("FieldId")
+                .HtmlAttributes(new { style = "width:200px" })
+              .OptionLabel("Select field...")
+              .DataTextField("ProductName")
+              .DataValueField("ProductID")
+              .DataSource(source =>
+              {
+                  source.Read(read =>
+                  {
+                      read.Action("GetCascadeClaimFieldTemplates", "Reports")
+                          .Data("filterClaimFieldTemplates");
+                  })
+                  .ServerFiltering(true);
+              })
+              .Enable(false)
+              .AutoBind(false)
+              .CascadeFrom("claimTemplates")
+)
+
+
+
+<script>
+    function filterClaimFieldTemplates() {
+        return {
+            claimTemplates: $("#claimTemplates").val()
+        };
+    }
+
+    function filterReportFields() {
+        return {
+
+        };
+    }
+
+
+</script>

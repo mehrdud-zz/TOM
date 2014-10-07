@@ -1,0 +1,179 @@
+﻿@model ModelsLayer.Client
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+<script>
+    function preview(e) {
+        $("#background").css("background-color", e.value);
+    }
+</script>
+
+<h2>Create: Client</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+       
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div style="vertical-align: top; display: inline-block; width: 100%;">
+            <div style="background-color: #ebe8e8; display: inline-block; vertical-align: top; line-height: 20px; width: 100%;">
+
+                <a href="#" onclick="ShowHide('showhide', 'panel');return false" id="showhide" style="width: 100%; height: 100%; display: inline-block;"><strong>Advanced Settings</strong> +</a>
+            </div>
+            <div id="panel" class="advencedProperties">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.BackgroundColour)
+                </div>
+                <div class="editor-field">
+                    @(Html.Kendo().ColorPicker().Name("picker").Value("#ffffff").Events(events => events.Select("preview")).Name("BackgroundColour"))
+                    @Html.ValidationMessageFor(model => model.BackgroundColour)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.TextColour)
+                </div>
+                <div class="editor-field">
+                    @(Html.Kendo().ColorPicker().Name("picker").Value("#000000").Events(events => events.Select("preview")).Name("TextColour"))
+                    @Html.ValidationMessageFor(model => model.TextColour)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Heading1)
+                </div>
+                <div class="editor-field">
+                    @(Html.Kendo().ColorPicker().Name("picker").Value("#8894A4").Events(events => events.Select("preview")).Name("Heading1"))
+                    @Html.ValidationMessageFor(model => model.Heading1)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Heading2)
+                </div>
+                <div class="editor-field">
+                    @(Html.Kendo().ColorPicker().Name("picker").Value("#D45121").Events(events => events.Select("preview")).Name("Heading2"))
+                    @Html.ValidationMessageFor(model => model.Heading2)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Heading3)
+                </div>
+                <div class="editor-field">
+                    @(Html.Kendo().ColorPicker().Name("picker").Value("#284637").Events(events => events.Select("preview")).Name("Heading3"))
+                    @Html.ValidationMessageFor(model => model.Heading3)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Heading4)
+                </div>
+                <div class="editor-field">
+                    @(Html.Kendo().ColorPicker().Name("picker").Value("#623448").Events(events => events.Select("preview")).Name("Heading4"))
+                    @Html.ValidationMessageFor(model => model.Heading4)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Colour1)
+                </div>
+                <div class="editor-field">
+                    @(Html.Kendo().ColorPicker().Name("picker").Value("#021E43").Events(events => events.Select("preview")).Name("Colour1"))
+                    @Html.ValidationMessageFor(model => model.Colour1)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Colour2)
+                </div>
+                <div class="editor-field">
+                    @(Html.Kendo().ColorPicker().Name("picker").Value("#FCC300").Events(events => events.Select("preview")).Name("Colour2"))
+                    @Html.ValidationMessageFor(model => model.Colour2)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Colour3)
+                </div>
+                <div class="editor-field">
+                    @(Html.Kendo().ColorPicker().Name("picker").Value("#D45121").Events(events => events.Select("preview")).Name("Colour3"))
+                    @Html.ValidationMessageFor(model => model.Colour3)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Colour4)
+                </div>
+                <div class="editor-field">
+                    @(Html.Kendo().ColorPicker().Name("picker").Value("#284637").Events(events => events.Select("preview")).Name("Colour4"))
+                    @Html.ValidationMessageFor(model => model.Colour4)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Colour5)
+                </div>
+                <div class="editor-field">
+                    @(Html.Kendo().ColorPicker().Name("picker").Value("#8C060C").Events(events => events.Select("preview")).Name("Colour5"))
+                    @Html.ValidationMessageFor(model => model.Colour5)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Colour6)
+                </div>
+                <div class="editor-field">
+                    @(Html.Kendo().ColorPicker().Name("picker").Value("#623448").Events(events => events.Select("preview")).Name("Colour6"))
+                    @Html.ValidationMessageFor(model => model.Colour6)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Colour7)
+                </div>
+                <div class="editor-field">
+                    @(Html.Kendo().ColorPicker().Name("picker").Value("#8894A4").Events(events => events.Select("preview")).Name("Colour7"))
+                    @Html.ValidationMessageFor(model => model.Colour7)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Colour8)
+                </div>
+                <div class="editor-field">
+                    @(Html.Kendo().ColorPicker().Name("picker").Value("#EAEBED").Events(events => events.Select("preview")).Name("Colour8"))
+                    @Html.ValidationMessageFor(model => model.Colour8)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Colour9)
+                </div>
+                <div class="editor-field">
+                    @(Html.Kendo().ColorPicker().Name("picker").Value("#C7BEB6").Events(events => events.Select("preview")).Name("Colour9"))
+                    @Html.ValidationMessageFor(model => model.Colour9)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Colour10)
+                </div>
+                <div class="editor-field">
+                    @(Html.Kendo().ColorPicker().Name("picker").Value("#7F7263").Events(events => events.Select("preview")).Name("Colour10"))
+                    @Html.ValidationMessageFor(model => model.Colour10)
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <input type="submit" value="Create" />
+            <input type="button" value="Back to list" onclick="changeWindowLocation('/Clients/Client');" />
+        </div>
+    </fieldset>
+}
+ 

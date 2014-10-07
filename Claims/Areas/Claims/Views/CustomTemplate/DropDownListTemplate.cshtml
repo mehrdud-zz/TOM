@@ -1,0 +1,7 @@
+﻿@model IEnumerable<Kendo.Mvc.UI.DropDownListItem>
+@{
+    ViewBag.Title = "DropDownListTemplate";
+} 
+
+@Html.Kendo().DropDownListFor(m => Model).Name(ViewBag.claimFieldCode).BindTo(Model).HtmlAttributes(new { style = string.Format("width:{0}%", 100) })
+ 

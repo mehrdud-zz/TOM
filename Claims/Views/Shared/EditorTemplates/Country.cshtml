@@ -1,0 +1,10 @@
+@model Claims.Models.Country
+
+<div class="control-group">
+    <div class="controls">
+        <label class="checkbox">
+            @Html.EditorFor(m => m, new {@class = "checkbox"})
+            @Html.LabelFor(m => m)
+        </label>
+    </div>
+</div>

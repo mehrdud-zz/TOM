@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "BaseLayout";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Willis Claims</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="content-encoding" content="gzip">
+
+
+    <!-- Bootstrap -->
+    <link href="~/Content/Styles/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/Content/Styles/articles.css" />
+    <link type="text/css" rel="stylesheet" href="/Content/Styles/Site.css" />
+    <link type="text/css" rel="stylesheet" href="/Content/Styles/Form.css" />
+    <link type="text/css" rel="stylesheet" href="/Content/Styles/kendo.common.css" />
+    <link type="text/css" rel="stylesheet" href="/Content/Styles/kendo.default.css" />
+    <link type="text/css" rel="stylesheet" href="/Content/Styles/jquery-ui.css" />
+    <link type="text/css" rel="stylesheet" href="/Content/Styles/DashboardOOP.css" />
+
+    @RenderSection("CustomStyles", false)
+
+
+    <script type="text/javascript" src="//www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.load('visualization', '1.1', { packages: ['controls'] });
+    </script>
+
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/Content/Scripts/DashboardOOP.js"></script>
+    
+</head>
+<body style="zoom: 1;"> 
+    <div id="inner">
+
+        @RenderSection("TopBar", false)
+
+        <div id="content">
+            @*<div>
+                @Html.Partial("~/Views/Home/BreadCrumb.cshtml")
+            </div>*@
+            <div id="main">
+                @RenderBody()
+            </div>
+        </div>
+        <div id="footer">
+            @RenderSection("Footer", false)
+        </div>
+    </div>
+
+    <input type="hidden" id="enableContextMenu" value="1" />
+    <input type="hidden" id="usernameHiddenText" value="@User.Identity.Name" /> 
+ 
+     
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <!--[if lte IE 8]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+
+
+    
+ 
+
+
+    <script type="text/javascript" src="/Content/Scripts/ChartPainter.js"></script>
+    
+    
+
+    <script type="text/javascript" src="/Content/Scripts/kendo.web.min.js"></script>
+    <script type="text/javascript" src="/Content/Scripts/kendo.aspnetmvc.min.js"></script>
+    <script type="text/javascript" src="/Content/Scripts/bootstrap.min.js"></script>
+
+
+    @RenderSection("Scripts", required: false)
+
+
+
+    <script type="text/javascript" src="/Content/Scripts/script.js"></script>
+
+</body>
+</html>

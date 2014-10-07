@@ -1,0 +1,60 @@
+﻿@model BrokingPlatformIntegrationBase.Interfaces.IClaim
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Home/WillisMaster.cshtml";
+}
+
+
+
+<div style="display:inline-block;width: 100%;border:1px solid;border-radius:10px;z-index:200;overflow:hidden; margin:10px 0 10px 0;">
+    <div style="display: inline-block; width: 100%; background-color: #cecece; padding: 10px 1% 10px 1%;z-index:-1;"><h3>Details</h3></div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ClaimTempalteName)
+    </div>
+    <div class="display-field">
+        <a href="/Claims/ClaimTemplate/Details/@Model.ClaimTemplateID">
+            @Html.DisplayFor(model => model.ClaimTempalteName)
+        </a>
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Status)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Status)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.DateCreated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateCreated)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.CountryID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CountryName)
+    </div>
+</div>
+
+@Html.Action("FieldsListViewExistingClaim", "CustomTemplate", new { area = "Claims", id = Model.ClaimID })
+
+
+@*<div style="display:inline-block;">
+        @Html.Action("ListViewForClaimFields", "Claim", new { Claim = Model })
+    </div>*@
+
+<div class="buttons">
+    <input type="button" value="Edit" onclick="changeWindowLocation('/Claims/Claim/Edit/@(Model.ClaimID)');" />
+    <input type="button" value="Back to List" onclick="changeWindowLocation('/Claims/Claim');" />
+</div>

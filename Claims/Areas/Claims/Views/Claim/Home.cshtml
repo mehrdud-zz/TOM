@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+<h2>Claims</h2>
+
+<p>
+    Want to setup a new claim list for your client? 
+    <a href="~/Claims/Claim/Create" title="Create Claims">Click here</a> to go through the list of claim templates available
+</p>
+<br />
+<p>
+    <h3>Unassigned claims</h3>
+    @Html.Action("GetListofUnassignedClaims", "Claim")    
+</p>

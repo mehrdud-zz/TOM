@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Navigation";    
+}
+
+<ul style="white-space:nowrap;">
+<li><div   class="block1 @(ViewContext.RouteData.DataTokens["area"] == "Clients" ? "selected" : "")" >
+        <a href="~/Clients/Client/Home/">Clients</a>
+
+    </div><div class="block2 @(ViewContext.RouteData.DataTokens["area"] == "Clients" ? "selected" : "")">
+        @if (ViewContext.RouteData.DataTokens["area"] == "Clients")
+        {
+  
+            <ul class="subnav">
+                <li  @if (ViewContext.RouteData.Values["controller"].ToString() == "Client" &&
+                         ViewContext.RouteData.Values["action"].ToString() == "Index")
+                     { @:class="selected" 
+                    }><a href="~/Clients/Client/">Client</a></li>
+
+                <li @if (ViewContext.RouteData.Values["controller"].ToString() == "ClientUser")
+                    { @:class="selected" 
+                    }><a href="~/Clients/ClientUser/">Client Users</a></li>
+ 
+            </ul>
+ 
+        }
+    </div>
+</li><li><div class="block1 @(ViewContext.RouteData.DataTokens["area"] == "Claims" ? "selected" : "")" >
+
+        <a href="~/Claims/Claim/Home/">Claims</a>
+
+    </div><div class="block2 @(ViewContext.RouteData.DataTokens["area"] == "Claims" ? "selected" : "")">
+        @if (ViewContext.RouteData.DataTokens["area"] == "Claims")
+        {
+            <ul class="subnav">
+                <li  @if (ViewContext.RouteData.Values["controller"].ToString() == "Claim" &&
+                         ViewContext.RouteData.Values["action"].ToString() == "Index")
+                     { @:class="selected" 
+                    } ><a href="~/Claims/Claim/" @if (ViewContext.RouteData.DataTokens["area"] == "Administration")
+                                                 { @:class="selected" 
+                 } >Claims</a></li>
+ 
+
+                  <li  @if (ViewContext.RouteData.Values["controller"].ToString() == "ClaimTemplate")
+                     { @:class="selected" 
+                    } ><a href="~/Claims/ClaimTemplate/">Claim Template</a></li>
+            </ul>
+        }
+    </div>
+</li><li><div   class="block1 @(ViewContext.RouteData.DataTokens["area"] == "Administration" ? "selected" : "")" >
+        <a href="~/Administration/WillisEmployee/Home/">Control&nbsp;Panel</a>
+    </div><div class="block2 @(ViewContext.RouteData.DataTokens["area"] == "Administration" ? "selected" : "")" >
+        @if (ViewContext.RouteData.DataTokens["area"] == "Administration")
+        {
+            <ul class="subnav">
+                <li  @if (ViewContext.RouteData.Values["controller"].ToString() == "WillisEmployee" &&
+                         ViewContext.RouteData.Values["action"].ToString() == "Index")
+                     { @:class="selected" 
+                    } ><a href="~/Administration/WillisEmployee/">Administration</a></li>
+              
+            </ul>
+        }
+    </div>
+</li>
+</ul>

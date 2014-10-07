@@ -1,0 +1,164 @@
+﻿#articleContainer {
+    width: 500px;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+}
+
+    #articleContainer article {
+        vertical-align: top;
+        display: inline-block;
+        width: 80px;
+        height: 50px;
+        transition: width 1s, background 1s;
+        -webkit-transition: width 1s,background 1s;
+        border: White 1px solid;
+        padding: 10px;
+        margin: 0;
+        cursor: pointer;
+        text-align: center;
+    }
+
+        #articleContainer article:hover {
+            width: 100px;
+            background: #EAEBED;
+            border: #8894A4 1px solid;
+            transition: width 1s;
+            -webkit-transition: width 1s;
+        }
+
+
+
+        #articleContainer article div.articleText {
+            transition: opacity 1s ease-out;
+            -webkit-transition: opacity 1s ease-out;
+            display: block;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            text-align: center;
+        }
+
+
+
+.articleText {
+    width: 80px;
+}
+
+article .fullText {
+    -webkit-transition: opacity 1s ease-out;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    width: 150px;
+    height: 50px;
+}
+
+article.clicked .fullText {
+    width: 150px;
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+
+
+
+article.clicked {
+    width: 150px !important;
+    background: #EAEBED;
+}
+
+
+#articleContainer article.clicked div {
+    display: block;
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+article.collapsed {
+    width: 50px !important;
+}
+
+    article.collapsed header {
+        opacity: 0.1;
+        filter: alpha(opacity=10);
+    }
+
+article:hover header {
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+
+@keyframes myfirst {
+    from {
+        width: 80px;
+    }
+
+    to {
+        width: 120px;
+    }
+}
+
+@-webkit-keyframes myfirst /* Safari and Chrome */
+{
+    from {
+        width: 80px;
+    }
+
+    to {
+        width: 120px;
+    }
+}
+
+#content article:hover div.articleText {
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+.articleBlue {
+    background-color: #D45121;
+}
+
+.articleGreen {
+    background-color: #FCC300;
+}
+
+.articleYellow {
+    background-color: #7F7263;
+}
+
+.articleBrown {
+    background-color: #8C060C;
+}
+
+.articleRed {
+    background-color: #284637;
+}
+
+.readMore {
+    text-decoration: underline;
+}
+
+.clicked .readMore {
+    visibility: hidden;
+}
+
+
+
+
+/**************************/
+.k-textbox.small {
+    width: 50px !important;
+}
+
+.k-textbox.medium {
+    width: 200px !important;
+}
+
+.k-textbox.large {
+    width: 320px !important;
+}
+
+textarea {
+    width: 200px;
+    height: 80px;
+}

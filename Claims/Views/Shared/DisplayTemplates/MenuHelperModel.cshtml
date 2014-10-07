@@ -1,0 +1,29 @@
+﻿@model MvcSiteMapProvider.Web.Html.Models.MenuHelperModel
+@using System.Web.Mvc.Html
+@using MvcSiteMapProvider.Web.Html.Models
+
+@*<ul id="menu">
+        @foreach (var node in Model.Nodes) {
+            <li>@Html.DisplayFor(m => node)
+                @if (node.Children.Any()) {
+                    @Html.DisplayFor(m => node.Children)
+                }
+            </li>
+        }
+    </ul>*@
+
+
+<!-- Edited to work with Twitter Bootstrap by adding 'nav' and 'nav-pills' classes. -->
+<ul class="nav nav-pills">
+    @foreach (var node in Model.Nodes)
+    {
+    <!-- Edited to work with bootstrap by adding 'active' class for current node. -->
+        <li class='@(node.IsCurrentNode ? "active" : string.Empty)'>
+            @Html.DisplayFor(m => node)
+            @if (node.Children.Any())
+            {
+                @Html.DisplayFor(m => node.Children)
+            }
+        </li>
+    }
+</ul>

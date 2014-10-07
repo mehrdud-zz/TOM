@@ -1,0 +1,54 @@
+﻿@model ClaimsPoC.ClientHome.Models.ClientClaim
+
+@{
+    ViewBag.Title = "SubmitClaim";
+    Layout = "~/Views/Home/ClientMaster.cshtml";    
+}
+
+<h2>Submit Claim</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Claim</legend>
+        <div class="editor-label">
+            Contract
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Claim.ContractID, new SelectList(ViewBag.ContractID, "ContractID", "Name"), "", new { })
+        </div>
+
+        @if (ViewBag.MyStep == "Next" || ViewBag.MyStep == "Render")
+        {
+            <div class="editor-label">
+                ClaimTemplateID
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Claim.ClaimTemplateID, new SelectList(ViewBag.ClaimTemplateID, "ClaimTemplateID", "Name"), "", new { })
+            </div>
+             
+        }
+
+
+        @if (ViewBag.MyStep == "Render")
+        {
+            <div class="editor-label">
+                Form
+            </div>
+            <div class="editor-field">
+                <input value="" />
+            </div>
+             
+        }
+
+
+        <p>
+            <input type="submit" value="Next" />
+        </p>
+
+        <h1>@ViewBag.MyStep</h1>
+    </fieldset>  
+}

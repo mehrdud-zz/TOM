@@ -1,0 +1,24 @@
+﻿@model IEnumerable<ModelsLayer.ReportTemplate>
+@{
+    ViewBag.Title = "ListClientReportTypes";
+}
+
+
+
+<select name="selectedReport" onchange="javascript: RedirectoReport(this);">
+    <option>(select)</option>
+    @foreach (ModelsLayer.ReportTemplate reportTemplate in Model)
+    {
+        <option value="@reportTemplate.ReportID">@reportTemplate.Name</option>
+    }
+</select>
+
+
+<script type="text/javascript">
+
+
+    function RedirectoReport(element) {
+        var newLoc = "/Reports/Reports/RunReport?ReportID=" + $(element).val();        
+        window.location = newLoc;
+    }
+</script>

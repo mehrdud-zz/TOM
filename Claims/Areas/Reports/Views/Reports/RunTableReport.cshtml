@@ -1,0 +1,6 @@
+﻿@model ClaimsPoC.Areas.Reports.Controllers.CftReport
+@{
+    ViewBag.Title = "RunReport";
+}
+
+<iframe frameborder="0" src="/SharePointIntegration/SharePointIntegration/SharePointDashboard?ReportID=@(Model.ReportId)" width="@(Model.Width)px" height="@(Model.Height)px"></iframe>

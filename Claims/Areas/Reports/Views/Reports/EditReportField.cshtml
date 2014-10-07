@@ -1,0 +1,151 @@
+﻿@model ModelsLayer.ReportField
+
+@{
+    ViewBag.Title = "View1";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ReportField</legend>
+        <input type="hidden" name="ReportID" value="@Model.ReportID" />
+        <input type="hidden" name="ReportFieldID" value="@Model.ReportFieldID" />
+        <input type="hidden" name="FieldNumber" value="@Model.FieldNumber" />
+
+
+        <div class="editor-label">
+            Claim Template
+        </div>
+        <div class="editor-field">
+            <span>@(Model.ClaimTemplateName)</span>
+        </div>
+
+        <div class="editor-label">
+            Field
+        </div>
+        <div class="editor-field">
+            <span>@Model.ClaimFieldTemplate.Name</span>
+            <input type="hidden" name="FieldId" value="@Model.FieldId" />
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DisplayName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DisplayName)
+            @Html.ValidationMessageFor(model => model.DisplayName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Filter)
+        </div>
+        <div class="editor-field">
+            @(Html.Kendo().DropDownList()
+          .Name("Filter")
+          .DataTextField("Text")
+          .DataValueField("Value")
+          .BindTo(new List<SelectListItem>() {
+              new SelectListItem() {Text = "Use field as a filter?",Value = "False"},
+              new SelectListItem() {Text = "Yes",Value = "True"},
+              new SelectListItem() {Text = "No",Value = "False"}
+          })
+  .Value(Model.Filter.ToString() ?? "False").HtmlAttributes(new { style = "width:100%;" })
+            )
+            @Html.ValidationMessageFor(model => model.Filter)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Func)
+        </div>
+        <div class="editor-field">
+
+            @(Html.Kendo().DropDownList()
+          .Name("Func")
+          .DataTextField("Text")
+          .DataValueField("Value")
+          .BindTo(new List<SelectListItem>() {
+              new SelectListItem() {Text = "Value of",Value = "FIELDVALUE"},
+              new SelectListItem() {Text = "Sum",Value = "Sum"},
+              new SelectListItem() {Text = "Count",Value = "Count"},
+              new SelectListItem() {Text = "Average",Value = "Avg"},
+              new SelectListItem() {Text = "Maximum",Value = "Max"},
+              new SelectListItem() {Text = "Minimum",Value = "Min"},
+              new SelectListItem() {Text = "Median",Value = "Med"}
+              
+          })
+  .Value(Model.Func).HtmlAttributes(new { style = "width:100%;" })      
+            )
+
+ 
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Direction)
+        </div>
+        <div class="editor-field">
+            @(Html.Kendo().DropDownList()
+          .Name("Direction")
+          .DataTextField("Text")
+          .DataValueField("Value")
+          .BindTo(new List<SelectListItem>() {
+              new SelectListItem() {Text = "Sort direction...", Value = ""},
+              new SelectListItem() {Text = "A->Z", Value = "ASC"},
+              new SelectListItem() {Text = "Z->A", Value = "DESC"}
+          })
+      .Value(Model.Direction).HtmlAttributes(new { style = "width:100%;" })
+            )
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TableName)
+        </div>
+        <div class="editor-field">
+            @(Html.Kendo().DropDownList()
+      .Name("TableName")
+          .DataTextField("Text")
+          .DataValueField("Value")
+          .BindTo(new List<SelectListItem>() {
+              new SelectListItem() {Text = " ", Value = ""},
+              new SelectListItem() {Text = "Eclipse Claims -> tblClaim", Value = "tblClaim"},
+              new SelectListItem() {Text = "Eclipse Claims -> LatestMovements", Value = "LatestMovements"},
+              new SelectListItem() {Text = "Eclipse Claims -> tblClaimMovementBreakdown", Value = "tblClaimMovementBreakdown"},
+              new SelectListItem() {Text = "Eclipse Policy -> tblPolicy", Value = "tblPolicy"},
+              new SelectListItem() {Text = "Eclipse Policy -> tblPolicySection", Value = "tblPolicySection"}
+          }).HtmlAttributes(new { style = "width:100%;" })
+            )
+
+
+        </div>
+
+        <div class="buttons">
+            <input type="submit" value="Save" />
+            <input type="button" value="Back to List" onclick="changeWindowLocation('/Reports/Reports/Edit/@(Request.QueryString["ReportID"])');" />
+        </div>
+    </fieldset>
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#functionType").val('@(Model.Func)');
+        $("#functionType").kendoDropDownList();
+
+    });
+
+
+    function filterClaimTemplates() {
+        return {
+            ClaimTemplateID: $("#claimTemplates").val()
+        };
+    }
+
+    function filterReportFields() {
+        return {
+
+        };
+    }
+
+</script>

@@ -1,0 +1,264 @@
+﻿@model ModelsLayer.ClaimFieldTemplate
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false)
+
+    <fieldset>
+        <legend>ClaimFieldTemplate</legend>
+
+        @Html.HiddenFor(model => model.ClaimFieldTemplateID)
+
+        @Html.HiddenFor(model => model.ClaimFieldGroupTemplateID)
+
+        @Html.HiddenFor(model => model.FieldTypeID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FieldTypeID)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.FieldType.Name)
+            @*@(Html.Kendo().DropDownList()
+            .Name("FieldTypeID")
+            .HtmlAttributes(new { style = "width:100%;" })
+            .OptionLabel("Select field...")
+            .DataTextField("FieldTypeID")
+              .DataValueField("FieldTypeID")
+              .DataSource(source =>
+              {
+                  source.Read(read =>
+                  {
+                      read.Action("GetFieldTypes", "FieldType", new { area = "Claims" });
+                  }) ;
+              })
+            )*@
+
+
+            @Html.ValidationMessageFor(model => model.FieldTypeID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Mandatory)
+        </div>
+        <div class="editor-field">
+            @Html.CheckBoxFor(m => m.Mandatory)
+        </div>
+
+        <div id="ShortTextContainer" class="fieldContainer hiddenContainer">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ShortTextDefaultValue)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.ShortTextDefaultValue)
+                @Html.ValidationMessageFor(model => model.ShortTextDefaultValue)
+            </div>
+        </div>
+
+        <div id="LongTextContainer" class="fieldContainer hiddenContainer">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.LongTextDefaultValue)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.LongTextDefaultValue)
+                @Html.ValidationMessageFor(model => model.LongTextDefaultValue)
+            </div>
+        </div>
+
+        <div id="IntegerContainer" class="fieldContainer hiddenContainer">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.IntegerDefaultValue)
+            </div>
+            <div class="editor-field">
+                @Html.Kendo().IntegerTextBoxFor(model => model.IntegerDefaultValue)
+                @Html.ValidationMessageFor(model => model.IntegerDefaultValue)
+            </div>
+        </div>
+
+        <div id="FloatContainer" class="fieldContainer hiddenContainer">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.FloatDefaultValue)
+            </div>
+            <div class="editor-field">
+                @Html.Kendo().NumericTextBoxFor(model => model.FloatDefaultValue).Decimals(2)
+                @Html.ValidationMessageFor(model => model.FloatDefaultValue)
+            </div>
+        </div>
+
+        <div id="DateContainer" class="fieldContainer hiddenContainer">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DateDefaultValue)
+            </div>
+            <div class="editor-field">
+                @Html.Kendo().DatePickerFor(model => model.DateDefaultValue)
+                @Html.ValidationMessageFor(model => model.DateDefaultValue)
+            </div>
+        </div>
+
+        <div id="DateTimeContainer" class="fieldContainer hiddenContainer">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DateTimeDefaultValue)
+            </div>
+            <div class="editor-field">
+                @Html.Kendo().DateTimePickerFor(model => model.DateTimeDefaultValue)
+                @Html.ValidationMessageFor(model => model.DateTimeDefaultValue)
+            </div>
+        </div>
+
+        <div id="DropDownContainer" class="fieldContainer hiddenContainer">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DropDownDefaultValue)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.DropDownDefaultValue)
+                @Html.ValidationMessageFor(model => model.DropDownDefaultValue)
+            </div>
+        </div>
+
+        <div id="MultiChoiceContainer" class="fieldContainer hiddenContainer">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.MultiChoiceDefaultValue)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.MultiChoiceDefaultValue)
+                @Html.ValidationMessageFor(model => model.MultiChoiceDefaultValue)
+            </div>
+        </div>
+
+        <div id="MoneyContainer" class="fieldContainer hiddenContainer">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.CurrecncyDefaultValue)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().NumericTextBoxFor(model => model.CurrecncyDefaultValue))
+                @*@Html.DropDownListFor(m => m.CurrencyID, ((SelectList)ViewBag.CurrencyIDlist), "")
+                    @Html.ValidationMessageFor(model => model.CurrecncyDefaultValue)*@
+            </div>
+        </div>
+
+        <div id="CountryContainer" class="fieldContainer hiddenContainer">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.CountryDefaultValue)
+            </div>
+            <div class="editor-field">
+                @*@Html.DropDownListFor(model => model.CountryDefaultValue, ((SelectList)ViewBag.CountryIDList), "")
+                    @Html.ValidationMessageFor(model => model.CountryDefaultValue)*@
+            </div>
+        </div>
+
+        <div id="RangeContainer" class="fieldContainer hiddenContainer">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.RangeDefaultValue)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.RangeDefaultValue)
+                @Html.ValidationMessageFor(model => model.RangeDefaultValue)
+            </div>
+        </div>
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back", "Edit", "ClaimTemplate", new { @Id = Request.QueryString["ClaimTemplateID"] }, new { })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+<script type="text/javascript">
+    function ShowRelatedContainer(selectedText) {
+        $("div.fieldContainer").addClass("hiddenContainer");
+
+        switch (selectedText) {
+            case "Short Text":
+                $("div#ShortTextContainer").removeClass("hiddenContainer");
+                break;
+
+            case "Integer":
+                $("div#IntegerContainer").removeClass("hiddenContainer");
+                break;
+
+            case "Float":
+                $("div#FloatContainer").removeClass("hiddenContainer");
+                break;
+
+            case "Date":
+                $("div#DateContainer").removeClass("hiddenContainer");
+                break;
+
+            case "Date Time":
+                $("div#DateTimeContainer").removeClass("hiddenContainer");
+                break;
+
+            case "Drop Down":
+                $("div#DropDownContainer").removeClass("hiddenContainer");
+                break;
+
+            case "Multi Choice":
+                $("div#MultiChoiceContainer").removeClass("hiddenContainer");
+                break;
+
+            case "File":
+                $("div#FileContainer").removeClass("hiddenContainer");
+                break;
+
+            case "Money":
+                $("div#MoneyContainer").removeClass("hiddenContainer");
+                break;
+
+            case "Country":
+                $("div#CountryContainer").removeClass("hiddenContainer");
+                break;
+
+            case "Range":
+                $("div#RangeContainer").removeClass("hiddenContainer");
+                break;
+
+            case "Long Text":
+                $("div#LongTextContainer").removeClass("hiddenContainer");
+                break;
+
+            default:
+                break;
+        }
+    }
+    $(document).ready(function () {
+        $("#FieldTypeID").change(function () {
+            var selectedText = $(this).find("option:selected").text();
+            ShowRelatedContainer(selectedText);
+        });
+
+        var selectedText = $("#FieldTypeID").find("option:selected").text();
+        ShowRelatedContainer(selectedText);
+
+      
+    });
+</script>

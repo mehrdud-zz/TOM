@@ -1,0 +1,12 @@
+﻿@model int?
+
+@{
+    ViewBag.Title = "SourceEditor";
+}
+
+@(Html.Kendo().DropDownList()
+    .Name("Source")
+    .HtmlAttributes(new { style = "width:100%" })
+        .BindTo(new string[] { "ClaimsPoC", "Acturis", "Eclipse"})
+
+) 

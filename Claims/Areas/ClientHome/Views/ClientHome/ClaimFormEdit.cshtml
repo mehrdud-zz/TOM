@@ -1,0 +1,74 @@
+﻿@model ModelsLayer.Claim
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.ClaimID) 
+    @Html.HiddenFor(model => model.ClaimTemplateID)
+    @Html.HiddenFor(model => model.WillisEmployeeID)
+    @Html.HiddenFor(model => model.CreatedBy)
+    @Html.HiddenFor(model => model.DateCreated)
+    @Html.HiddenFor(model => model.UserID)
+    <fieldset>
+        <legend>Claim</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ClaimStatusID, "ClaimStatu")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ClaimStatusID", String.Empty)
+            @Html.ValidationMessageFor(model => model.ClaimStatusID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CountryID)
+        </div>
+        <div class="editor-field">
+            @Html.Kendo().DropDownList().Name("CountryID").BindTo(ViewBag.CountryID)
+            @Html.ValidationMessageFor(model => model.CountryID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+        <br />
+        
+
+
+        @if (Request.QueryString["ClaimTemplateID"] != null)
+        { 
+            @Html.Action("FieldsListEditExistingClaim", "CustomTemplate", new { area = "Claims", id = Model.ClaimID })
+        }
+
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ListClientClaims")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

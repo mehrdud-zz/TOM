@@ -1,0 +1,33 @@
+Getting started with Unity.Mvc4
+-------------------------------
+
+To get started, just add a call to Bootstrapper.Initialise() in the Application_Start method of Global.asax.cs 
+and the MVC framework will then use the Unity.Mvc4 DependencyResolver to resolve your components.
+
+There is code in the bootstrapper to initialise the Unity container. Any components that you need to inject should be 
+registered in the BuildUnityContainer method of the Bootstrapper. All components that implement IDisposable should be 
+registered with the HierarchicalLifetimeManager to ensure that theey are properly disposed at the end of the request.
+
+It is typically not necessary to register your controllers with Unity.
+
+The readme has been copyied from Unity.MVC3 as this is a package just to support MVC4, the unity portion is identical.
+You can find out more about Unity.Mvc3 by visiting:
+
+http://devtrends.co.uk/blog/introducing-the-unity.mvc3-nuget-package-to-reconcile-mvc3-unity-and-idisposable
+
+
+NASA’s Curiosity rover has been on Mars since August 2012, and has already contibuted new information about the Martian atmosphere, geology, and presence of liquid water on the surface in the planet’s distant past, even as it is still trundling towards its ultimate destination: the geologically significant Mount Sharp in Gale Crater. Now, NASA has released a veritable mountain of fresh data from Curiosity in six papers published online in the December 9 issue of the journal Science Express and a series of talks at the Fall Meeting of the American Geophysical Union in San Francisco. According to a NASA press release, the new findings involve a range of topics, from the age of Mars to past habitability to radiation.
+
+Among several ‘firsts’ accomplished by Curiosity in the flurry of activity is the first radiometrically-dated rock sample on Mars. Curiosity used a drill mounted on its robotic arm to bore into a rock outcrop known as “Cumberland”, and then analyzed the sample. A team led by Kenneth Farley of the California Institute of Technology measured the proportion of argon relative to potassium in the rock; potassium radioactively decays into argon and the ratio, coupled with the known half-life, can reveal the age of a sample. In this case, Farley and team’s analysis showed that the rock is 3.86 to 4.56 billion years old; the older end of that range would place Cumberland not long after the formation of Mars.
+
+The age determined by Farley and team is consistent with previous estimates for the rocks in Gale Crater, which were based upon comparing the numbers of impact craters in different regions across the planet. This method of age estimation was derived from information gathered on Earth’s Moon, in which crater counts are tied to absolute ages from rocks brought back by the Apollo missions. Farley and colleagues also determined that Cumberland has been exposed at the surface for 60 to 100 million years, after overlying rocks were weathered away by windblown sand. The researchers made this determination after measuring the amount of gases created when cosmic rays strike atoms in the rock once it is exposed.
+
+A series of studies also looked at the question at the center of Curiosity’s mission: was Mars suitable for life? Ten months ago, a team led by Doug Ming of NASA’s Johnson Space Center reported that an area of outcrop known as “Yellowknife Bay” represents an environment once suitable for microbial life, containing favorable chemistry, water, and an energy source in the form of a mix of sulfur- and iron-rich minerals.
+
+Now, a spate of results indicate that favorable conditions at Yellowknife Bay persisted longer than was thought. Scott McLennan of Stony Brook University and team analyzed theh chemistry of the rocks and found that the grains were transported from their upstream source to Yellowknife Bay and that leaching of calcium and sodium occurred after the sediment was deposited. David Vaniman of the Planetary Science Institute and colleagues supported those conclusions with the discovery of the clay mineral smectite, which is associated with lake deposits on Earth.
+
+Another study by John Grotzinger of Caltech and colleagues used the thicknesses of rock layers at Yellowknife Bay to ascertain that habitable conditions lasted for millions to tens of millions of years. Rivers and lakes came and went and reappeared; even during dry spells, the subsurface was probably wet, as shown by mineral veins deposited by subsurface water. Coupled with the findings of Ming and team, this study indicates that Yellowknife Bay was suitable for microbial life. The habitable setting existed during the Hesperian Era, a slice of Martian geological history less than 4 billion years ago, roughly when life first appeared on Earth. During the Hesperian Era, parts of Mars were already becoming drier and less hospitable, even as Yellowknife Bay remained wet.
+
+“This habitable environment existed later than many people thought there would be one,” Grotzinger explained. “This has global implications. It’s from a time when there were deltas, alluvial fans, and other signs of surface water at many places on Mars, but those were considered too young, or too short-lived, to have formed clay minerals. The thinking was, if they had clay minerals, those must have washed in from older deposits. Now, we know the clay minerals could be produced later, and that gives us many locations that may have had habitable environments too.”
+
+Finally, a report by Don Hassler of the Southwest Research Institute offered the first measurements of the natural radiation on the Martian surface. Gale Crater was blasted by cosmic rays and solar particles at an average of 0.67 millisieverts per day from August 2012 to June 2013; more than 95 percent of the total radiation came from cosmic rays. By comparison, a normal chest X-ray exposes a person to about 0.02 millisieverts of radiation. The measurements obtained by Curiosity on the surface of Mars have been added to measurements taken while the craft made the journey from Earth. This reveals that a human would experience approximately 1,000 millisieverts on a round-trip to Mars; such exposure is associated with a 5 percent increase in the risk of suffering fatal cancer. NASA is collaborating with the Institute of Medicine of the National Academies to explore the ethics and health consequences surrounding this issue.

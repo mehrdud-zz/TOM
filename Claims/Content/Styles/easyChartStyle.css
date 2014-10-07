@@ -1,0 +1,24 @@
+#easyChart .chart {
+  position: relative;
+  display: inline-block;
+  width: 110px;
+  height: 110px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+#easyChart .chart canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#easyChart .percent {
+  display: inline-block;
+  line-height: 110px;
+  z-index: 2;
+}
+#easyChart .percent:after {
+  content: '%';
+  margin-left: 0.1em;
+  font-size: .8em;
+}

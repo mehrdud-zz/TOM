@@ -1,0 +1,28 @@
+﻿@using Kendo.Mvc.UI
+
+@model List<ModelsLayer.ClaimFieldTemplate>
+
+@{
+    ViewBag.Title = "ListViewForClaimTemplate";
+}
+
+ 
+<div style="float: left;width:100%;">
+
+    @(Html.Kendo().Grid(Model) // Bind the grid to the Model property of the view
+    .Name("Grid")
+    .Columns(columns =>
+        {
+            columns.Bound(p => p.Name);
+            columns.Bound(p => p.FieldType.Name).Width(140).Title("Field Type");
+
+        })
+            .Pageable(o =>{o.PageSizes(new int[]{10, 50, 100});}) 
+            .Sortable()
+            .DataSource(dataSource => dataSource
+            .Server()
+            .Model(model => model.Id(p => p.ClaimFieldTemplateID))
+
+            )
+)
+</div>

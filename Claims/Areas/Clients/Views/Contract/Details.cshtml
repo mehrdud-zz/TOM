@@ -1,0 +1,44 @@
+﻿@model ClaimsPoC.Clients.Models.Contract
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Contract</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Insurer.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Insurer.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Client.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Client.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StartDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EndDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EndDate)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ContractID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

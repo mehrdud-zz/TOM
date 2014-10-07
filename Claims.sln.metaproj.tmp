@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" InitialTargets="ValidateSolutionConfiguration;ValidateToolsVersions;ValidateProjects">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportBefore\*" Condition="'$(ImportByWildcardBeforeSolution)' != 'false' and exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportBefore')" />
+  <Import Project="C:\Users\nateghianm\Documents\Projects\Developments\Claims\before.Claims.sln.targets" Condition="exists('C:\Users\nateghianm\Documents\Projects\Developments\Claims\before.Claims.sln.targets')" />
+  <PropertyGroup Condition=" '$(Configuration)' == '' ">
+    <Configuration>Debug</Configuration>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == '' ">
+    <Platform>Any CPU</Platform>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(AspNetConfiguration)' == '') ">
+    <AspNetConfiguration>$(Configuration)</AspNetConfiguration>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SolutionDir>C:\Users\nateghianm\Documents\Projects\Developments\Claims\</SolutionDir>
+    <SolutionExt>.sln</SolutionExt>
+    <SolutionFileName>Claims.sln</SolutionFileName>
+    <SolutionName>Claims</SolutionName>
+    <SolutionPath>C:\Users\nateghianm\Documents\Projects\Developments\Claims\Claims.sln</SolutionPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == '' and '$(MSBuildToolsVersion)' == '2.0'">v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == '' and ('$(MSBuildToolsVersion)' == '3.5' or '$(MSBuildToolsVersion)' == '3.0')">v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == '' and ('$(MSBuildToolsVersion)' == '4.0' or '$(MSBuildToolsVersion)' == '12.0')">v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{716F057F-143F-4FB6-B0C4-1C5C59B3CAAA}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Claims\Claims.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{B7CADF30-4D6E-4F73-AD24-8F70A270E6FB}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Claims.Tests\Claims.Tests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{9E1A80C1-771D-48DD-977B-74F38FC3284A}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Models\ModelsLayer.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{910CED33-6928-4966-88AD-EB3D87A47E54}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Factories\Factories.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{C7BC3266-7793-4047-8119-C65330FE3349}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\BrokingPlatformIntegrationBase\BrokingPlatformIntegrationBase.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{06A5F270-61A4-4E28-8E20-CB56970771B8}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Acturis\Acturis.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <ItemGroup>
+    <SolutionConfiguration Include="Debug|Any CPU">
+      <Configuration>Debug</Configuration>
+      <Platform>Any CPU</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{716F057F-143F-4FB6-B0C4-1C5C59B3CAAA}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Claims\Claims.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{B7CADF30-4D6E-4F73-AD24-8F70A270E6FB}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Claims.Tests\Claims.Tests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{9E1A80C1-771D-48DD-977B-74F38FC3284A}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Models\ModelsLayer.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{910CED33-6928-4966-88AD-EB3D87A47E54}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Factories\Factories.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{C7BC3266-7793-4047-8119-C65330FE3349}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\BrokingPlatformIntegrationBase\BrokingPlatformIntegrationBase.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{06A5F270-61A4-4E28-8E20-CB56970771B8}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Acturis\Acturis.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+    <SolutionConfiguration Include="Publish|Any CPU">
+      <Configuration>Publish</Configuration>
+      <Platform>Any CPU</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{716F057F-143F-4FB6-B0C4-1C5C59B3CAAA}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Claims\Claims.csproj" BuildProjectInSolution="True">Publish|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{B7CADF30-4D6E-4F73-AD24-8F70A270E6FB}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Claims.Tests\Claims.Tests.csproj" BuildProjectInSolution="True">Publish|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{9E1A80C1-771D-48DD-977B-74F38FC3284A}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Models\ModelsLayer.csproj" BuildProjectInSolution="True">Publish|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{910CED33-6928-4966-88AD-EB3D87A47E54}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Factories\Factories.csproj" BuildProjectInSolution="True">Publish|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{C7BC3266-7793-4047-8119-C65330FE3349}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\BrokingPlatformIntegrationBase\BrokingPlatformIntegrationBase.csproj" BuildProjectInSolution="True">Publish|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{06A5F270-61A4-4E28-8E20-CB56970771B8}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Acturis\Acturis.csproj" BuildProjectInSolution="True">Publish|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+    <SolutionConfiguration Include="Release|Any CPU">
+      <Configuration>Release</Configuration>
+      <Platform>Any CPU</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{716F057F-143F-4FB6-B0C4-1C5C59B3CAAA}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Claims\Claims.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{B7CADF30-4D6E-4F73-AD24-8F70A270E6FB}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Claims.Tests\Claims.Tests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{9E1A80C1-771D-48DD-977B-74F38FC3284A}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Models\ModelsLayer.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{910CED33-6928-4966-88AD-EB3D87A47E54}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Factories\Factories.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{C7BC3266-7793-4047-8119-C65330FE3349}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\BrokingPlatformIntegrationBase\BrokingPlatformIntegrationBase.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{06A5F270-61A4-4E28-8E20-CB56970771B8}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Acturis\Acturis.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+  </ItemGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Publish') and ('$(Platform)' == 'Any CPU') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{716F057F-143F-4FB6-B0C4-1C5C59B3CAAA}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Claims\Claims.csproj" BuildProjectInSolution="True">Publish|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{B7CADF30-4D6E-4F73-AD24-8F70A270E6FB}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Claims.Tests\Claims.Tests.csproj" BuildProjectInSolution="True">Publish|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{9E1A80C1-771D-48DD-977B-74F38FC3284A}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Models\ModelsLayer.csproj" BuildProjectInSolution="True">Publish|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{910CED33-6928-4966-88AD-EB3D87A47E54}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Factories\Factories.csproj" BuildProjectInSolution="True">Publish|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{C7BC3266-7793-4047-8119-C65330FE3349}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\BrokingPlatformIntegrationBase\BrokingPlatformIntegrationBase.csproj" BuildProjectInSolution="True">Publish|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{06A5F270-61A4-4E28-8E20-CB56970771B8}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Acturis\Acturis.csproj" BuildProjectInSolution="True">Publish|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{716F057F-143F-4FB6-B0C4-1C5C59B3CAAA}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Claims\Claims.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{B7CADF30-4D6E-4F73-AD24-8F70A270E6FB}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Claims.Tests\Claims.Tests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{9E1A80C1-771D-48DD-977B-74F38FC3284A}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Models\ModelsLayer.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{910CED33-6928-4966-88AD-EB3D87A47E54}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Factories\Factories.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{C7BC3266-7793-4047-8119-C65330FE3349}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\BrokingPlatformIntegrationBase\BrokingPlatformIntegrationBase.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{06A5F270-61A4-4E28-8E20-CB56970771B8}" AbsolutePath="C:\Users\nateghianm\Documents\Projects\Developments\Claims\Acturis\Acturis.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportAfter\*" Condition="'$(ImportByWildcardBeforeSolution)' != 'false' and exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportAfter')" />
+  <Import Project="C:\Users\nateghianm\Documents\Projects\Developments\Claims\after.Claims.sln.targets" Condition="exists('C:\Users\nateghianm\Documents\Projects\Developments\Claims\after.Claims.sln.targets')" />
+  <Target Name="Build" />
+  <Target Name="Rebuild" />
+  <Target Name="Clean" />
+  <Target Name="Publish" />
+</Project>

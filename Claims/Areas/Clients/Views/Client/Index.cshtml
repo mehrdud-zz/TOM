@@ -1,0 +1,55 @@
+﻿@using Telerik.Web.Mvc
+@using Kendo.Mvc.UI
+
+@model IEnumerable<ModelsLayer.Client>
+
+@{
+    ViewBag.Title = "Clients";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+<h2>Clients</h2>
+ 
+<div>
+    <div>
+        @* Kendo Grid implementation*@
+        @(Html.Kendo().Grid(Model)
+    .Name("Grid")
+
+    .Columns(columns =>
+    {
+        columns.Template(@<text><input type="checkbox" name="rowSelector" id="rowSelector@(item.ClientID)" onclick="SelectRow('grid',  @item.ClientID);" /></text>).Width("10px").HeaderTemplate(@<text><input id="allRowsSelector" type="checkbox" onclick="SelectAllRows(this);" /></text>);
+        columns.Bound(client => client.Name).Width(100).Template(@<text><a type="button" href="/Clients/Client/Details/@item.ClientID">@item.Name</a></text>);;
+        columns.Bound(client => client.Description).Width(200);
+        columns.Template(@<text><a type="button" href="/Clients/Client/Details/@item.ClientID">View</a>&nbsp;&nbsp;&nbsp;<a type="button" href="/Clients/Client/Edit/@item.ClientID">Edit</a>&nbsp;&nbsp;&nbsp;<a type="button" href="/Clients/Client/Delete/@item.ClientID">Delete</a></text>).Width(100);
+    })
+
+    .Pageable(o =>{o.PageSizes(new int[]{10, 50, 100});}) 
+     .ToolBar(
+    toolbar =>
+    {
+        toolbar.Template(@<text>
+        <div class="toolbar">
+            <input type="button" value="Create new client" onclick="changeWindowLocation('/Clients/Client/Create');" />
+            <input type="button" value="Clear filters" onclick="changeWindowLocation('/Clients/Client');" />
+        </div>
+        </text>);
+    })
+.Sortable(sortable => sortable.AllowUnsort(false))
+.Filterable(filterable => filterable
+        .Extra(false)
+         .Operators(operators => operators
+            .ForString(str => str.Clear()
+                .StartsWith("Starts with")
+                .IsEqualTo("Is equal to")
+                .IsNotEqualTo("Is not equal to")
+            ))
+        )
+
+
+)
+
+    </div>
+ 
+
+</div> 

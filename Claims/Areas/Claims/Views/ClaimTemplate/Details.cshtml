@@ -1,0 +1,101 @@
+﻿@model ModelsLayer.ClaimTemplate
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+<h2>Details: Claim Template</h2>
+
+<fieldset>
+    <div style="display:inline-block;width: 100%;border:1px solid;border-radius:10px;z-index:200;overflow:hidden; margin:10px 0 10px 0;">
+        <div style="display: inline-block; width: 100%; background-color: #cecece; padding: 10px 1% 10px 1%;z-index:-1;"><h3>Details</h3></div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Name)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Name)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Description)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Description)
+        </div>
+
+    </div>
+
+
+    @foreach (ModelsLayer.ClaimFieldGroupTemplate claimFieldGroupTemplate in Model.ClaimFieldGroupTemplates)
+    {
+        <div style="display:inline-block;width: 100%;border:1px solid;border-radius:10px;z-index:200;overflow:hidden; margin:10px 0 10px 0;">
+            <div style="display: inline-block; width: 100%; background-color: #cecece; padding: 10px 1% 10px 1%;z-index:-1;">
+                <h3>@Html.Label(claimFieldGroupTemplate.Name)</h3>
+                <p>@Html.Label((claimFieldGroupTemplate.Description != null) ? claimFieldGroupTemplate.Description : "")</p>
+
+            </div>
+            @foreach (ModelsLayer.ClaimFieldTemplate claimFieldTemplate in claimFieldGroupTemplate.ClaimFieldTemplates)
+            {
+                <div class="display-label">
+                    @Html.Label(claimFieldTemplate.Name)
+
+                    @if (claimFieldTemplate.Mandatory)
+                    {
+                        <label style="color: red; font-size: 14pt;">*</label>
+                    }
+                </div>
+
+                <div class="display-field">
+
+                    @switch (claimFieldTemplate.FieldType.TemplateName)
+                    {
+                        case "ShortText":
+                            @Html.DisplayFor(m => claimFieldTemplate.ShortTextDefaultValue)
+                            break;
+                        case "LongText":
+                        @Html.DisplayFor(m => claimFieldTemplate.LongTextDefaultValue)
+
+                            break;
+                        case "Integer":
+                        @Html.DisplayFor(m => claimFieldTemplate.IntegerDefaultValue)
+                            break;
+                        case "Float":
+                        @Html.DisplayFor(m => claimFieldTemplate.FloatDefaultValue)
+                            break;
+                        case "Date":
+                        @Html.DisplayFor(m => claimFieldTemplate.DateDefaultValue)
+
+                            break;
+                        case "DateTime":
+                        @Html.DisplayFor(m => claimFieldTemplate.DateTimeDefaultValue)
+
+                            break;
+                        case "DropDown":
+                        @Html.DisplayFor(m => claimFieldTemplate.DropDownDefaultValue)
+                            break;
+                        case "MultiChoice":
+                        @Html.DisplayFor(m => claimFieldTemplate.MultiChoiceDefaultValue)
+                            break;
+                        case "File":
+                            break;
+                        case "Money":
+                        @Html.Label(String.Format("{0}{1}", claimFieldTemplate.Currency.Sign, claimFieldTemplate.CurrecncyDefaultValue), new { })
+                            break;
+                        case "Country":
+                        @Html.DisplayFor(m => claimFieldTemplate.CountryDefaultValue)
+                            break;
+                        case "Range": break;
+                    }
+
+                </div>
+            }
+        </div>
+    }
+
+</fieldset>
+<div class="buttons">
+    <input type="button" value="Edit" onclick="changeWindowLocation('/Claims/ClaimTemplate/Edit/@(Model.ClaimTemplateID)');" />
+    <input type="button" value="Back to List" onclick="changeWindowLocation('/Claims/ClaimTemplate');" />
+</div>

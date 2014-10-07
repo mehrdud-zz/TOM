@@ -1,0 +1,96 @@
+﻿@model IEnumerable<BrokingPlatformIntegrationBase.Interfaces.IClaim>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+<h2>Claims</h2>
+ 
+
+
+@* Kendo Grid implementation*@
+@(Html.Kendo().Grid(Model) // Bind the grid to the Model property of the view
+    .Name("Grid")
+    .Columns(columns =>
+        {
+            columns.Template(@<text><input type="checkbox" name="rowSelector" id="rowSelector@(item.ClaimID)" onclick="SelectRow('grid',  @item.ClaimID);" /></text>).Width("10px").HeaderTemplate(@<text><input id="allRowsSelector" type="checkbox" onclick="SelectAllRows(this);" /></text>);
+            columns.Bound(claim => claim.Name).Width(100).Template(@<text><a type="button" href="/Claims/Claim/Details/@item.ClaimID?Source=@item.Source">@item.Name</a></text>);
+            columns.Bound(claim => claim.ClaimDate).Width(200);
+            columns.Bound(claim => claim.Status).Width(200);
+
+
+            columns.Bound(claim => claim.ClaimTempalteName).Width(200).Filterable(filterable => filterable.UI("claimTemplateNameFilter"));
+            
+            columns.Bound(claim => claim.Source).Width(100).Title("Source").Filterable(filterable => filterable.UI("claimSourceFilter"));
+            columns.Template(@<text>
+
+                <a type="button" href="/Claims/Claim/Details/@item.ClaimID?Source=@item.Source">View</a>&nbsp;&nbsp;&nbsp;
+
+                @if (item.Source == "CFT")
+                {
+                    <a type="button" href="/Claims/Claim/Edit/@item.ClaimID?Source=@item.Source">Edit</a><text>&nbsp;&nbsp;&nbsp;</text>
+                    <a type="button" href="/Claims/Claim/Delete/@item.ClaimID?Source=@item.Source">Delete</a>
+
+                }
+            </text>).Width(100);
+
+                })
+                .Pageable(o => { o.PageSizes(new int[] { 10, 50, 100 }); })
+
+
+
+
+
+
+                .ToolBar(
+                toolbar =>
+                {
+                toolbar.Template(@<text>
+                        <div class="toolbar">
+                            <input type="button" value="Create new claim" onclick="changeWindowLocation('/Claims/Claim/Create');" />
+                            <input type="button" value="Clear filters" onclick="changeWindowLocation('/Claims/Claim');" />
+                        </div>
+                </text>);
+                })
+                                    .Sortable(sortable => sortable.AllowUnsort(false))
+                                    .Filterable(filterable => filterable
+                                    .Extra(false)
+                                    .Operators(operators => operators
+                                    .ForString(str => str.Clear()
+                                    .StartsWith("Starts with")
+                                    .IsEqualTo("Is equal to")
+                                    .IsNotEqualTo("Is not equal to")
+                                    ))
+                                    )
+
+)
+
+
+
+<script type="text/javascript">
+ 
+    function claimSourceFilter(element) {
+        element.kendoDropDownList({
+            dataSource: {
+                transport: {
+                    read: "@Url.Action("FilterClaimSources")"
+                }
+            },
+            optionLabel: "--Select Value--"
+        });
+    }
+
+
+        function claimTemplateNameFilter(element) {
+            element.kendoDropDownList({
+                dataSource: {
+                    transport: {
+                        read: "@Url.Action("FilterclaimTemplateNames")"
+                }
+            },
+                optionLabel: "--Select Value--"
+        });
+    }
+
+</script>

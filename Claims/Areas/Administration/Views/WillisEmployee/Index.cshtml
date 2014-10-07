@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ModelsLayer.Administration.Models.WillisEmployee>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+<h2>Willis Employees</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+@* Kendo Grid implementation*@
+
+@(Html.Kendo().Grid(Model) // Bind the grid to the Model property of the view
+    .Name("Grid")
+    .Columns(columns =>
+        {
+            columns.Bound(willisEmployee => willisEmployee.DisplayName).Width(100).Template(@<text><a type="button" href="/Administration/WillisEmployee/Details/@item.WillisEmployeeID">@item.DisplayName</a></text>);
+            columns.Bound(willisEmployee => willisEmployee.Email).Width(200);
+            columns.Bound(willisEmployee => willisEmployee.EmployeeUserID).Width(200);
+            columns.Template(@<text><a type="button" href="/Administration/WillisEmployee/Details/@item.WillisEmployeeID">View</a>&nbsp;&nbsp;&nbsp;<a type="button" href="/Administration/WillisEmployee/Edit/@item.WillisEmployeeID">Edit</a>&nbsp;&nbsp;&nbsp;<a type="button" href="/Administration/WillisEmployee/Delete/@item.WillisEmployeeID">Delete</a></text>).Width(100);
+        })
+    .Pageable(o =>{o.PageSizes(new int[]{10, 50, 100});}) 
+    .Sortable(sortable => sortable.AllowUnsort(false))
+    .Filterable(filterable => filterable
+        .Extra(false)
+         .Operators(operators => operators
+            .ForString(str => str.Clear()
+                .StartsWith("Starts with")
+                .IsEqualTo("Is equal to")
+                .IsNotEqualTo("Is not equal to")
+            ))
+        )
+        
+          .ToolBar(
+    toolbar =>
+    {
+        toolbar.Template(@<text>
+<div class="toolbar">
+    <input id="gridAllFilterReset" type="button" value="Clear filters" />
+</div>
+</text>);
+    })
+
+)
+
+
+
+
+<script type="text/javascript">
+    $("#gridAllFilterReset").click(function (e) {
+        window.location = "/Clients/ClientUser";
+    });
+</script>

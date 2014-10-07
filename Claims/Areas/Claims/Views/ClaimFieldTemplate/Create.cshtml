@@ -1,0 +1,497 @@
+﻿@model ModelsLayer.ClaimFieldTemplate
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+<h2>Create: Claim Field Template</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false)
+
+    <fieldset> 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FieldTypeID)
+        </div>
+        <div class="editor-field">
+
+            @(Html.Kendo().DropDownList()
+           .Name("FieldTypeID")
+               .HtmlAttributes(new { style = "width:100%;" })
+              .OptionLabel("Select field...")
+              .DataTextField("Title")
+              .DataValueField("Value")
+          .DataSource(source =>
+          {
+              source.Read(read =>
+                  {
+                      read.Action("GetFieldTypes", "FieldType", new { area = "Claims" });
+
+                  }).ServerFiltering(true);
+          })
+              .AutoBind(false)
+
+            )
+
+
+            @Html.ValidationMessageFor(model => model.FieldTypeID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Mandatory)
+        </div>
+        <div class="editor-field">
+            @Html.CheckBoxFor(m => m.Mandatory)
+        </div>
+
+        <div id="ShortTextContainer" class="fieldContainer hiddenContainer">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ShortTextDefaultValue)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.ShortTextDefaultValue)
+                @Html.ValidationMessageFor(model => model.ShortTextDefaultValue)
+            </div>
+        </div>
+
+        <div id="LongTextContainer" class="fieldContainer hiddenContainer">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.LongTextDefaultValue)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.LongTextDefaultValue)
+                @Html.ValidationMessageFor(model => model.LongTextDefaultValue)
+            </div>
+        </div>
+
+        <div id="IntegerContainer" class="fieldContainer hiddenContainer">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.IntegerDefaultValue)
+            </div>
+            <div class="editor-field">
+                @Html.Kendo().IntegerTextBoxFor(model => model.IntegerDefaultValue)
+                @Html.ValidationMessageFor(model => model.IntegerDefaultValue)
+            </div>
+        </div>
+
+        <div id="FloatContainer" class="fieldContainer hiddenContainer">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.FloatDefaultValue)
+            </div>
+            <div class="editor-field">
+                @Html.Kendo().NumericTextBoxFor(model => model.FloatDefaultValue).Decimals(2)
+                @Html.ValidationMessageFor(model => model.FloatDefaultValue)
+            </div>
+        </div>
+
+        <div id="DateContainer" class="fieldContainer hiddenContainer">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DateDefaultValue)
+            </div>
+            <div class="editor-field">
+                @Html.Kendo().DatePickerFor(model => model.DateDefaultValue)
+                @Html.ValidationMessageFor(model => model.DateDefaultValue)
+            </div>
+        </div>
+
+        <div id="DateTimeContainer" class="fieldContainer hiddenContainer">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DateTimeDefaultValue)
+            </div>
+            <div class="editor-field">
+                @Html.Kendo().DateTimePickerFor(model => model.DateTimeDefaultValue)
+                @Html.ValidationMessageFor(model => model.DateTimeDefaultValue)
+            </div>
+        </div>
+
+        <div id="DropDownContainer" class="fieldContainer hiddenContainer">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DropDownDefaultValue)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.DropDownDefaultValue)
+                @Html.ValidationMessageFor(model => model.DropDownDefaultValue)
+            </div>
+        </div>
+
+        <div id="MultiChoiceContainer" class="fieldContainer hiddenContainer">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.MultiChoiceDefaultValue)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.MultiChoiceDefaultValue)
+                @Html.ValidationMessageFor(model => model.MultiChoiceDefaultValue)
+            </div>
+        </div>
+
+        <div id="MoneyContainer" class="fieldContainer hiddenContainer">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.CurrecncyDefaultValue)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().NumericTextBoxFor(model => model.CurrecncyDefaultValue))
+                @Html.ValidationMessageFor(model => model.CurrecncyDefaultValue)
+
+
+
+                @*@Html.DropDownListFor(m => m.CurrencyID, ((SelectList)ViewBag.CurrencyIDlist), "")
+                    @Html.ValidationMessageFor(model => model.CurrecncyDefaultValue)*@
+            </div>
+        </div>
+
+        <div id="CountryContainer" class="fieldContainer hiddenContainer">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.CountryDefaultValue)
+            </div>
+            <div class="editor-field">
+                @*@Html.DropDownListFor(model => model.CountryDefaultValue, ((SelectList)ViewBag.CountryIDList), "")
+                    @Html.ValidationMessageFor(model => model.CountryDefaultValue)*@
+            </div>
+        </div>
+
+        <div id="RangeContainer" class="fieldContainer hiddenContainer">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.RangeDefaultValue)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.RangeDefaultValue)
+                @Html.ValidationMessageFor(model => model.RangeDefaultValue)
+            </div>
+        </div>
+
+        <div id="SubDropDownContainer" class="fieldContainer hiddenContainer">
+            <table id="subdropTable">
+                <tr>
+                    <td>
+                        <input type="text" placeholder="Top level value" id="topLevelText1" />
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <input type="text" placeholder="Second level value" name="secondLevelText1" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="secondLevelText1" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="secondLevelText1" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="secondLevelText1" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="secondLevelText1" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="text" placeholder="Top level value" id="topLevelText2" />
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <input type="text" placeholder="Second level value" name="secondLevelText2" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="secondLevelText2" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="secondLevelText2" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="secondLevelText2" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="secondLevelText2" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="text" placeholder="Top level value" id="topLevelText3" />
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <input type="text" placeholder="Second level value" name="secondLevelText3" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="secondLevelText3" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="secondLevelText3" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="secondLevelText3" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="secondLevelText3" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="text" placeholder="Top level value" id="topLevelText4" />
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <input type="text" placeholder="Second level value" name="secondLevelText4" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="secondLevelText4" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="secondLevelText4" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="secondLevelText4" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="secondLevelText4" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="text" placeholder="Top level value" id="topLevelText5" />
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <input type="text" placeholder="Second level value" name="secondLevelText5" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="secondLevelText5" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="secondLevelText5" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="secondLevelText5" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="secondLevelText5" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+        <p>
+            <input type="button" value="Create" onclick="SubmitForm();" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back", "Edit", "ClaimTemplate", new { @Id = Request.QueryString["ClaimTemplateID"] }, new { })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+<script type="text/javascript">
+    function ShowRelatedContainer(selectedText) {
+        $("div.fieldContainer").addClass("hiddenContainer");
+
+        switch (selectedText) {
+            case "Short Text":
+                $("div#ShortTextContainer").removeClass("hiddenContainer");
+                break;
+
+            case "Integer":
+                $("div#IntegerContainer").removeClass("hiddenContainer");
+                break;
+
+            case "Float":
+                $("div#FloatContainer").removeClass("hiddenContainer");
+                break;
+
+            case "Date":
+                $("div#DateContainer").removeClass("hiddenContainer");
+                break;
+
+            case "Date Time":
+                $("div#DateTimeContainer").removeClass("hiddenContainer");
+                break;
+
+            case "Drop Down":
+                $("div#DropDownContainer").removeClass("hiddenContainer");
+                break;
+
+            case "Multi Choice":
+                $("div#MultiChoiceContainer").removeClass("hiddenContainer");
+                break;
+
+            case "File":
+                $("div#FileContainer").removeClass("hiddenContainer");
+                break;
+
+            case "Money":
+                $("div#MoneyContainer").removeClass("hiddenContainer");
+                break;
+
+            case "Country":
+                $("div#CountryContainer").removeClass("hiddenContainer");
+                break;
+
+            case "Range":
+                $("div#RangeContainer").removeClass("hiddenContainer");
+                break;
+
+            case "Long Text":
+                $("div#LongTextContainer").removeClass("hiddenContainer");
+                break;
+
+            case "Drop Down - Sub Drop Down":
+                $("div#SubDropDownContainer").removeClass("hiddenContainer");
+                break;
+
+
+            default:
+                break;
+        }
+    }
+    $(document).ready(function () {
+        var selectedText = "";
+
+        $("#FieldTypeID").change(function () {
+            selectedText = $(this).find("option:selected").text();
+            ShowRelatedContainer(selectedText);
+        }
+        );
+
+        selectedText = $("#FieldTypeID").find("option:selected").text();
+        ShowRelatedContainer(selectedText);
+
+    });
+    //    [
+    //{ "firstName": "John", "lastName": "Doe" },
+    //{ "firstName": "Anna", "lastName": "Smith" },
+    //{ "firstName": "Peter", "lastName": "Jones" }
+    //    ];
+
+    function SubmitForm() {
+
+
+        var selectedText = $("#FieldTypeID").find("option:selected").text();
+        if (selectedText == "Drop Down - Sub Drop Down") {
+
+
+            var subDropDown = "[";
+
+
+            if ($("#topLevelText1").val() != "")
+                subDropDown += "{\"" + $("#topLevelText1").val() + "\":\"" + $("input[name=\"secondLevelText1\"]").map(function () { if ($(this).val() != "") return $(this).val(); }).get().join(",") + "\"}";
+
+            if ($("#topLevelText2").val() != "")
+                subDropDown += "{\"" + $("#topLevelText2").val() + "\":\"" + $("input[name=\"secondLevelText2\"]").map(function () { if ($(this).val() != "") return $(this).val(); }).get().join(",") + "\"}";
+
+            if ($("#topLevelText3").val() != "")
+                subDropDown += "{\"" + $("#topLevelText3").val() + "\":\"" + $("input[name=\"secondLevelText3\"]").map(function () { if ($(this).val() != "") return $(this).val(); }).get().join(",") + "\"}";
+
+            if ($("#topLevelText4").val() != "")
+                subDropDown += "{\"" + $("#topLevelText4").val() + "\":\"" + $("input[name=\"secondLevelText4\"]").map(function () { if ($(this).val() != "") return $(this).val(); }).get().join(",") + "\"}";
+
+            if ($("#topLevelText5").val() != "")
+                subDropDown += "{\"" + $("#topLevelText5").val() + "\":\"" + $("input[name=\"secondLevelText5\"]").map(function () { if ($(this).val() != "") return $(this).val(); }).get().join(",") + "\"}";
+
+
+            subDropDown += "]";
+
+            $('<input>').attr({
+                type: 'hidden',
+                id: 'DropDownLevel2Default',
+                name: 'DropDownLevel2Default',
+                value: subDropDown
+            }).appendTo('form');
+
+
+        }
+
+        $("form").submit();
+    }
+</script>

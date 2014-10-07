@@ -1,0 +1,770 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ActurisDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ClaimAmount">
+          <Key>
+            <PropertyRef Name="ClaimAmountId" />
+          </Key>
+          <Property Name="ClaimAmountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClaimId" Type="int" />
+          <Property Name="AmountRef" Type="int" />
+          <Property Name="Category" Type="int" />
+          <Property Name="AmountDate" Type="datetime" />
+          <Property Name="Amount" Type="money" />
+          <Property Name="AmountReceivedFromInsurer" Type="money" />
+          <Property Name="AmountPayee" Type="nvarchar" MaxLength="150" />
+          <Property Name="AmountExcessDeducted" Type="money" />
+          <Property Name="ClaimAmountComment" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CostHeadingId" Type="int" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+          <Property Name="Loaded" Type="bit" Nullable="false" />
+          <Property Name="LoadDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ClaimAmountCategory">
+          <Key>
+            <PropertyRef Name="ClaimAmountCategoryId" />
+          </Key>
+          <Property Name="ClaimAmountCategoryId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClaimCauseType">
+          <Key>
+            <PropertyRef Name="ClaimType" />
+            <PropertyRef Name="ClaimCause" />
+          </Key>
+          <Property Name="ClaimType" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ClaimTypeRef" Type="int" Nullable="false" />
+          <Property Name="ClaimCause" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ClaimCauseRef" Type="int" />
+        </EntityType>
+        <EntityType Name="ClaimCore">
+          <Key>
+            <PropertyRef Name="ClaimId" />
+          </Key>
+          <Property Name="ClaimId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClaimNo" Type="nvarchar" MaxLength="150" />
+          <Property Name="ClaimRef" Type="int" />
+          <Property Name="ClaimStatus" Type="int" />
+          <Property Name="ClaimCause" Type="int" />
+          <Property Name="ClaimHandlerOffice" Type="int" />
+          <Property Name="ClaimHandler" Type="int" />
+          <Property Name="LossDateFrom" Type="datetime" />
+          <Property Name="NotificationDate" Type="datetime" />
+          <Property Name="DelegatedArrangement" Type="int" />
+          <Property Name="SettlementDate" Type="datetime" />
+          <Property Name="NatureOfInjury" Type="int" />
+          <Property Name="LossInvolving" Type="int" />
+          <Property Name="AddressLine1" Type="nvarchar" MaxLength="150" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="int" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="ClaimType" Type="int" />
+          <Property Name="PolicyVersionRef" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="150" />
+          <Property Name="ClientClaimRef" Type="nvarchar" MaxLength="150" />
+          <Property Name="DataLoadId" Type="int" />
+          <Property Name="Loaded" Type="bit" Nullable="false" />
+          <Property Name="LoadDate" Type="datetime" />
+          <Property Name="NCBCompromised" Type="int" />
+          <Property Name="PolicyExcess" Type="nvarchar" MaxLength="10" />
+          <Property Name="PolicySection" Type="int" />
+          <Property Name="ClientAtFault" Type="int" />
+          <Property Name="OldClaimNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="LossDateTo" Type="datetime" />
+          <Property Name="ADWLastUpdate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ClaimHandler">
+          <Key>
+            <PropertyRef Name="AccountHandlerId" />
+          </Key>
+          <Property Name="AccountHandlerId" Type="int" Nullable="false" />
+          <Property Name="AccountHandler" Type="nvarchar" MaxLength="180" Nullable="false" />
+          <Property Name="OfficeId" Type="int" Nullable="false" />
+          <Property Name="Office" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="ClaimOffice">
+          <Key>
+            <PropertyRef Name="BrokerOfficeId" />
+          </Key>
+          <Property Name="BrokerOfficeId" Type="int" Nullable="false" />
+          <Property Name="BrokerOfficeName" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="ClaimPayment">
+          <Key>
+            <PropertyRef Name="ClaimPaymentId" />
+            <PropertyRef Name="ClaimPaymentDetailId" />
+            <PropertyRef Name="ClaimDetailId" />
+          </Key>
+          <Property Name="ClaimPaymentId" Type="int" Nullable="false" />
+          <Property Name="ClaimPaymentDetailId" Type="int" Nullable="false" />
+          <Property Name="ClaimDetailId" Type="int" Nullable="false" />
+          <Property Name="ClaimRef" Type="int" />
+          <Property Name="PolicyVersionRef" Type="int" />
+          <Property Name="CostHeadingId" Type="int" />
+          <Property Name="PaidAmount" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="RecoveredAmount" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="ReservedAmount" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="LastUpdate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ClaimQueue">
+          <Key>
+            <PropertyRef Name="QueueId" />
+          </Key>
+          <Property Name="QueueId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClaimNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="StatusId" Type="int" />
+          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" />
+          <Property Name="ErrorCount" Type="int" Nullable="false" />
+          <Property Name="ErrorType" Type="nvarchar(max)" />
+          <Property Name="ClaimId" Type="int" />
+          <Property Name="ClaimRef" Type="int" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ClaimReportField">
+          <Key>
+            <PropertyRef Name="ClaimReportFieldId" />
+          </Key>
+          <Property Name="ClaimReportFieldId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReportQuestionId" Type="int" />
+          <Property Name="ReportAnswerId" Type="nvarchar(max)" />
+          <Property Name="ClaimId" Type="int" />
+          <Property Name="Loaded" Type="bit" Nullable="false" />
+          <Property Name="LoadDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ClaimSection">
+          <Key>
+            <PropertyRef Name="ClaimSectionId" />
+          </Key>
+          <Property Name="ClaimSectionId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="ClaimStatus">
+          <Key>
+            <PropertyRef Name="ClaimStatusId" />
+          </Key>
+          <Property Name="ClaimStatusId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClaimType">
+          <Key>
+            <PropertyRef Name="ClaimTypeId" />
+          </Key>
+          <Property Name="ClaimTypeId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="LastUpdate" Type="datetime" />
+          <Property Name="Location" Type="nvarchar" MaxLength="200" />
+          <Property Name="City" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="DataLoad">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Data" Type="xml" />
+          <Property Name="DateAdded" Type="nvarchar" MaxLength="100" />
+          <Property Name="Loaded" Type="bit" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="ClientId" Type="int" />
+          <Property Name="Locked" Type="bit" Nullable="false" />
+          <Property Name="CurrentUser" Type="nvarchar" MaxLength="150" />
+          <Property Name="LastProcessed" Type="nvarchar" MaxLength="100" />
+          <Property Name="Queued" Type="bit" Nullable="false" />
+          <Property Name="EnforceRequired" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LossInvolving">
+          <Key>
+            <PropertyRef Name="LossInvolvingId" />
+          </Key>
+          <Property Name="LossInvolvingId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="NatureOfInjury">
+          <Key>
+            <PropertyRef Name="NatureOfInjuryId" />
+          </Key>
+          <Property Name="NatureOfInjuryId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="NCBCompromised">
+          <Key>
+            <PropertyRef Name="NCBCompromisedId" />
+          </Key>
+          <Property Name="NCBCompromisedId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Policy">
+          <Key>
+            <PropertyRef Name="PolicyId" />
+          </Key>
+          <Property Name="PolicyId" Type="int" Nullable="false" />
+          <Property Name="InsurerPolicyNo" Type="nvarchar" MaxLength="150" />
+          <Property Name="EffectiveDate" Type="datetime" />
+          <Property Name="ExpiryDate" Type="datetime" />
+          <Property Name="VersionRef" Type="int" />
+          <Property Name="LastUpdate" Type="datetime" />
+          <Property Name="ClientId" Type="int" />
+        </EntityType>
+        <EntityType Name="PolicySectionByType">
+          <Key>
+            <PropertyRef Name="PolicySectionId" />
+            <PropertyRef Name="ClaimTypeId" />
+          </Key>
+          <Property Name="PolicySectionId" Type="int" Nullable="false" />
+          <Property Name="ClaimTypeId" Type="int" Nullable="false" />
+          <Property Name="PolicySection" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ActurisDataModelStoreContainer">
+          <EntitySet Name="ClaimAmount" EntityType="Self.ClaimAmount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClaimAmountCategory" EntityType="Self.ClaimAmountCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClaimCauseType" EntityType="Self.ClaimCauseType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClaimCore" EntityType="Self.ClaimCore" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClaimHandler" EntityType="Self.ClaimHandler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClaimOffice" EntityType="Self.ClaimOffice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClaimPayment" EntityType="Self.ClaimPayment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClaimQueue" EntityType="Self.ClaimQueue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClaimReportField" EntityType="Self.ClaimReportField" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClaimSection" EntityType="Self.ClaimSection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClaimStatus" EntityType="Self.ClaimStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClaimType" EntityType="Self.ClaimType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataLoad" EntityType="Self.DataLoad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LossInvolving" EntityType="Self.LossInvolving" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NatureOfInjury" EntityType="Self.NatureOfInjury" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NCBCompromised" EntityType="Self.NCBCompromised" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Policy" EntityType="Self.Policy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PolicySectionByType" EntityType="Self.PolicySectionByType" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ActurisDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ClaimAmount">
+          <Key>
+            <PropertyRef Name="ClaimAmountId" />
+          </Key>
+          <Property Name="ClaimAmountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClaimId" Type="Int32" />
+          <Property Name="AmountRef" Type="Int32" />
+          <Property Name="Category" Type="Int32" />
+          <Property Name="AmountDate" Type="DateTime" Precision="3" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="AmountReceivedFromInsurer" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="AmountPayee" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="AmountExcessDeducted" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ClaimAmountComment" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CostHeadingId" Type="Int32" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Loaded" Type="Boolean" Nullable="false" />
+          <Property Name="LoadDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ClaimCauseType">
+          <Key>
+            <PropertyRef Name="ClaimType" />
+            <PropertyRef Name="ClaimCause" />
+          </Key>
+          <Property Name="ClaimType" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimTypeRef" Type="Int32" Nullable="false" />
+          <Property Name="ClaimCause" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimCauseRef" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ClaimCore">
+          <Key>
+            <PropertyRef Name="ClaimId" />
+          </Key>
+          <Property Name="ClaimId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClaimNo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimRef" Type="Int32" />
+          <Property Name="ClaimStatus" Type="Int32" />
+          <Property Name="ClaimCause" Type="Int32" />
+          <Property Name="ClaimHandlerOffice" Type="Int32" />
+          <Property Name="ClaimHandler" Type="Int32" />
+          <Property Name="LossDateFrom" Type="DateTime" Precision="3" />
+          <Property Name="NotificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DelegatedArrangement" Type="Int32" />
+          <Property Name="SettlementDate" Type="DateTime" Precision="3" />
+          <Property Name="NatureOfInjury" Type="Int32" />
+          <Property Name="LossInvolving" Type="Int32" />
+          <Property Name="AddressLine1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="Int32" />
+          <Property Name="PolicyVersionRef" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ClientClaimRef" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DataLoadId" Type="Int32" />
+          <Property Name="Loaded" Type="Boolean" Nullable="false" />
+          <Property Name="LoadDate" Type="DateTime" Precision="3" />
+          <Property Name="NCBCompromised" Type="Int32" />
+          <Property Name="PolicyExcess" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PolicySection" Type="Int32" />
+          <Property Name="ClientAtFault" Type="Int32" />
+          <Property Name="OldClaimNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LossDateTo" Type="DateTime" Precision="3" />
+          <Property Name="ADWLastUpdate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ClaimReportField">
+          <Key>
+            <PropertyRef Name="ClaimReportFieldId" />
+          </Key>
+          <Property Name="ClaimReportFieldId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportQuestionId" Type="Int32" />
+          <Property Name="ReportAnswerId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimId" Type="Int32" />
+          <Property Name="Loaded" Type="Boolean" Nullable="false" />
+          <Property Name="LoadDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ClaimSection">
+          <Key>
+            <PropertyRef Name="ClaimSectionId" />
+          </Key>
+          <Property Name="ClaimSectionId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ClaimStatu">
+          <Key>
+            <PropertyRef Name="ClaimStatusId" />
+          </Key>
+          <Property Name="ClaimStatusId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClaimType">
+          <Key>
+            <PropertyRef Name="ClaimTypeId" />
+          </Key>
+          <Property Name="ClaimTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+          <Property Name="Location" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Policy">
+          <Key>
+            <PropertyRef Name="PolicyId" />
+          </Key>
+          <Property Name="PolicyId" Type="Int32" Nullable="false" />
+          <Property Name="InsurerPolicyNo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="EffectiveDate" Type="DateTime" Precision="3" />
+          <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="VersionRef" Type="Int32" />
+          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+          <Property Name="ClientId" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="ACWEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ClaimAmounts" EntityType="Self.ClaimAmount" />
+          <EntitySet Name="ClaimCauseTypes" EntityType="Self.ClaimCauseType" />
+          <EntitySet Name="ClaimCores" EntityType="Self.ClaimCore" />
+          <EntitySet Name="ClaimReportFields" EntityType="Self.ClaimReportField" />
+          <EntitySet Name="ClaimSections" EntityType="Self.ClaimSection" />
+          <EntitySet Name="ClaimStatus" EntityType="Self.ClaimStatu" />
+          <EntitySet Name="ClaimTypes" EntityType="Self.ClaimType" />
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Policies" EntityType="Self.Policy" />
+          <EntitySet Name="LossInvolvings" EntityType="ActurisDataModel.LossInvolving" />
+          <EntitySet Name="NatureOfInjuries" EntityType="ActurisDataModel.NatureOfInjury" />
+          <EntitySet Name="NCBCompromiseds" EntityType="ActurisDataModel.NCBCompromised" />
+          <EntitySet Name="ClaimAmountCategories" EntityType="ActurisDataModel.ClaimAmountCategory" />
+          <EntitySet Name="ClaimHandlers" EntityType="ActurisDataModel.ClaimHandler" />
+          <EntitySet Name="ClaimOffices" EntityType="ActurisDataModel.ClaimOffice" />
+          <EntitySet Name="ClaimPayments" EntityType="ActurisDataModel.ClaimPayment" />
+          <EntitySet Name="ClaimQueues" EntityType="ActurisDataModel.ClaimQueue" />
+          <EntitySet Name="PolicySectionByTypes" EntityType="ActurisDataModel.PolicySectionByType" />
+          <EntitySet Name="DataLoads" EntityType="ActurisDataModel.DataLoad" />
+        </EntityContainer>
+        <EntityType Name="LossInvolving">
+          <Key>
+            <PropertyRef Name="LossInvolvingId" />
+          </Key>
+          <Property Name="LossInvolvingId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="NatureOfInjury">
+          <Key>
+            <PropertyRef Name="NatureOfInjuryId" />
+          </Key>
+          <Property Name="NatureOfInjuryId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="NCBCompromised">
+          <Key>
+            <PropertyRef Name="NCBCompromisedId" />
+          </Key>
+          <Property Name="NCBCompromisedId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ClaimAmountCategory">
+          <Key>
+            <PropertyRef Name="ClaimAmountCategoryId" />
+          </Key>
+          <Property Name="ClaimAmountCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ClaimHandler">
+          <Key>
+            <PropertyRef Name="AccountHandlerId" />
+          </Key>
+          <Property Name="AccountHandlerId" Type="Int32" Nullable="false" />
+          <Property Name="AccountHandler" Type="String" Nullable="false" MaxLength="180" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeId" Type="Int32" Nullable="false" />
+          <Property Name="Office" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ClaimOffice">
+          <Key>
+            <PropertyRef Name="BrokerOfficeId" />
+          </Key>
+          <Property Name="BrokerOfficeId" Type="Int32" Nullable="false" />
+          <Property Name="BrokerOfficeName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ClaimPayment">
+          <Key>
+            <PropertyRef Name="ClaimPaymentId" />
+            <PropertyRef Name="ClaimPaymentDetailId" />
+            <PropertyRef Name="ClaimDetailId" />
+          </Key>
+          <Property Name="ClaimPaymentId" Type="Int32" Nullable="false" />
+          <Property Name="ClaimPaymentDetailId" Type="Int32" Nullable="false" />
+          <Property Name="ClaimDetailId" Type="Int32" Nullable="false" />
+          <Property Name="ClaimRef" Type="Int32" />
+          <Property Name="PolicyVersionRef" Type="Int32" />
+          <Property Name="CostHeadingId" Type="Int32" />
+          <Property Name="PaidAmount" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="RecoveredAmount" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="ReservedAmount" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ClaimQueue">
+          <Key>
+            <PropertyRef Name="QueueId" />
+          </Key>
+          <Property Name="QueueId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClaimNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StatusId" Type="Int32" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+          <Property Name="ErrorCount" Type="Int32" Nullable="false" />
+          <Property Name="ErrorType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimId" Type="Int32" />
+          <Property Name="ClaimRef" Type="Int32" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PolicySectionByType">
+          <Key>
+            <PropertyRef Name="PolicySectionId" />
+            <PropertyRef Name="ClaimTypeId" />
+          </Key>
+          <Property Name="PolicySectionId" Type="Int32" Nullable="false" />
+          <Property Name="ClaimTypeId" Type="Int32" Nullable="false" />
+          <Property Name="PolicySection" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DataLoad">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateAdded" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Loaded" Type="Boolean" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="ClientId" Type="Int32" />
+          <Property Name="Locked" Type="Boolean" Nullable="false" />
+          <Property Name="CurrentUser" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="LastProcessed" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Queued" Type="Boolean" Nullable="false" />
+          <Property Name="EnforceRequired" Type="Boolean" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ActurisDataModelStoreContainer" CdmEntityContainer="ACWEntities">
+          <EntitySetMapping Name="ClaimAmounts">
+            <EntityTypeMapping TypeName="ActurisDataModel.ClaimAmount">
+              <MappingFragment StoreEntitySet="ClaimAmount">
+                <ScalarProperty Name="ClaimAmountId" ColumnName="ClaimAmountId" />
+                <ScalarProperty Name="ClaimId" ColumnName="ClaimId" />
+                <ScalarProperty Name="AmountRef" ColumnName="AmountRef" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="AmountDate" ColumnName="AmountDate" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="AmountReceivedFromInsurer" ColumnName="AmountReceivedFromInsurer" />
+                <ScalarProperty Name="AmountPayee" ColumnName="AmountPayee" />
+                <ScalarProperty Name="AmountExcessDeducted" ColumnName="AmountExcessDeducted" />
+                <ScalarProperty Name="ClaimAmountComment" ColumnName="ClaimAmountComment" />
+                <ScalarProperty Name="CostHeadingId" ColumnName="CostHeadingId" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="Loaded" ColumnName="Loaded" />
+                <ScalarProperty Name="LoadDate" ColumnName="LoadDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClaimCauseTypes">
+            <EntityTypeMapping TypeName="ActurisDataModel.ClaimCauseType">
+              <MappingFragment StoreEntitySet="ClaimCauseType">
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimTypeRef" ColumnName="ClaimTypeRef" />
+                <ScalarProperty Name="ClaimCause" ColumnName="ClaimCause" />
+                <ScalarProperty Name="ClaimCauseRef" ColumnName="ClaimCauseRef" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClaimCores">
+            <EntityTypeMapping TypeName="ActurisDataModel.ClaimCore">
+              <MappingFragment StoreEntitySet="ClaimCore">
+                <ScalarProperty Name="ClaimId" ColumnName="ClaimId" />
+                <ScalarProperty Name="ClaimNo" ColumnName="ClaimNo" />
+                <ScalarProperty Name="ClaimRef" ColumnName="ClaimRef" />
+                <ScalarProperty Name="ClaimStatus" ColumnName="ClaimStatus" />
+                <ScalarProperty Name="ClaimCause" ColumnName="ClaimCause" />
+                <ScalarProperty Name="ClaimHandlerOffice" ColumnName="ClaimHandlerOffice" />
+                <ScalarProperty Name="ClaimHandler" ColumnName="ClaimHandler" />
+                <ScalarProperty Name="LossDateFrom" ColumnName="LossDateFrom" />
+                <ScalarProperty Name="NotificationDate" ColumnName="NotificationDate" />
+                <ScalarProperty Name="DelegatedArrangement" ColumnName="DelegatedArrangement" />
+                <ScalarProperty Name="SettlementDate" ColumnName="SettlementDate" />
+                <ScalarProperty Name="NatureOfInjury" ColumnName="NatureOfInjury" />
+                <ScalarProperty Name="LossInvolving" ColumnName="LossInvolving" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="PolicyVersionRef" ColumnName="PolicyVersionRef" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ClientClaimRef" ColumnName="ClientClaimRef" />
+                <ScalarProperty Name="DataLoadId" ColumnName="DataLoadId" />
+                <ScalarProperty Name="Loaded" ColumnName="Loaded" />
+                <ScalarProperty Name="LoadDate" ColumnName="LoadDate" />
+                <ScalarProperty Name="NCBCompromised" ColumnName="NCBCompromised" />
+                <ScalarProperty Name="PolicyExcess" ColumnName="PolicyExcess" />
+                <ScalarProperty Name="PolicySection" ColumnName="PolicySection" />
+                <ScalarProperty Name="ClientAtFault" ColumnName="ClientAtFault" />
+                <ScalarProperty Name="OldClaimNo" ColumnName="OldClaimNo" />
+                <ScalarProperty Name="LossDateTo" ColumnName="LossDateTo" />
+                <ScalarProperty Name="ADWLastUpdate" ColumnName="ADWLastUpdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClaimReportFields">
+            <EntityTypeMapping TypeName="ActurisDataModel.ClaimReportField">
+              <MappingFragment StoreEntitySet="ClaimReportField">
+                <ScalarProperty Name="ClaimReportFieldId" ColumnName="ClaimReportFieldId" />
+                <ScalarProperty Name="ReportQuestionId" ColumnName="ReportQuestionId" />
+                <ScalarProperty Name="ReportAnswerId" ColumnName="ReportAnswerId" />
+                <ScalarProperty Name="ClaimId" ColumnName="ClaimId" />
+                <ScalarProperty Name="Loaded" ColumnName="Loaded" />
+                <ScalarProperty Name="LoadDate" ColumnName="LoadDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClaimSections">
+            <EntityTypeMapping TypeName="ActurisDataModel.ClaimSection">
+              <MappingFragment StoreEntitySet="ClaimSection">
+                <ScalarProperty Name="ClaimSectionId" ColumnName="ClaimSectionId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClaimStatus">
+            <EntityTypeMapping TypeName="ActurisDataModel.ClaimStatu">
+              <MappingFragment StoreEntitySet="ClaimStatus">
+                <ScalarProperty Name="ClaimStatusId" ColumnName="ClaimStatusId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClaimTypes">
+            <EntityTypeMapping TypeName="ActurisDataModel.ClaimType">
+              <MappingFragment StoreEntitySet="ClaimType">
+                <ScalarProperty Name="ClaimTypeId" ColumnName="ClaimTypeId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="ActurisDataModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="City" ColumnName="City" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Policies">
+            <EntityTypeMapping TypeName="ActurisDataModel.Policy">
+              <MappingFragment StoreEntitySet="Policy">
+                <ScalarProperty Name="PolicyId" ColumnName="PolicyId" />
+                <ScalarProperty Name="InsurerPolicyNo" ColumnName="InsurerPolicyNo" />
+                <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="VersionRef" ColumnName="VersionRef" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LossInvolvings">
+            <EntityTypeMapping TypeName="ActurisDataModel.LossInvolving">
+              <MappingFragment StoreEntitySet="LossInvolving">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LossInvolvingId" ColumnName="LossInvolvingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NatureOfInjuries">
+            <EntityTypeMapping TypeName="ActurisDataModel.NatureOfInjury">
+              <MappingFragment StoreEntitySet="NatureOfInjury">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="NatureOfInjuryId" ColumnName="NatureOfInjuryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NCBCompromiseds">
+            <EntityTypeMapping TypeName="ActurisDataModel.NCBCompromised">
+              <MappingFragment StoreEntitySet="NCBCompromised">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="NCBCompromisedId" ColumnName="NCBCompromisedId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClaimAmountCategories">
+            <EntityTypeMapping TypeName="ActurisDataModel.ClaimAmountCategory">
+              <MappingFragment StoreEntitySet="ClaimAmountCategory">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ClaimAmountCategoryId" ColumnName="ClaimAmountCategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClaimHandlers">
+            <EntityTypeMapping TypeName="ActurisDataModel.ClaimHandler">
+              <MappingFragment StoreEntitySet="ClaimHandler">
+                <ScalarProperty Name="Office" ColumnName="Office" />
+                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+                <ScalarProperty Name="AccountHandler" ColumnName="AccountHandler" />
+                <ScalarProperty Name="AccountHandlerId" ColumnName="AccountHandlerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClaimOffices">
+            <EntityTypeMapping TypeName="ActurisDataModel.ClaimOffice">
+              <MappingFragment StoreEntitySet="ClaimOffice">
+                <ScalarProperty Name="BrokerOfficeName" ColumnName="BrokerOfficeName" />
+                <ScalarProperty Name="BrokerOfficeId" ColumnName="BrokerOfficeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClaimPayments">
+            <EntityTypeMapping TypeName="ActurisDataModel.ClaimPayment">
+              <MappingFragment StoreEntitySet="ClaimPayment">
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="ReservedAmount" ColumnName="ReservedAmount" />
+                <ScalarProperty Name="RecoveredAmount" ColumnName="RecoveredAmount" />
+                <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+                <ScalarProperty Name="CostHeadingId" ColumnName="CostHeadingId" />
+                <ScalarProperty Name="PolicyVersionRef" ColumnName="PolicyVersionRef" />
+                <ScalarProperty Name="ClaimRef" ColumnName="ClaimRef" />
+                <ScalarProperty Name="ClaimDetailId" ColumnName="ClaimDetailId" />
+                <ScalarProperty Name="ClaimPaymentDetailId" ColumnName="ClaimPaymentDetailId" />
+                <ScalarProperty Name="ClaimPaymentId" ColumnName="ClaimPaymentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClaimQueues">
+            <EntityTypeMapping TypeName="ActurisDataModel.ClaimQueue">
+              <MappingFragment StoreEntitySet="ClaimQueue">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="ClaimRef" ColumnName="ClaimRef" />
+                <ScalarProperty Name="ClaimId" ColumnName="ClaimId" />
+                <ScalarProperty Name="ErrorType" ColumnName="ErrorType" />
+                <ScalarProperty Name="ErrorCount" ColumnName="ErrorCount" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="ClaimNo" ColumnName="ClaimNo" />
+                <ScalarProperty Name="QueueId" ColumnName="QueueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PolicySectionByTypes">
+            <EntityTypeMapping TypeName="ActurisDataModel.PolicySectionByType">
+              <MappingFragment StoreEntitySet="PolicySectionByType">
+                <ScalarProperty Name="PolicySection" ColumnName="PolicySection" />
+                <ScalarProperty Name="ClaimTypeId" ColumnName="ClaimTypeId" />
+                <ScalarProperty Name="PolicySectionId" ColumnName="PolicySectionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DataLoads">
+            <EntityTypeMapping TypeName="ActurisDataModel.DataLoad">
+              <MappingFragment StoreEntitySet="DataLoad">
+                <ScalarProperty Name="EnforceRequired" ColumnName="EnforceRequired" />
+                <ScalarProperty Name="Queued" ColumnName="Queued" />
+                <ScalarProperty Name="LastProcessed" ColumnName="LastProcessed" />
+                <ScalarProperty Name="CurrentUser" ColumnName="CurrentUser" />
+                <ScalarProperty Name="Locked" ColumnName="Locked" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Loaded" ColumnName="Loaded" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

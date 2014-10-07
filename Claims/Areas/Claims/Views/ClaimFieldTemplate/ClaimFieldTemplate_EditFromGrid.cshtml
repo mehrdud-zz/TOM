@@ -1,0 +1,27 @@
+﻿@using Kendo.Mvc.UI
+
+@model List<ModelsLayer.ClaimFieldTemplate>
+
+@{
+    ViewBag.Title = "ClaimFieldTemplate_EditFromGrid";    
+}
+
+@(Html.Kendo().Grid(Model) // Bind the grid to the Model property of the view
+    .Name("Grid")
+    .ToolBar(toolbar => toolbar.Create())
+    .Columns(columns =>
+        {
+            columns.Bound(p => p.Name);
+            columns.Bound(p => p.FieldType.Name).Width(140).Title("Field Type");
+            columns.Template(@<text><a type="button" href="/Claims/ClaimFieldTemplate/Edit/@item.ClaimFieldTemplateID?ClaimTemplateID=@item.ClaimFieldGroupTemplate.ClaimTemplateID&mode=grid">Edit</a>&nbsp;&nbsp;&nbsp;<a type="button" href="/Claims/ClaimFieldTemplate/Delete/@item.ClaimFieldTemplateID">Delete</a></text>).Width(100);
+        })
+            .Pageable(o =>{o.PageSizes(new int[]{10, 50, 100});}) 
+            .Sortable()
+            .DataSource(dataSource => dataSource
+            .Server()
+            .Model(model => model.Id(p => p.ClaimFieldTemplateID))
+             .Create(create => create.Action("Create", "ClaimFieldTemplate", new { ClaimTemplateID = 5})
+
+            )
+)
+)

@@ -1,0 +1,65 @@
+﻿@model ModelsLayer.Claim
+
+@{
+    ViewBag.Title = "ClaimForm";
+    Layout = "~/Views/Home/ClientMaster_CRUD.cshtml";
+      
+}
+
+<div class="alert alert-success">Your claim has been submitted successfully!</div>
+
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Claim</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ClaimTemplate)
+    </div>
+    <div class="display-field"> 
+            @Html.DisplayFor(model => model.ClaimTemplate.Name) 
+    </div> 
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ClaimStatu.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ClaimStatu.Name)
+    </div> 
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.DateCreated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateCreated)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+     
+       <div class="display-label">
+        @Html.DisplayNameFor(model => model.Country.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Country.Name)
+    </div>
+
+    <br />
+
+     
+
+    @Html.Action("FieldsListViewExistingClaim", "CustomTemplate", new { area = "Claims", id = Model.ClaimID })
+
+    @*<div style="display:inline-block;">
+        @Html.Action("ListViewForClaimFields", "Claim", new { Claim = Model })
+    </div>*@
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "ClaimFormEdit", new { ClaimID = Model.ClaimID }) |
+    @Html.ActionLink("Back to List", "ListClientClaims")
+</p>

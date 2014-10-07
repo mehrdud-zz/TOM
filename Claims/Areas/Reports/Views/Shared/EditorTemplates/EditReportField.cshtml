@@ -1,0 +1,43 @@
+﻿@model ModelsLayer.ReportField
+@{
+    ViewBag.Title = "Mehrdad";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+
+        <input type="hidden" name="ReportID" value="@Model.ReportID" />
+        <input type="hidden" name="ReportFieldID" value="@Model.ReportFieldID" />
+        <input type="hidden" name="FieldId" value="@Model.FieldId" />
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FieldId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FieldId)
+            @Html.ValidationMessageFor(model => model.FieldId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Func)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Func)
+            @Html.ValidationMessageFor(model => model.Func)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DisplayName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DisplayName)
+            @Html.ValidationMessageFor(model => model.DisplayName)
+        </div> 
+
+    </fieldset> 
+}
+

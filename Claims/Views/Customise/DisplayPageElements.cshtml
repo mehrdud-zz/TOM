@@ -1,0 +1,9 @@
+﻿@model List<ModelsLayer.PageElement>
+@{
+    ViewBag.Title = "DisplayPageElements";
+}
+
+@foreach (ModelsLayer.PageElement pageElement in Model)
+{
+    @Html.Action("RunTableReport", "Reports", new { area = "Reports", ReportID = pageElement.ReportID, PageElementID = pageElement.PageElementID });
+}

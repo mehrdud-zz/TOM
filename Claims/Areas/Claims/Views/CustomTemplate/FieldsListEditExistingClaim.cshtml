@@ -1,0 +1,96 @@
+﻿@using ModelsLayer
+@model Claim
+
+@{
+    ViewBag.Title = "CreateFromClaimTemplate";
+}
+
+
+@if (Model != null)
+{
+    foreach (ClaimFieldGroup claimFieldGroup in Model.ClaimFieldGroups)
+    {
+        <div style="display: inline-block; width: 100%; border: 1px solid; -ms-border-radius: 10px; border-radius: 10px; z-index: 200; overflow: hidden; margin: 10px 0 10px 0;">
+            <div style="display: inline-block; width: 100%; background-color: #cecece; padding: 10px 1% 10px 1%; z-index: -1;">
+                <h3>@Html.Label(claimFieldGroup.Name)</h3>
+                @*<p>@Html.Label(claimFieldGroup.Description)</p>*@
+
+            </div>
+            <ul class="claimFieldGroupTemplate" id="claimFieldGroupTemplate_@claimFieldGroup.ClaimFieldGroupID">
+                @foreach (ClaimField claimField in claimFieldGroup.ClaimFields)
+                {
+                    <li>
+                        <div class="editor-label">
+                            @Html.Label(claimField.Name)
+
+                            <label style="color: red; font-size: 14pt;">*</label>
+
+                        </div>
+
+                        <div class="editor-field">
+                            @*@Html.Action("MultiChoiceListTemplate", "Fields", new { claimField = claimField.ClaimFieldTemplate, FieldMode = "Edit", area = "" });
+                                @Html.Action("GetFieldTemplate", "Fields", new { ClaimFieldTemplate = claimField.ClaimFieldTemplate, FieldMode = ClaimsPoC.Controllers.FieldMode.Edit.ToString(), area = "" });*@
+
+                            @if (claimField.ClaimFieldTemplate != null && claimField.ClaimFieldTemplate.FieldType != null && !String.IsNullOrEmpty(claimField.ClaimFieldTemplate.FieldType.TemplateName))
+                            {
+                                switch (claimField.ClaimFieldTemplate.FieldType.TemplateName)
+                                {
+                                    case "ShortText":
+                                        @Html.TextBox(claimField.Code, claimField.ShortTextValue)
+                                        break;
+                                    case "LongText":
+                                    @Html.TextArea(claimField.Code, claimField.LongTextValue)
+                                        break;
+                                    case "Integer":
+                                        ClaimField field1 = claimField;
+                                        @Html.Kendo().IntegerTextBoxFor(m => field1.IntegerValue).Value(claimField.IntegerValue).Name(claimField.Code)
+                                        break;
+                                    case "Float":
+                                        ClaimField field = claimField;
+                                        @Html.Kendo().NumericTextBoxFor(m => field.FloatValue).Decimals(2).Value(claimField.FloatValue).Name(claimField.Code)
+                                        break;
+                                    case "Date":
+                                    @Html.Kendo().DatePicker().Value(claimField.DateValue).Name(claimField.Code)
+                                        break;
+                                    case "DateTime":
+                                        ClaimField claimField1 = claimField;
+                                        @Html.Kendo().DateTimePickerFor(m => claimField1.DateTimeValue).Value(claimField.DateTimeValue).Name(claimField.Code)
+                                        break;
+                                    case "DropDown":
+                                    @Html.Action("DropDownListTemplate", "CustomTemplate", new { area = "Claims", claimField })
+
+                                        break;
+                                    case "MultiChoice":
+                                    @Html.Action("MultiChoiceListTemplate", "CustomTemplate", new { area = "Claims", claimField, FieldMode = ClaimsPoC.Controllers.FieldMode.Edit })
+                                        break;
+                                    case "File":
+                                    @Html.EditorFor(m => claimField.FileValue)
+                                        break;
+                                    case "Money":
+                                        ClaimField field2 = claimField;
+                                        @(Html.Kendo().CurrencyTextBoxFor(m => field2.CurrecncyValue).Min(0).Format("{0:" + claimField.ClaimFieldTemplate.Currency.Sign + "#,##0;(" + claimField.ClaimFieldTemplate.Currency.Sign + "#,##0)}").Name(claimField.Code))
+                                        break;
+                                    case "Country":
+                                        // @Html.EditorFor(model => claimField.CountryValue)
+
+                                        @Html.Action("CountryTemplate", "CustomTemplate", new { area = "Claims", claimField })
+                                        break;
+                                    case "Range": break;
+
+
+                                    case "SubDropDown":
+                                    @Html.Action("SubDropDown", "CustomTemplate", new { area = "Claims", claimField })
+                                        break;
+
+                                }
+                            }
+
+
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+
+    }
+}

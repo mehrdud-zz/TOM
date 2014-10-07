@@ -1,0 +1,239 @@
+﻿@model ClaimsPoC.ClientHome.Controllers.ClientHomeModel
+
+@{
+    ViewBag.Title = "Reports";
+    ViewBag.Colors =
+        new List<string>() { "articleBlue", "articleGreen", "articleYellow", "articleBrown", "articleRed" };
+}
+
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<style>
+    #piechart {
+        cursor: pointer;
+        width: 400px;
+        height: 300px;
+        display: inline-block;
+        *display: inline;
+        zoom: 1;
+    }
+
+    .panel {
+        float: left;
+    }
+
+    .panel-heading {
+        cursor: pointer;
+    }
+</style>
+
+
+<div class="panel panel-primary" id="panel1">
+    <div class="panel-heading">
+        <h3 class="panel-title">Current Claims Qeue Test</h3>
+    </div>
+    <div class="panel-body">
+        <div id="piechart">
+        </div>
+    </div>
+</div>
+
+
+<div class="panel panel-primary" id="panel2">
+    <div class="panel-heading">
+        <h3 class="panel-title">Claims</h3>
+    </div>
+    <div class="panel-body">
+        <div id="chart_div" style="z-index: 1;  min-width: 640px; min-height: 480px"></div>
+    </div>
+</div>
+
+@if (Model != null) {
+<script type="text/javascript">
+
+
+    google.load('visualization', '1', { 'packages': ['geochart'] });
+    google.load('visualization', '1', { packages: ['orgchart', 'table'] });
+    google.load("visualization", "1", {packages:["corechart"]});
+
+    google.setOnLoadCallback(drawRegionsMap);
+
+
+    function drawRegionsMap() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Country');
+        data.addColumn('string', 'Status');
+        data.addColumn('number', 'Value');
+
+        rows = [];
+
+ 
+            @foreach (var item in Model.CountryCounterList)
+        {
+                <text>
+
+        var title = '@(item.Country)';
+
+
+        var description = '@(item.Status)';
+
+        var counter = @item.Counter;
+        rows.push([title, description, counter]);
+        </text>
+        }
+
+        data.addRows(rows);
+
+
+
+        var options = {
+            backgroundColor: 'transparent',
+            enableRegionInteractivity: 'true',
+            colorAxis: { colors: ['#3366cc', '#dc3912'] }
+        };
+
+        var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+
+
+
+        google.visualization.events.addListener(chart, 'select', function () {
+            var selection = chart.getSelection();
+            var selectedRow = chart.getSelection();
+            if (selectedRow) {
+                var selectedItem = selectedRow[0];
+
+                var topping = data.getValue(selectedItem.row, 0);
+
+                table.setSelection(selectedRow);
+            }
+
+        });
+
+
+
+        function selectHandler() {
+            var selectedItem = chart.getSelection()[0];
+            if (selectedItem) {
+                var topping = data.getValue(selectedItem.row, 0);
+                alert('The user selected ' + topping);
+            }
+
+        }
+
+        var pieChartData = new google.visualization.DataTable();
+        pieChartData.addColumn('string', 'Status');
+        pieChartData.addColumn('number', 'Value');
+
+        rows = [];
+
+        @foreach (var item in Model.ClaimStatusList)
+        {
+                <text>
+
+
+
+        var status = '@(item.Status)';
+
+        var counter = @item.Counter;
+        rows.push([status, counter]);
+        </text>
+        }
+
+        pieChartData.addRows(rows);
+
+
+
+        var pieChartOptions = {
+            title: ' ',
+            pieHole: 0.4,
+            backgroundColor: 'transparent',
+        };
+
+        var pieChart = new google.visualization.PieChart(document.getElementById('piechart'));
+        pieChart.draw(pieChartData, pieChartOptions);
+
+        google.visualization.events.addListener(pieChart, 'select', function () {
+            var selectedRow = pieChart.getSelection();
+            if (selectedRow && selectedRow[0]) {
+                var topping = pieChartData.getValue(selectedRow[0].row, 0);
+
+                if(topping!=""){
+                    var filteredData = GetDataTable(data,topping, 1);
+
+                    var filteredOptions = {
+                        backgroundColor: 'transparent',
+                        enableRegionInteractivity: 'true',
+                        colorAxis: { colors: ['#3366cc', '#dc3912'] }
+                    };
+
+                    switch(topping){
+                        case "Finished":
+                            filteredOptions = {
+                                backgroundColor: 'transparent',
+                                enableRegionInteractivity: 'true',
+                                colorAxis: { colors: ['#cccccc', '#3366cc'] }
+                            };
+                            break;
+
+                        case "Pending":
+                            filteredOptions = {
+                                backgroundColor: 'transparent',
+                                enableRegionInteractivity: 'true',
+                                colorAxis: { colors: ['#cccccc', '#dc3912'] }
+                            };
+                            break;
+
+
+                        case "Submitted":
+                            filteredOptions = {
+                                backgroundColor: 'transparent',
+                                enableRegionInteractivity: 'true',
+                                colorAxis: { colors: ['#cccccc', '#ff9900'] }
+                            };
+                            break;
+
+                        default:
+                            break;
+
+                    }
+
+                    chart.draw(filteredData, filteredOptions);
+                }
+            }
+            else{
+
+                chart.draw(data, options);
+            }
+        });
+
+
+
+        function GetDataTable(SourceData, StatusName, ColumnIndex) {
+            var filteredDataTable = SourceData.clone();
+            var result = filteredDataTable.getFilteredRows([{ column: ColumnIndex, value: StatusName }]);
+
+            var currentRow = 0;
+
+
+            var currentRow = result.length - 1;
+            var totalCount = filteredDataTable.getNumberOfRows() - 1;
+            for (i = totalCount ; i >= 0 ; i--) {
+                if (result[currentRow] != i) {
+                    filteredDataTable.removeRow(i);
+
+                }
+                else currentRow--;
+            }
+            return filteredDataTable;
+        }
+
+
+    };
+</script>
+
+
+
+}
+
+

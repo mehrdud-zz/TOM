@@ -1,0 +1,196 @@
+﻿@model ModelsLayer.ReportTemplate
+@using ClaimsPoC.Areas.Reports.Controllers
+
+
+@{
+    ViewBag.Title = "GetClaimTemplatesSelector";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+<h2>Edit: Report</h2>
+@using (Html.BeginForm())
+{
+
+    <input type="hidden" name="ReportID" value="@Model.ReportID" />
+    <input type="hidden" name="ClaimTemplateId" value="@Model.ClaimTemplateId" />
+    <fieldset>
+
+
+       
+
+        <div class="editor-label">
+            <label for="Name">Name</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+
+        </div>
+
+        <div class="editor-label">
+            <label for="Name">Description</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.Description)
+        </div>
+
+        <div class="editor-label">
+            <label for="Name">Claim Template</label>
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(m => m.ClaimTemplate.Name)
+        </div>
+
+        <div class="editor-label">
+            <label for="reportType">Report type</label>
+        </div>
+        <div class="editor-field">
+            @(Html.Kendo().DropDownList()
+          .Name("ReportType")
+          .DataTextField("Text")
+          .DataValueField("Value")
+          .BindTo(new List<SelectListItem>() {
+              new SelectListItem() {Text = "Table",Value = "Table"},
+              new SelectListItem() {Text = "Pie Chart",Value = "PieChart"},
+              new SelectListItem() {Text = "Bubble Chart",Value = "BubbleChart"},
+              new SelectListItem() {Text = "Bar Chart",Value = "BarChart"},
+              new SelectListItem() {Text = "Gauge Chart",Value = "GaugeChart"},
+              new SelectListItem() {Text = "Column Chart",Value = "ColumnChart"},
+              new SelectListItem() {Text = "Area Chart",Value = "AreaChart"},
+              new SelectListItem() {Text = "Stepped Area Chart",Value = "SteppedAreaChart"},
+              new SelectListItem() {Text = "Candlestick Chart",Value = "CandlestickChart"},
+              new SelectListItem() {Text = "Timeline Chart",Value = "Timeline"},
+              new SelectListItem() {Text = "Geo Chart",Value = "GeoChart"}  })
+              .HtmlAttributes(new { style = "width:100%;" })
+            )
+        </div>
+        <div class="editor-label">
+            <label for="EndDate">Number of records</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.NumberofRecords)
+        </div>
+
+
+
+        <div class="editor-label">
+            <label for="EndDate">Colours</label>
+        </div>
+        <div class="editor-field">
+            <div style="flex:1;display:inline-block;">
+                <input type="color" value="@(Model.Colour1 != null ? Model.Colour1 : "#000000")" name="Colour1" />
+            </div>
+            <div style="flex: 1; display: inline-block;">
+                <input type="color" value="@(Model.Colour1 != null ? Model.Colour2 : "#000000")" name="Colour2" />
+            </div>
+            <div style="flex: 1; display: inline-block;">
+                <input type="color" value="@(Model.Colour1 != null ? Model.Colour3 : "#000000")" name="Colour3" />
+            </div>
+            <div style="flex: 1; display: inline-block;">
+                <input type="color" value="@(Model.Colour1 != null ? Model.Colour4 : "#000000")" name="Colour4" />
+            </div>
+            <div style="flex: 1; display: inline-block;">
+                <input type="color" value="@(Model.Colour1 != null ? Model.Colour5 : "#000000")" name="Colour5" />
+            </div>
+
+
+        </div>
+
+        <div class="editor-label">
+            <label for="EndDate">Horizontal axis</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.HAxis)
+        </div>
+
+        <div class="editor-label">
+            <label for="EndDate">Horizontal axis colour</label>
+        </div>
+        <div class="editor-field">
+            <input type="color" value="@(Model.HAxisColour ?? "#000000" )" name="HAxisColour" />
+        </div>
+
+        <div class="editor-label">
+            <label for="EndDate">Vertical axis</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.VAxis) 
+        </div>
+
+        <div class="editor-label">
+            <label for="EndDate">Vertical axis colour</label>
+        </div>
+        <div class="editor-field">
+            <input type="color" value="@(Model.VAxisColour ?? "#000000")" name="VAxisColour" />
+        </div>
+
+        <br />
+        <br />
+        <p>
+            @Html.ActionLink("Add new report field", "CreateReportField", new { ReportId = Model.ReportID, ClaimTemplateId = Model.ClaimTemplateId })
+        </p>
+        @(Html.Kendo().Grid<ModelsLayer.ReportField>(Model.ReportFields.OrderBy(m => m.FieldNumber))
+        .Name("Grid")
+        .Columns(columns =>
+        {
+            columns.Bound(reportField => reportField.ClaimFieldTemplate.Name).Title("Claim Field");
+            columns.Bound(reportField => reportField.Func).Title("Function");
+            columns.Bound(reportField => reportField.DisplayName).Title("Display Name");
+            columns.Template(@<text><a href="/Reports/Reports/EditReportField/@(item.ReportFieldID)?ReportID=@(item.ReportID)">Edit</a>
+                &nbsp;&nbsp;&nbsp;<a href="/Reports/Reports/DeleteReportField?ReportID=@(item.ReportID)&ReportFieldID=@(item.ReportFieldID)">Delete</a>
+
+                &nbsp;&nbsp;&nbsp;<a href="/Reports/Reports/MoveUp?ReportID=@(item.ReportID)&ReportFieldID=@(item.ReportFieldID)">Move up</a>
+
+                &nbsp;&nbsp;&nbsp;<a href="/Reports/Reports/MoveDown?ReportID=@(item.ReportID)&ReportFieldID=@(item.ReportFieldID)">Move Down</a>
+            </text>);
+
+        })
+.Selectable(selectable => selectable.Type(GridSelectionType.Row))
+.DataSource(
+dataSource => dataSource.Server().Model(model => model.Id(p => p.ReportFieldID))
+.Update(update => update.Action("UpdateReportField", "Reports", new { area = "Reports" }))
+.Create(create => create.Action("CreateReportField", "Reports", new { area = "Reports" }))
+.Destroy(update => update.Action("Desroy", "Reports"))
+)
+
+.Editable(editable => editable.Mode(GridEditMode.PopUp))
+        )
+        <br />
+        <div class="editor-label">
+            <label for="EndDate">URL</label>
+        </div>
+        <div class="editor-field">
+            @(
+ String.Format(
+    "{0}{1}:{2}/SharePointIntegration/SharePointIntegration/SharePointDashboard?ReportID={3}",
+    (HttpContext.Current.Request.IsSecureConnection ? "https://" : "http://"),
+    HttpContext.Current.Request.Url.Host,
+    ((HttpContext.Current.Request.Url.Port == 80) ? String.Empty : HttpContext.Current.Request.Url.Port.ToString()),
+    Model.ReportID)
+            )
+        </div>
+
+
+        <div class="buttons">
+            <input type="submit" value="Save" />
+            <input type="button" value="Back to List" onclick="changeWindowLocation('/Reports/Reports/');" />
+        </div>
+
+    </fieldset>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var chartType = '@Model.ReportType';
+            $("#ChartType").val(chartType);
+
+            $("#OrderDirection").val('@(Model.OrderDirection)');
+        })
+    </script>
+
+    <br />
+
+    <iframe frameborder="0" src="/SharePointIntegration/SharePointIntegration/SharePointDashboard?ReportID=@(Model.ReportID)" width="100%" height="600"></iframe>
+}
+
+

@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Views/Home/ClientMaster.cshtml";
+}
+
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}
+
+@section CustomStyles {
+    @*@System.Web.Optimization.Styles.Render("~/Content/kendostyles")
+    @System.Web.Optimization.Scripts.Render("~/bundles/kendo")*@
+}
+   
+
+@RenderBody()
+

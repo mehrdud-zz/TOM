@@ -1,0 +1,244 @@
+﻿@model Factories.ClaimsStatusReport
+
+@{
+    ViewBag.Title = "Reports";
+    ViewBag.Colors =
+        new List<string>() { "articleBlue", "articleGreen", "articleYellow", "articleBrown", "articleRed" };
+}
+
+
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+@*<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>*@
+
+
+
+<script type="text/javascript">
+    google.load('visualization', '1', { 'packages': ['geochart'] });
+    google.load('visualization', '1', { packages: ['orgchart', 'table'] });
+
+    google.setOnLoadCallback(drawRegionsMap);
+
+
+
+    function drawRegionsMap() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Country');
+        data.addColumn('string', 'Status');
+        data.addColumn('number', 'Value');
+
+        rows = [];
+
+        @foreach (var item in Model.ClaimsStatusReportItemsIncludingCountryList)
+        {
+
+
+        if(item.Country!=null){
+        <text>var title = '@(item.Country.Name)';</text>
+        }
+        else {
+            <text>var title = '';</text>
+           }
+
+        <text>
+
+        var description = '';
+
+        @if(item.ClaimStatus!=null){
+        <text>
+        description = '@(item.ClaimStatus.Name)';
+        </text>
+        }
+
+
+        var counter = @item.ClaimStatusCount;
+        rows.push([title, description, counter]);
+        </text>
+        }
+
+        data.addRows(rows);
+
+        function GetDataTable(StatusName) {
+            var filteredDataTable = data.clone();
+            var result = filteredDataTable.getFilteredRows([{ column: 1, value: StatusName }]);
+
+            var currentRow = 0;
+
+
+            var currentRow = result.length - 1;
+            var totalCount = filteredDataTable.getNumberOfRows() - 1;
+            for (i = totalCount ; i >= 0 ; i--) {
+                if (result[currentRow] != i) {
+                    filteredDataTable.removeRow(i);
+
+                }
+                else currentRow--;
+            }
+            return filteredDataTable;
+        }
+
+
+        var table = new google.visualization.Table(document.getElementById("table"));
+
+        var revisedDataTable = GetDataTable('Pending');
+
+
+        var revisedDataTable3 = revisedDataTable.clone();
+        revisedDataTable3.removeColumn(1);
+        table.draw(revisedDataTable3, null);
+
+        var options = {
+            backgroundColor: 'transparent',
+            enableRegionInteractivity: 'true',
+            colorAxis: { colors: ['#3366cc', '#dc3912'] }
+        };
+
+
+
+        var chartContainer = document.getElementById("chart_div");
+
+        var chart = new google.visualization.GeoChart(chartContainer);
+
+
+
+        chart.draw(revisedDataTable, options);
+
+
+        google.visualization.events.addListener(table, 'select', function () {
+            chart.setSelection(table.getSelection());
+        });
+
+        google.visualization.events.addListener(chart, 'select', function () {
+
+            var selectedItem = chart.getSelection()[0];
+            if (selectedItem) {
+                var topping = data.getValue(selectedItem.row, 0);
+
+            }
+
+        });
+
+
+
+        function selectHandler() {
+            var selectedItem = chart.getSelection()[0];
+            if (selectedItem) {
+                var country = revisedDataTable.getValue(selectedItem.row, 0);
+
+            }
+
+        }
+
+
+        $("article").click(function () {
+
+            if ($(this).hasClass("clicked")) {
+                $("article").removeClass("clicked");
+                $("article").removeClass("collapsed");
+            }
+            else {
+                $("article").removeClass("clicked");
+                $(this).removeClass("collapsed");
+                $(this).addClass("clicked");
+                $("article:not(.clicked)").addClass("collapsed");
+
+                var statusName = $(this).attr("id");
+
+
+
+                var revisedDataTable2 = GetDataTable(statusName);
+                table.clearChart();
+
+
+                chart.draw(revisedDataTable2, options);
+
+                var revisedDataTable3 = revisedDataTable2.clone();
+                revisedDataTable3.removeColumn(1);
+                table.draw(revisedDataTable3, null);
+
+            }
+
+        });
+
+
+
+    };
+</script>
+
+
+@foreach (var item in Model.ClaimsStatusReportItemsList)
+{
+    if (item.ClaimStatus != null)
+    {
+        <input type="hidden" name="statusCount" id="@(item.ClaimStatus.Name)StatusCount" value="@item.ClaimStatusCount" />
+    }
+}
+<table style="vertical-align:top;">
+    <tr>
+        <td>
+            <table style="vertical-align:top;">
+                <tr>
+                    <td>
+
+
+                        <div id="articleContainer" style="z-index: 1; float: left;">
+                            @{
+                                List<string> colours = new List<string>() { "articleBlue", "articleGreen", "articleYellow", "articleBrown", "articleRed" };
+                                int counter = 0;
+                                foreach (var article in Model.ClaimsStatusReportItemsList)
+                                {
+                                    if (article.ClaimStatus != null)
+                                    {
+                                        <text>
+
+                                            <article class="@colours[counter]" id="@article.ClaimStatus.Name">
+                                                <header style="font-weight: bold;">@article.ClaimStatus.Name<span class="badge pull-right">@article.ClaimStatusCount</span></header>
+                                                <div class="articleText">
+
+
+
+                                                </div>
+                                            </article>
+                                        </text>
+
+                                        counter++;
+                                        if (counter >= colours.Count)
+                                        {
+                                            counter = 0;
+                                        }
+
+                                    }
+                                }
+                            }
+
+
+                        </div>
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="table"></div>
+
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <div id="chart_div" style="z-index: 1; min-height: 480px; float: left;"></div>
+        </td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("article#Pending").addClass("clicked");
+    });
+
+</script>
+
+
+
+
+

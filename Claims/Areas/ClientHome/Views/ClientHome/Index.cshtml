@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Home/ClientMaster_CRUD.cshtml";
+}
+
+
+<div style="float:left;display:inline-block;">
+    <h2>Submit a new claim</h2>
+    @Html.Action("ListClientClaimTemplates", new { ClientID = UserHelper.CurrentUser.ClientID })
+    <br />
+    <h2>Your existing claims</h2>
+    
+    <a href="~/ClientHome/ClientHome/ListClientClaims?UserID=@UserHelper.CurrentUser.UserId ">View your claims</a>
+
+</div>
+ 
+ 

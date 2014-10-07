@@ -1,0 +1,153 @@
+﻿@model ModelsLayer.ReportTemplate
+@{
+    ViewBag.Title = "GetClaimTemplatesSelector";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+<h2>Create: Report</h2>
+@using (Html.BeginForm())
+{
+
+    <fieldset>
+
+
+        <div class="editor-label">
+            <label for="Name">Name</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.Name)
+        </div>
+
+        <div class="editor-label">
+            <label for="Name">Description</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.Description)
+        </div>
+
+        <div class="editor-label">
+            Claim Template
+        </div>
+        <div class="editor-field">
+            @(Html.Kendo().DropDownList()
+                .Name("ClaimTemplateId")
+                .HtmlAttributes(new { style = "width:100%;" })
+              .OptionLabel("Select claim template...")
+              .DataTextField("CategoryName")
+              .DataValueField("CategoryId")
+              .DataSource(source =>
+              {
+                  source.Read(read =>
+                  {
+                      read.Action("GetCascadeClaimTemplates", "Reports");
+                  })
+                  .ServerFiltering(true);
+              })
+                .Enable(true)
+                .AutoBind(false)
+                .CascadeFrom("ReportFieldTypes")
+            )
+        </div>
+
+        <div class="editor-label">
+            <label for="reportType">Report type</label>
+        </div>
+        <div class="editor-field">
+
+            @(Html.Kendo().DropDownList()
+      .Name("ReportType")
+          .DataTextField("Text")
+          .DataValueField("Value")
+          .BindTo(new List<SelectListItem>() {
+              new SelectListItem() {Text = "Table",Value = "Table"},
+              new SelectListItem() {Text = "Pie Chart",Value = "PieChart"},
+              new SelectListItem() {Text = "Bubble Chart",Value = "BubbleChart"},
+              new SelectListItem() {Text = "Bar Chart",Value = "BarChart"},
+              new SelectListItem() {Text = "Gauge Chart",Value = "GaugeChart"},
+              new SelectListItem() {Text = "Column Chart",Value = "ColumnChart"},
+              new SelectListItem() {Text = "Area Chart",Value = "AreaChart"},
+              new SelectListItem() {Text = "Stepped Area Chart",Value = "SteppedAreaChart"},
+              new SelectListItem() {Text = "Candlestick Chart",Value = "CandlestickChart"},
+              new SelectListItem() {Text = "Timeline Chart",Value = "Timeline"},
+              new SelectListItem() {Text = "Geo Chart",Value = "GeoChart"}  })
+              .HtmlAttributes(new { style = "width:100%;" })
+            )
+        </div>
+
+        <div class="editor-label">
+            <label for="Name">Name Colour</label>
+        </div>
+        <div style="flex:1;display:inline-block;">
+            <input type="color" value="#000000" name="NameColour" />
+        </div>
+
+
+
+        <div class="editor-label">
+            <label for="EndDate">Number of records</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.NumberofRecords)
+        </div>
+
+        <div class="editor-label">
+            <div style="flex:1;display:inline-block;">
+                <input type="color" value="#3366cc" name="Colour1" />
+            </div>
+
+            <div style="flex:1;display:inline-block;">
+                <input type="color" value="#dc3912" name="Colour2" />
+            </div>
+
+            <div style="flex:1;display:inline-block;">
+                <input type="color" value="#ff9900" name="Colour3" />
+            </div>
+
+            <div style="flex:1;display:inline-block;">
+                <input type="color" value="#109618" name="Colour4" />
+            </div>
+
+            <div style="flex:1;display:inline-block;">
+                <input type="color" value="#990099" name="Colour5" />
+            </div>
+        </div>
+
+        <div class="editor-label">
+            <label for="HAxis">Horizontal axis</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.HAxis) 
+        </div>
+
+        <div class="editor-label">
+            <label for="HAxisColour">Horizontal axis</label>
+        </div>
+        <div class="editor-field"> 
+            <input type="color" value="#000000" name="HAxisColour" />
+        </div>
+
+        <div class="editor-label">
+            <label for="VAxis">Vertical axis</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.VAxis)
+        </div>
+
+        <div class="editor-label">
+            <label for="VAxisColour">Vertical axis color</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.VAxis) 
+            <input type="color" value="#000000" name="VAxisColour" />
+        </div>
+
+        <div class="buttons">
+            <input type="submit" value="Save" />
+            <input type="button" value="Back to List" onclick="changeWindowLocation('/Claims/ClaimTemplate');" />
+        </div>
+    </fieldset>
+
+
+
+
+}

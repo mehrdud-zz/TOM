@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "TopBar";    
+}
+
+
+<table style="width: 100%;" class="topsearch" cellspacing="0">
+    <tr>
+        <td style="text-align: left;">
+            <a href="~/ClientHome/ClientHome">
+                <h1>Willis Claims</h1>
+            </a>
+        </td>
+
+        <td class="search">
+           @* <input type="text" />
+            <a href="#" title="Settings">
+                <img src="~/Content/Images/Search.png" alt="Settings" style="border: none;" /></a>*@
+        </td>
+        <td class="settings">
+            <section id="login">
+                @Html.Partial("_LoginPartial")
+            </section>
+        </td>
+    </tr>
+
+</table>

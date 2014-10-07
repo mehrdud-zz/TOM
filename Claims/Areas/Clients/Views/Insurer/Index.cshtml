@@ -1,0 +1,27 @@
+﻿@model IEnumerable<ClaimsPoC.Clients.Models.Insurer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+
+@* Kendo Grid implementation*@
+@(Html.Kendo().Grid(Model) // Bind the grid to the Model property of the view
+    .Name("Grid")
+    .Columns(columns =>
+        {
+            columns.Bound(insurer => insurer.Name).Width(100);
+            columns.Bound(insurer => insurer.Contracts.Count).Width(200).Title("Number of contracts");
+        columns.Template(@<text><a type="button" href="/Contracts/Insurer/Edit/@item.InsurerID">Edit</a>&nbsp;&nbsp;&nbsp;<a type="button" href="/Contracts/Insurer/Delete/@item.InsurerID">Delete</a></text>).Width(100);
+        })
+    .Pageable(o =>{o.PageSizes(new int[]{10, 50, 100});}) 
+    .HtmlAttributes(new { style = "height:800px" })
+)

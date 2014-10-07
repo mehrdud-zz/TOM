@@ -1,0 +1,156 @@
+﻿@model ClaimsPoC.Areas.WillisAssociate.Controllers.ClientClaimTemplateWizardModel
+@using Kendo.Mvc.UI
+
+@{
+    ViewBag.Title = "Wizard"; 
+}
+<html>
+<head>
+    <title>test</title>
+    <link href="~/Content/Styles/smart_wizard.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/jquery.smartWizard.js"></script>    
+    @*@System.Web.Optimization.Styles.Render("~/Content/kendostyles")
+    @System.Web.Optimization.Scripts.Render("~/js/required")
+    @System.Web.Optimization.Scripts.Render("~/bundles/kendo")*@
+</head>
+<body>
+
+    
+    <style>
+        .stepContentDiv {
+            padding: 10px 10px 0 10px;
+        }
+
+        .swMain .stepContrainer,
+        .swMain .stepContrainer DIV.content,
+        .swMain .stepContrainer DIV.container .content {
+            padding: 0 !important;
+        }
+    </style>
+
+
+ 
+    <div id="wizard" class="swMain">
+        <ul>
+            <li><a href="#step-1">
+                <label class="stepNumber">1</label>
+                <span class="stepDesc">Step 1<br />
+                    <small>Find your client</small>
+                </span>
+            </a></li>
+            <li><a href="#step-2">
+                <label class="stepNumber">2</label>
+                <span class="stepDesc">Step 2<br />
+                    <small>Check existing templates</small>
+                </span>
+            </a></li>
+            <li><a href="#step-3">
+                <label class="stepNumber">3</label>
+                <span class="stepDesc">Step 3<br />
+                    <small>Confirm</small>
+                </span>
+            </a></li>
+        </ul>
+        <div id="step-1">
+            <h2 class="StepTitle">Find your client</h2>
+            <div class="stepContentDiv">
+                <!-- step content -->
+                <p>
+                    Here is a list of existing client. Simply type in your client's name to search in the existing list of clients.
+                @Html.Kendo().MultiSelect().MaxSelectedItems(1).Placeholder("Client Name...").Name("Clients").BindTo(ViewBag.ClientsSelectList)
+                </p>
+                <p>&nbsp;</p>
+                <p>Can't find your client? <a href="~/Clients/Client/Create?source=wizard">You can setup a new client here</a></p>
+            </div>
+        </div>
+        <div id="step-2">
+            <h2 class="StepTitle">Check existing templates</h2>
+            <!-- step content -->
+            <div class="stepContentDiv">
+                <p>
+                    You can choose an existing claim template. Click to see preview 
+                @Html.Kendo().MultiSelect().MaxSelectedItems(1).Placeholder("Choose Claim Template...").Name("claimTemplateList").BindTo(ViewBag.ClaimTemplatesSelectList)
+                </p>
+                <p>&nbsp;</p>
+                <p>
+                    Cannot find the template? <a href="~/Claims/ClaimTemplate/Create?source=wizard">Click here</a>
+                </p>
+            </div>
+        </div>
+        <div id="step-3">
+            <h2 class="StepTitle">Congrats! You just setup a new template for your client</h2>
+            <!-- step content -->
+            <div class="stepContentDiv">
+                <div id="finalselection"></div>
+                <p>Press Finish to complete the action.</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
+
+
+
+
+
+<script type="text/javascript">
+    function querystring(key) {
+        var re = new RegExp('(?:\\?|&)' + key + '=(.*?)(?=&|$)', 'gi');
+        var r = [], m;
+        while ((m = re.exec(document.location.search)) != null) r.push(m[1]);
+        return r;
+    }
+    function finishStepClicked(obj, context) {
+
+        $("#wizadForm").submit();
+    }
+
+    function showAStepCallback(obj, context) {
+
+        if (context.toStep == 2) {
+            var dropDownVal = $("#Clients").val();
+
+            //var dropdownlist = $("#Clients").data("kendoDropDownList");
+            //dropdownlist.select(1);
+        }
+
+
+        if (context.toStep == 3) {
+            var clientID = $("#Clients").val();
+            var clientName = $("#Clients option:selected").text();
+
+            var claimTemplateID = $("#claimTemplateList").val();
+            var claimTemplateName = $("#claimTemplateList option:selected").text();
+
+            $("#finalselection").html(
+
+                '<ul style="list-style-type:none;">' +
+                '<li style="line-height:20px;display:inline-block;width:100%;">Client:   <strong>' + clientName + '</strong></li>' +
+                '<li style="line-height:20px;display:inline-block;width:100%;">Claim Template:   <strong>' + claimTemplateName + '</strong></li>' +
+                '</ul>' +
+
+                 '<form id="wizadForm" action="?" method="post">' +
+                 '<input type="hidden" name="ClientID" value="' + clientID + '" />' +
+                 '<input type="hidden" name="ClaimTemplateID" value="' + claimTemplateID + '" />' +
+                '</form>'
+                );
+        }
+
+    }
+
+    $(document).ready(function () {
+        var selectedStepFromQueryString = querystring("step");
+        selectedStepFromQueryString = (selectedStepFromQueryString != null) ? selectedStepFromQueryString : 0;
+
+        $('#wizard').smartWizard({
+            onShowStep: showAStepCallback,
+            onFinish: finishStepClicked
+        });
+
+
+    });
+</script>
+

@@ -1,0 +1,37 @@
+﻿@model ModelsLayer.ClaimTemplate
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Client Claim Template</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Client)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Client)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ClaimTemplateID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ClaimTemplateID)
+    </div>
+</fieldset>
+@using (Html.BeginForm())
+{
+    <p>
+        <input type="submit" value="Delete" />
+        |
+        @Html.ActionLink("Back to Client", "Edit", "Client", new { @id = ViewBag.ClientID })
+    </p>
+}
+

@@ -1,0 +1,57 @@
+﻿@model ModelsLayer.User
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Home/WillisMaster_CRUD.cshtml";
+}
+
+<h2>Details: User</h2>
+
+<fieldset>
+    <div class="display-label">
+        Client
+    </div>
+    <div class="display-field">
+        <a href="~/Clients/Client/Details/@Model.ClientID">
+            Test @*@Html.DisplayFor(model => model.Client.Name)*@
+        </a>
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Firstname)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Firstname)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Lastname)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Lastname)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.DisplayName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DisplayName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+</fieldset>
+<div class="buttons">
+    <input type="button" value="Edit" onclick="changeWindowLocation('/Clients/User/Edit/@(Model.UserId)');" />
+    <input type="button" value="Back to List" onclick="changeWindowLocation('/Clients/User');" />
+</div>

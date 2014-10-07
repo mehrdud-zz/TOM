@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Kendo.Mvc.UI.DropDownListItem>
+
+@{
+
+    ViewBag.Title = "MultiChoiceListTemplate";
+
+
+
+}
+
+
+
+@(Html.Kendo().MultiSelect()
+           .Name(ViewBag.claimFieldCode)
+          .Placeholder("Select...")
+            .BindTo(ViewBag.MultiChoiceDefaultValue)
+            .Value(ViewBag.SelectedValues)
+)
+
+
+
+
+ 
+
+
+
+

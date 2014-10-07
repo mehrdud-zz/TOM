@@ -1,0 +1,744 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{716F057F-143F-4FB6-B0C4-1C5C59B3CAAA}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ClaimsPoC</RootNamespace>
+    <AssemblyName>Claims</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxMin">
+      <HintPath>..\packages\AjaxMin.4.46.4422.26284\lib\net20\AjaxMin.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet">
+      <HintPath>..\..\..\..\Visual Studio 2012\Projects\MvcApplication1\packages\DotNetOpenAuth.AspNet.4.1.4.12333\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core">
+      <HintPath>..\..\..\..\Visual Studio 2012\Projects\MvcApplication1\packages\DotNetOpenAuth.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth">
+      <HintPath>..\..\..\..\Visual Studio 2012\Projects\MvcApplication1\packages\DotNetOpenAuth.OAuth.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer">
+      <HintPath>..\..\..\..\Visual Studio 2012\Projects\MvcApplication1\packages\DotNetOpenAuth.OAuth.Consumer.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId">
+      <HintPath>..\..\..\..\Visual Studio 2012\Projects\MvcApplication1\packages\DotNetOpenAuth.OpenId.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty">
+      <HintPath>..\..\..\..\Visual Studio 2012\Projects\MvcApplication1\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Kendo.Mvc">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\Kendo UI for ASP.NET MVC Q2 2013\wrappers\aspnetmvc\Examples\bin\Kendo.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Dynamic">
+      <HintPath>..\packages\IronRuby.1.1.3\Lib\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Unity.3.0.1304.1\lib\Net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Unity.3.0.1304.1\lib\Net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting">
+      <HintPath>..\packages\IronRuby.1.1.3\Lib\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Metadata">
+      <HintPath>..\packages\IronRuby.1.1.3\Lib\Microsoft.Scripting.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Optimization">
+      <HintPath>..\packages\Microsoft.Web.Optimization.0.1\lib\net40\Microsoft.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="MiniProfiler">
+      <HintPath>..\packages\MiniProfiler.2.1.0\lib\net40\MiniProfiler.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcSiteMapProvider, Version=4.4.5.0, Culture=neutral, PublicKeyToken=1923abe4657913cc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MvcSiteMapProvider.MVC4.Core.4.4.5\lib\net45\MvcSiteMapProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Pandora">
+      <HintPath>..\packages\Cassette.1.2.1\lib\net40-Client\Pandora.dll</HintPath>
+    </Reference>
+    <Reference Include="SassAndCoffee.Core">
+      <HintPath>..\packages\SassAndCoffee.Core.2.0.2.0\lib\net40-Client\SassAndCoffee.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SassAndCoffee.Ruby">
+      <HintPath>..\packages\SassAndCoffee.Ruby.2.0.2.0\lib\net40-Client\SassAndCoffee.Ruby.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.1\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Telerik.Web.Mvc">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\Extensions for ASP.NET MVC Q2 2013\Examples\Telerik.Web.Mvc.Examples\Bin\Telerik.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mvc4">
+      <HintPath>..\packages\Unity.Mvc4.1.2.0.0\lib\net40\Unity.Mvc4.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.5.3\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\packages\WebActivatorEx.2.0.3\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.20710.0\lib\net40\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.30506.0\lib\net40\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Claims\Controllers\ClaimFieldTemplateController.cs" />
+    <Compile Include="Areas\Claims\Controllers\FieldTypeController.cs" />
+    <Compile Include="Areas\Claims\Controllers\ClaimTemplateController.cs" />
+    <Compile Include="Areas\Claims\Controllers\ClaimFieldGroupTemplateController.cs" />
+    <Compile Include="Areas\Claims\Controllers\CustomTemplateController.cs" />
+    <Compile Include="Areas\Clients\Controllers\ClientClaimTemplateController.cs" />
+    <Compile Include="Areas\Claims\Controllers\CountriesController.cs" />
+    <Compile Include="Areas\Administration\Controllers\WillisEmployeeController.cs" />
+    <Compile Include="Areas\Claims\ClaimsAreaRegistration.cs" />
+    <Compile Include="Areas\Claims\Controllers\ClaimController.cs" />
+    <Compile Include="Areas\Claims\Controllers\ClaimFieldController.cs" />
+    <Compile Include="Areas\Claims\Controllers\ClaimStatusController.cs" />
+    <Compile Include="Areas\ClientHome\ClientHomeAreaRegistration.cs" />
+    <Compile Include="Areas\ClientHome\Controllers\ClientHomeController.cs" />
+    <Compile Include="Areas\ClientHome\Models\ClientClaim.cs" />
+    <Compile Include="Areas\Clients\ClientsAreaRegistration.cs" />
+    <Compile Include="Areas\Clients\Controllers\ClientController.cs" />
+    <Compile Include="Areas\Clients\Controllers\UserController.cs" />
+    <Compile Include="Areas\Reports\Controllers\ReportsController.cs" />
+    <Compile Include="Areas\Reports\ReportsAreaRegistration.cs" />
+    <Compile Include="Areas\Reports\Controllers\DashboardsController.cs" />
+    <Compile Include="Areas\SharePointIntegration\Controllers\SharePointIntegrationController.cs" />
+    <Compile Include="Areas\SharePointIntegration\SharePointIntegrationAreaRegistration.cs" />
+    <Compile Include="Areas\WillisAssociate\Controllers\WillisAssociateController.cs" />
+    <Compile Include="Areas\WillisAssociate\Views\WillisAssociateAreaRegistration.cs" />
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Constants.cs" />
+    <Compile Include="Controllers\CustomiseController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\FieldsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NTLMController.cs" />
+    <Compile Include="Filters\UserHelper.cs" />
+    <Compile Include="Controllers\WillisController.cs" />
+    <Compile Include="Controllers\WillisMembershipProvider.cs" />
+    <Compile Include="Controllers\WillisProfileProvider.cs" />
+    <Compile Include="Controllers\WillisRoleProvider.cs" />
+    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Areas\Reports\Views\test.txt" />
+    <Content Include="Content\Images\loader.gif" />
+    <Content Include="Content\Images\step.png" />
+    <Content Include="Content\Images\Admin.png" />
+    <Content Include="Content\Images\Claims.png" />
+    <Content Include="Content\Images\Clients.png" />
+    <Content Include="Content\Images\header-bg.png" />
+    <Content Include="Content\Images\Home.png" />
+    <Content Include="Content\Images\search.png" />
+    <Content Include="Content\Images\settings.png" />
+    <Content Include="Content\Scripts\bootstrap.min.js" />
+    <Content Include="Content\Scripts\DashboardOOP.js" />
+    <Content Include="Content\Scripts\ChartPainter.js" />
+    <Content Include="Content\Scripts\easypiechart.js" />
+    <Content Include="Content\Scripts\jquery-ui.js" />
+    <Content Include="Content\Scripts\jquery.smartWizard.js" />
+    <Content Include="Content\Scripts\jquery.steps.js" />
+    <Content Include="Content\Scripts\kendo.aspnetmvc.min.js" />
+    <Content Include="Content\Scripts\kendo.web.min.js" />
+    <Content Include="Content\Scripts\script.js" />
+    <Content Include="Content\Styles\articles.css" />
+    <Content Include="Content\Styles\bootstrap.min.css" />
+    <Content Include="Content\Styles\DashboardOOP.css" />
+    <Content Include="Content\Styles\ChartPainter.css" />
+    <Content Include="Content\Styles\Client.css" />
+    <Content Include="Content\Styles\Form.css" />
+    <Content Include="Content\Styles\Default\editor.png" />
+    <Content Include="Content\Styles\Default\imagebrowser.png" />
+    <Content Include="Content\Styles\Default\loading-image.gif" />
+    <Content Include="Content\Styles\Default\loading.gif" />
+    <Content Include="Content\Styles\Default\loading_2x.gif" />
+    <Content Include="Content\Styles\Default\slider-h.gif" />
+    <Content Include="Content\Styles\Default\slider-v.gif" />
+    <Content Include="Content\Styles\Default\sprite.png" />
+    <Content Include="Content\Styles\Default\sprite_2x.png" />
+    <Content Include="Content\Styles\jquery-ui.css" />
+    <Content Include="Content\Styles\kendo.common.css" />
+    <Content Include="Content\Styles\kendo.dataviz.css" />
+    <Content Include="Content\Styles\kendo.dataviz.default.css" />
+    <Content Include="Content\Styles\kendo.default.css" />
+    <Content Include="Content\Styles\Site.css" />
+    <Content Include="Content\Styles\smart_wizard.css" />
+    <Content Include="Content\Styles\easyChartStyle.css" />
+    <Content Include="Content\Styles\texture\transtexture.png" />
+    <Content Include="Global.asax" />
+    <Content Include="Unity.Mvc4.README.txt" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Administration\Views\Shared\" />
+    <Folder Include="Areas\ClientHome\Views\Shared\" />
+    <Folder Include="Areas\Clients\Views\Shared\" />
+    <Folder Include="Areas\Reports\Models\" />
+    <Folder Include="Areas\SharePointIntegration\Models\" />
+    <Folder Include="Areas\SharePointIntegration\Views\Shared\" />
+    <Folder Include="Areas\WillisAssociate\Models\" />
+    <Folder Include="Areas\WillisAssociate\Views\Shared\" />
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Clients\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Clients\Views\Client\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Clients\Views\Client\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Clients\Views\Client\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Clients\Views\Client\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Clients\Views\Client\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\TopBar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\WillisMaster.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Clients\Views\Contract\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Clients\Views\Contract\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Clients\Views\Contract\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Clients\Views\Contract\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administration\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administration\Views\WillisEmployee\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administration\Views\WillisEmployee\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administration\Views\WillisEmployee\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administration\Views\WillisEmployee\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administration\Views\WillisEmployee\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Clients\Views\User\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Clients\Views\User\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Clients\Views\User\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Clients\Views\User\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Clients\Views\User\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Clients\Views\Insurer\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Clients\Views\Insurer\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Clients\Views\Insurer\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Clients\Views\Insurer\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Clients\Views\Insurer\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Scripts\jquery.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\ClaimFieldTemplate\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\ClaimFieldTemplate\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\ClaimFieldTemplate\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\ClaimFieldTemplate\ClaimFieldTemplate_CreateFromGrid.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\Claim\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\Claim\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\Claim\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\Claim\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\ClaimStatus\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\ClaimStatus\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\ClaimStatus\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\ClaimStatus\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\ClaimStatus\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\ClaimField\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\ClaimField\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\ClaimField\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\ClaimTemplate\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\ClaimTemplate\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\ClaimTemplate\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\ClaimTemplate\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\ClaimTemplate\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\ClaimFieldTemplate\ListViewForClaimTemplate.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Claims\Views\ClaimFieldTemplate\ClaimFieldTemplate_EditFromGrid.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\LeftNavigation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\BreadCrumb.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModelList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\DisplayTemplates\MetaRobotsHelperModel.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Mvc.sitemap" />
+    <Content Include="Areas\Clients\Views\Contract\Edit.cshtml" />
+    <Content Include="Areas\ClientHome\Views\Web.config" />
+    <Content Include="Areas\ClientHome\Views\ClientHome\Index.cshtml" />
+    <Content Include="Areas\ClientHome\Views\ClientHome\ClaimForm.cshtml" />
+    <Content Include="Views\Fields\MultiChoiceListTemplate.cshtml" />
+    <Content Include="Views\Fields\DropDownListTemplate.cshtml" />
+    <Content Include="Areas\Claims\Views\ClaimField\Create.cshtml" />
+    <Content Include="Areas\Claims\Views\ClaimField\Edit.cshtml" />
+    <Content Include="Areas\Claims\Views\ClaimFieldTemplate\Create.cshtml" />
+    <Content Include="Areas\Claims\Views\ClaimFieldTemplate\Edit.cshtml" />
+    <Content Include="Areas\Claims\Views\CustomTemplate\CountryTemplate.cshtml" />
+    <Content Include="Areas\ClientHome\Views\ClientHome\ClaimSection.cshtml" />
+    <Content Include="Areas\ClientHome\Views\ClientHome\ClaimSubmittedSuccessfully.cshtml" />
+    <Content Include="Areas\Claims\Views\Claim\ListViewForClaimFields.cshtml" />
+    <Content Include="Areas\Claims\Views\Claim\Home.cshtml" />
+    <Content Include="Areas\Clients\Views\ClientClaimTemplate\Index.cshtml" />
+    <Content Include="Areas\Claims\Views\ClaimTemplate\AddToClient.cshtml" />
+    <Content Include="Areas\Clients\Views\Client\Home.cshtml" />
+    <Content Include="Areas\Administration\Views\WillisEmployee\Home.cshtml" />
+    <Content Include="Areas\ClientHome\Views\ClientHome\ListClientClaimTemplates.cshtml" />
+    <Content Include="Areas\ClientHome\Views\ClientHome\ListClientClaims.cshtml" />
+    <Content Include="Areas\ClientHome\Views\ClientHome\ClaimFormEdit.cshtml" />
+    <Content Include="Areas\Claims\Views\Claim\GetListofUnassignedClaims.cshtml" />
+    <Content Include="Areas\Claims\Views\ClaimFieldGroupTemplate\Create.cshtml" />
+    <Content Include="Areas\Claims\Views\ClaimFieldGroupTemplate\Edit.cshtml" />
+    <Content Include="Areas\Claims\Views\ClaimFieldGroupTemplate\Delete.cshtml" />
+    <Content Include="Areas\ClientHome\Views\ClientHome\GoogleDonutChart.cshtml" />
+    <Content Include="Areas\ClientHome\Views\ClientHome\ClientReports.cshtml" />
+    <Content Include="Areas\Clients\Views\ClientClaimTemplate\Delete.cshtml" />
+    <Content Include="Areas\ClientHome\Views\ClientHome\GetClientStyles.cshtml" />
+    <Content Include="Areas\ClientHome\Views\ClientHome\ClaimFormDetails.cshtml" />
+    <Content Include="Areas\Administration\Views\Index.cshtml" />
+    <Content Include="Areas\WillisAssociate\Views\Web.config" />
+    <Content Include="Areas\WillisAssociate\Views\WillisAssociate\Index.cshtml" />
+    <Content Include="Areas\WillisAssociate\Views\WillisAssociate\Wizard.cshtml" />
+    <Content Include="Areas\Claims\Views\Claim\Create.cshtml" />
+    <Content Include="Areas\ClientHome\Views\ClientHome\ClaimsList.cshtml" />
+    <Content Include="Areas\Claims\Views\CustomTemplate\MultiChoiceListTemplate.cshtml" />
+    <Content Include="Areas\Claims\Views\CustomTemplate\DropDownListTemplate.cshtml" />
+    <Content Include="Areas\Claims\Views\CustomTemplate\FieldsListCreateFromClaimTemplate.cshtml" />
+    <Content Include="Areas\Claims\Views\CustomTemplate\FieldsListEditExistingClaim.cshtml" />
+    <Content Include="Areas\Claims\Views\CustomTemplate\FieldsListViewExistingClaim.cshtml" />
+    <Content Include="Areas\Claims\Views\CustomTemplate\Index.cshtml" />
+    <Content Include="Areas\Claims\Views\CustomTemplate\SubDropDown.cshtml" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Reports\Views\Web.config" />
+    <Content Include="Areas\Reports\Views\Reports\CreateReportTemplate.cshtml" />
+    <Content Include="Areas\Reports\Views\Reports\Index.cshtml" />
+    <Content Include="Areas\Claims\Views\CustomTemplate\DateTimeTemplate.cshtml" />
+    <Content Include="Areas\Reports\Views\Reports\RunTableReport.cshtml" />
+    <Content Include="Areas\Reports\Views\Reports\ListClientReportTypes.cshtml" />
+    <Content Include="Views\Home\AdminTasks.cshtml" />
+    <Content Include="Areas\Reports\Views\Reports\Edit.cshtml" />
+    <Content Include="Areas\Reports\Views\Reports\DeleteReportField.cshtml" />
+    <Content Include="Areas\Reports\Views\Reports\EditReportField.cshtml" />
+    <Content Include="Areas\Reports\Views\Reports\Detail.cshtml" />
+    <Content Include="Areas\Claims\Views\CustomTemplate\MultiChoiceListTemplate2.cshtml" />
+    <Content Include="Areas\Claims\Views\CustomTemplate\ServerFiltering.cshtml" />
+    <Content Include="Areas\Claims\Views\CustomTemplate\CountryTemplateEdit.cshtml" />
+    <Content Include="Areas\Claims\Views\CustomTemplate\MultiSelectTemplate.cshtml" />
+    <Content Include="Areas\Claims\Views\Shared\EditorTemplates\SourceEditor.cshtml" />
+    <Content Include="Areas\Claims\Views\ClaimTemplate\DeleteFromClient.cshtml" />
+    <Content Include="Areas\Claims\Views\ClaimTemplate\DeleteClientClaimTemplate.cshtml" />
+    <Content Include="Areas\Reports\Views\Shared\ReportFieldEdit.cshtml" />
+    <Content Include="Areas\Reports\Views\Shared\EditorTemplates\FunctionEditor.cshtml" />
+    <Content Include="Areas\Reports\Views\Shared\EditorTemplates\OrderDirectionEditor.cshtml" />
+    <Content Include="Areas\Reports\Views\Shared\EditorTemplates\FieldEditor.cshtml" />
+    <Content Include="Areas\Reports\Views\Reports\UpdateReportField.cshtml" />
+    <Content Include="Areas\Reports\Views\Shared\EditorTemplates\EditReportField.cshtml" />
+    <Content Include="Areas\Reports\Views\Reports\CreateReportField.cshtml" />
+    <Content Include="Areas\SharePointIntegration\Views\Web.config" />
+    <Content Include="Areas\SharePointIntegration\Views\SharePointIntegration\SharePointFrame.cshtml" />
+    <Content Include="Areas\SharePointIntegration\Views\SharePointIntegration\SharePointDashboard.cshtml" />
+    <Content Include="Areas\SharePointIntegration\Index.cshtml" />
+    <Content Include="Areas\SharePointIntegration\Views\SharePointIntegration\Index.cshtml" />
+    <Content Include="Areas\SharePointIntegration\Views\SharePointIntegration\SharePointDashboardII.cshtml" />
+    <Content Include="Areas\Reports\Views\Dashboards\Index.cshtml" />
+    <Content Include="Areas\Reports\Views\Dashboards\Details.cshtml" />
+    <Content Include="Areas\Reports\Views\Dashboards\Delete.cshtml" />
+    <Content Include="Areas\Reports\Views\Dashboards\SharePointDashboard.cshtml" />
+    <Content Include="Areas\Reports\Views\Reports\Delete.cshtml" />
+    <None Include="MvcSiteMapSchema.xsd" />
+    <Content Include="Views\Home\GoogleGeoChart.cshtml" />
+    <Content Include="Views\Home\GoogleDonutChart.cshtml" />
+    <Content Include="Views\Home\ClientMaster.cshtml" />
+    <Content Include="Views\Home\ClientLeftNavigation.cshtml" />
+    <Content Include="Views\Home\ClientTopBar.cshtml" />
+    <Content Include="Views\Home\Footer.cshtml" />
+    <Content Include="Areas\WillisAssociate\Views\WillisAssociate\Reports.cshtml" />
+    <Content Include="Views\Home\Articles.cshtml" />
+    <None Include="Properties\PublishProfiles\Claims_LocalPublish.pubxml" />
+    <None Include="Properties\PublishProfiles\ClaimsStaging.pubxml" />
+    <None Include="Properties\PublishProfiles\GBLON-I-DW38-ClaimPoC.pubxml" />
+    <Content Include="Views\Home\ClientFooter.cshtml" />
+    <Content Include="Views\Home\Navigation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\_BaseLayout.cshtml" />
+    <Content Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Account\LogOff.cshtml" />
+    <Content Include="Views\Account\RegisterationConfirmation.cshtml" />
+    <Content Include="Views\Home\GetClientStyles.cshtml" />
+    <Content Include="Views\NTLM\Web.config" />
+    <Content Include="Views\Fields\GetFieldTemplate.cshtml" />
+    <Content Include="Views\Home\WillisMaster_CRUD.cshtml" />
+    <Content Include="Views\Home\ClientMaster_CRUD.cshtml" />
+    <Content Include="Web.Publish.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Home\ReportMaster.cshtml" />
+    <Content Include="Views\Customise\DisplayPageElements.cshtml" />
+    <Content Include="Views\Error\Error.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Customise\Dashboard.cshtml" />
+    <Content Include="Areas\Reports\Views\Dashboards\Create.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Acturis\Acturis.csproj">
+      <Project>{06a5f270-61a4-4e28-8e20-cb56970771b8}</Project>
+      <Name>Acturis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BrokingPlatformIntegrationBase\BrokingPlatformIntegrationBase.csproj">
+      <Project>{c7bc3266-7793-4047-8119-c65330fe3349}</Project>
+      <Name>BrokingPlatformIntegrationBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Factories\Factories.csproj">
+      <Project>{910ced33-6928-4966-88ad-eb3d87a47e54}</Project>
+      <Name>Factories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\ModelsLayer.csproj">
+      <Project>{9e1a80c1-771d-48dd-977b-74f38fc3284a}</Project>
+      <Name>ModelsLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Publish|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <IncludeIisSettings>true</IncludeIisSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestTeamCity|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>57412</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:57412/</IISUrl>
+          <NTLMAuthentication>True</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
