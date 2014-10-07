@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Claims", "Claims\Claims.csproj", "{716F057F-143F-4FB6-B0C4-1C5C59B3CAAA}"
 EndProject
@@ -17,34 +17,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acturis", "Acturis\Acturis.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClaimsReport", "ClaimsReport\ClaimsReport.csproj", "{A8AE883E-DDEC-42DC-96C9-E5B426040C30}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{DEC2E7F6-6479-494F-98F0-3AC437AD04D3}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL11.SQLEXPRESS\MSSQL\Backup\Claims_Express.bak = ..\..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL11.SQLEXPRESS\MSSQL\Backup\Claims_Express.bak
+		..\..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL11.SQL\MSSQL\Backup\Claims_Professional.bak = ..\..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL11.SQL\MSSQL\Backup\Claims_Professional.bak
+		..\..\..\SQL Server Management Studio\ClaimsGenerateDB.sql = ..\..\..\SQL Server Management Studio\ClaimsGenerateDB.sql
+	EndProjectSection
+EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 8
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://tfs04.willis.com:8080/tfs/willis
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Acturis\\Acturis.csproj
-		SccProjectName1 = Acturis
-		SccLocalPath1 = Acturis
-		SccProjectUniqueName2 = BrokingPlatformIntegrationBase\\BrokingPlatformIntegrationBase.csproj
-		SccProjectName2 = BrokingPlatformIntegrationBase
-		SccLocalPath2 = BrokingPlatformIntegrationBase
-		SccProjectUniqueName3 = Claims.Tests\\Claims.Tests.csproj
-		SccProjectName3 = Claims.Tests
-		SccLocalPath3 = Claims.Tests
-		SccProjectUniqueName4 = Claims\\Claims.csproj
-		SccProjectName4 = Claims
-		SccLocalPath4 = Claims
-		SccProjectUniqueName5 = Factories\\Factories.csproj
-		SccProjectName5 = Factories
-		SccLocalPath5 = Factories
-		SccProjectUniqueName6 = Models\\ModelsLayer.csproj
-		SccProjectName6 = Models
-		SccLocalPath6 = Models
-		SccProjectUniqueName7 = ClaimsReport\\ClaimsReport.csproj
-		SccProjectName7 = ClaimsReport
-		SccLocalPath7 = ClaimsReport
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Publish|Any CPU = Publish|Any CPU
